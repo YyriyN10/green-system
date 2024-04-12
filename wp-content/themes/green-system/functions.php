@@ -1,4 +1,9 @@
 <?php
+
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit;
+	}
+
 /**
  * green-system functions and definitions
  *
@@ -50,6 +55,8 @@ function green_system_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'green-system' ),
+			'menu-2' => esc_html__( 'Footer Main', 'green-system' ),
+			'menu-3' => esc_html__( 'Footer Secondary', 'green-system' ),
 		)
 	);
 
@@ -114,38 +121,16 @@ function green_system_content_width() {
 }
 add_action( 'after_setup_theme', 'green_system_content_width', 0 );
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function green_system_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'green-system' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'green-system' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'green_system_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
 function green_system_scripts() {
 	wp_enqueue_style( 'green-system-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'green-system-style', 'rtl', 'replace' );
+	wp_enqueue_style('green-system-style-main', get_template_directory_uri() . '/assets/css/style.min.css', array(), _S_VERSION);
 
-	wp_enqueue_script( 'green-system-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'green-system-js-main', get_template_directory_uri() . '/assets/js/main.min.js', array(), _S_VERSION, true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'green_system_scripts' );
 
@@ -165,14 +150,26 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
- * Customizer additions.
+ * Carbon fields
  */
-require get_template_directory() . '/inc/customizer.php';
+
+require get_template_directory() . '/inc/carbon-init.php';
 
 /**
- * Load Jetpack compatibility file.
+ * Custom post types
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
 
+require get_template_directory() . '/inc/custom-post-types.php';
+
+/**
+ * Ajax
+ */
+
+require get_template_directory() . '/inc/ajax-content.php';
+
+
+/**
+ * Poly translation
+ */
+
+require get_template_directory() . '/inc/poly-translation.php';
