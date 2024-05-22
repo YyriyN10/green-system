@@ -1,16 +1,38 @@
 /*--- IMPORT ---*/
-
+@import "node_modules/bootstrap/dist/css/bootstrap";
 @import "fonts";
 @import "variables";
 @import "basic";
 @import "popup";
 @import "slick";
 @import "slick-teame";
-@import "bootstrap.css";
 
+/*--- Our Projects ---*/
 
-/*--- HEADER ---*/
+@import "block-our-projects";
 
+/*--- Contact Form ---*/
 
+@import "block-contact-form";
+
+/*--- Header ---*/
+
+@import "header";
+
+/*--- Page Home ---*/
+
+@import "page-home";
+
+/*--- Footer ---*/
+
+@import "footer";
+
+/*--- Page Product ---*/
+
+@import "page-product";
+
+/*--- Page Case ---*/
+
+@import "page-case";
 
 

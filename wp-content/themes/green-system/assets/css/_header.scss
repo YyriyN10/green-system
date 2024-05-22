@@ -1,0 +1,49 @@
+
+.site-header{
+  position: fixed;
+  /*height: 100vh;*/
+  left: 0;
+  top: 0;
+  right: 0;
+  /*bottom: 0;*/
+  z-index: 10;
+  width: 100%;
+  padding: 25px 0;
+  /*background: rgba(252, 252, 252, 0.65);
+  color: $color-black;
+  width: 72px;
+  padding-top: 40px;
+  padding-bottom: 40px;*/
+
+  /*.container,
+  .row{
+    height: 100%;
+  }*/
+
+  .content{
+    display: flex;
+    /*flex-wrap: wrap;*/
+    align-items: center;
+    /*justify-content: center;*/
+    /*height: 100%;
+    align-content: space-between;*/
+
+    /*.copy{
+      margin-top: auto;
+      margin-bottom: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+    }*/
+  }
+
+  .main-visible{
+    margin-left: auto;
+  }
+
+  .header-navigation{
+    display: none;
+  }
+
+
+}

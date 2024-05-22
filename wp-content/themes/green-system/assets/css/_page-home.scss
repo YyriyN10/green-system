@@ -1,0 +1,149 @@
+
+/*--- Maim screen ---*/
+
+.home-main-screen{
+  position: relative;
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  padding-top: 140px;
+  padding-bottom: 48px;
+  display: flex;
+  align-items: flex-end;
+
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(0deg, #131313 44.84%, rgba(19, 19, 19, 0.00) 100%);
+    z-index: 1;
+  }
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 40vw;
+    z-index: 1;
+    background: rgba(19, 19, 19, 0.27);
+    filter: blur(27.75px);
+    transform: rotate(118.128deg);
+  }
+
+  .container{
+    position: relative;
+    z-index: 2;
+  }
+
+  .block-title{
+    color: $color-white;
+    margin-bottom: 8px;
+
+    span{
+      color: $color-yellow;
+    }
+  }
+
+  .subtitle{
+    color: $color-white;
+    font-size: 32px;
+    margin-bottom: 32px;
+    max-width: 430px;
+  }
+
+  .content{
+    position: relative;
+  }
+
+  .text-content{
+    margin-bottom: 20px;
+  }
+
+  .advantages-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 0;
+    opacity: 0;
+    transform: translateY( 30px);
+    transition: all 0.5s;
+
+    &__item{
+      width: calc(25% - (24px * 3 / 4));
+      color: $color-white;
+      list-style: none;
+    }
+
+    &__name{
+      margin-bottom: 16px;
+      height: 274px;
+      display: flex;
+      align-items: flex-end;
+
+      h3{
+        text-transform: uppercase;
+        font-size: 48px;
+        line-height: 1;
+        margin-bottom: 0;
+        font-family: $f-S-bold;
+      }
+    }
+
+    &.active{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+/*--- about-us ---*/
+
+.about-us{
+  background-color: $color-dark-green;
+  color: $color-white;
+}
+
+/*--- solar-power-plants-types ---*/
+
+.solar-power-plants-types{
+  background-color: $color-green-light;
+
+  .power-plant{
+    cursor: pointer;
+
+    .inner{
+      height: 100%;
+      padding: 24px;
+      transition: all 0.5s;
+    }
+
+    .pic-wrapper{
+      width: 100%;
+      margin-bottom: 24px;
+
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &:hover{
+      .inner{
+        background-color: #e7f0e7 ;
+      }
+    }
+
+    &.active{
+      .inner{
+        background-color: #e7f0e7 ;
+      }
+    }
+
+  }
+}

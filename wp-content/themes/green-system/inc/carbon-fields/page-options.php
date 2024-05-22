@@ -31,7 +31,11 @@
 			         Field::make_text('green_system_work_schedule'.green_system_lang_prefix(), 'Розклад роботи')
 			            ->help_text('з 9:00 до 18:00'),
 			         Field::make_text('green_system_weekend'.green_system_lang_prefix(), 'Вихідні')
-			              ->help_text('сб, нд')
+			              ->help_text('сб, нд'),
+			         Field::make_image('green_system_logo', 'Логотип')
+			            ->set_value_type('url'),
+			         Field::make_image('green_system_contact_form_pic'.green_system_lang_prefix(), 'Зображення у блок контактної форми')
+
 
 		         ) );
 

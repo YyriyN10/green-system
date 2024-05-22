@@ -1,0 +1,57 @@
+
+/*--- ur-projects ---*/
+
+.our-projects{
+  background-color: $color-white;
+  border-top: 8px solid $color-green;
+
+  &__category-list{
+    display: flex;
+    padding: 12px 0;
+    margin: 0;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  &__category{
+    list-style: none;
+
+    a{
+      padding: 16px 32px;
+      border-radius: 1000px;
+      border: 1px solid $color-green;
+      background-color: $color-white;
+      color: $color-black !important;
+      text-transform: uppercase;
+      font-family: $f-med;
+      font-size: 16px;
+      letter-spacing: -0.16px;
+      transition: all 0.5s;
+
+      &.active{
+        background-color: $color-green;
+        color: $color-white !important;
+      }
+    }
+  }
+
+  .more-project-btn{
+    display: inline-block;
+    margin: 32px auto 0;
+    text-align: center;
+
+    span{
+      display: block;
+      letter-spacing: -0.16px;
+      font-size: 16px;
+      margin-bottom: 16px;
+      color: $color-dark-green !important;
+    }
+
+    svg{
+      width: 20px;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+}

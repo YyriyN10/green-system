@@ -76,6 +76,141 @@
 				false
 			);
 
+			pll_register_string(
+				'green_system_dev',
+				'Розроблено в',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_copy',
+				'Всі права захищені',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_our_project_title',
+				'Реалізовані об’єкти',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_our_project_go_to',
+				'Ознайомитись',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_our_project_more',
+				'Побачити більше',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_menu_text',
+				'меню',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_btn_more',
+				'Дізнатись більше',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_reviews_bl_title',
+				'Відгуки про нашу співпрацю',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_price_text',
+				'Вартість',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_complete_title',
+				'Комплектація',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_key_cost',
+				'Вартість під ключ',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_more_cost',
+				'Окремо сплачується',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_product_faq_title',
+				'Поширені питання',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_send_aplication',
+				'Залишити заявку',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_complete_list_title',
+				'Що використовувалось?',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_complete_works_title',
+				'Виконання роботи під ключ',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_other_projects_title',
+				'Ознайомтесь з іншими нашими кейсами',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_case_description_title',
+				'Особливості проєктування',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_case_go_to_text',
+				'Переглянути',
+				'Переклади',
+				false
+			);
+
+
+
 
 		}
 	}

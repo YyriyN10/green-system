@@ -12,7 +12,10 @@
  * @package green-system
  */
 
+  global $logoPic;
+  $logoPic = carbon_get_theme_option('green_system_logo');
 ?>
+
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -45,47 +48,131 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div class="wrapper">
-	<header class="site-header">
+  <!--<header class="site-header">
     <div class="container">
       <div class="row">
         <div class="content col-12">
-          <?php if( is_home() ):?>
-              <div class="logo"></div>
-          <?php else:?>
-            <a href="<?php echo get_home_url('/');?>" class="logo"></a>
-          <?php endif;?>
+	        <?php /*if( is_home() ):*/?>
+              <div class="logo">
+                <img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">
+              </div>
+	        <?php /*else:*/?>
+              <a href="<?php /*echo get_home_url('/');*/?>" class="logo">
+                <img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">
+              </a>
+	        <?php /*endif;*/?>
+	        <?php
+/*		        wp_nav_menu(
+			        array(
+				        'theme_location' => 'menu-1',
+				        'menu_id'        => 'primary-visible',
+				        'container' => false,
+				        'menu_class' => 'main-visible menu'
+			        )
+		        );
+	        */?>
+
+          <button class="menu-btn">
+            <span></span><span></span><span></span>
+          </button>
+
           <nav class="header-navigation">
 	          <?php
-		          wp_nav_menu(
+/*		          wp_nav_menu(
 			          array(
-				          'theme_location' => 'menu-1',
+				          'theme_location' => 'menu-4',
 				          'menu_id'        => 'primary-menu',
-                  'container' => false,
-                  'menu_class' => 'main-menu'
+				          'container' => false,
+				          'menu_class' => 'main-menu menu'
 			          )
 		          );
-	          ?>
+	          */?>
+
+	          <?php
+/*		          wp_nav_menu(
+			          array(
+				          'theme_location' => 'menu-1',
+				          'menu_id'        => 'primary-second',
+				          'container' => false,
+				          'menu_class' => 'main-menu menu secondary-menu'
+			          )
+		          );
+	          */?>
+
             <div class="lang-wrapper">
 	            <?php
-		            $langArgs = array(
+/*		            $langArgs = array(
 			            'show_names' => 1,
 			            'display_names_as' => 'name',
 			            'show_flags' => 0,
-			            'hide_current' => 1
+			            'hide_current' => 0
 		            );
 
 		            if ( $langArgs ):
-			            ?>
+			            */?>
                       <ul class="lang-list">
-			              <?php
-				              pll_the_languages($langArgs);
-			              ?>
+				          <?php
+/*					          pll_the_languages($langArgs);
+				          */?>
                       </ul>
-		            <?php endif;?>
+		            <?php /*endif;*/?>
             </div>
+
           </nav>
         </div>
       </div>
     </div>
-	</header>
+  </header>-->
+	<!--<header class="site-header">
+    <div class="container">
+      <div class="row">
+        <div class="content col-12">
+          <div>
+            <button class="menu-btn">
+              <span></span><span></span><span></span>
+	            <?php /*echo esc_html( pll__( 'меню' ) ); */?>
+            </button>
+            <div class="lang-wrapper">
+	            <?php
+/*		            $langArgs = array(
+			            'show_names' => 1,
+			            'display_names_as' => 'name',
+			            'show_flags' => 0,
+			            'hide_current' => 0
+		            );
+
+		            if ( $langArgs ):
+			            */?>
+                      <ul class="lang-list">
+				          <?php
+/*					          pll_the_languages($langArgs);
+				          */?>
+                      </ul>
+		            <?php /*endif;*/?>
+            </div>
+          </div>
+
+          <p class="copy">©Green System</p>
+          <?php /*if( is_home() ):*/?>
+              <div class="logo"></div>
+          <?php /*else:*/?>
+            <a href="<?php /*echo get_home_url('/');*/?>" class="logo"></a>
+          <?php /*endif;*/?>
+          <nav class="header-navigation">
+	          <?php
+/*		          wp_nav_menu(
+			          array(
+				          'theme_location' => 'menu-1',
+				          'menu_id'        => 'primary-menu',
+                  'container' => false,
+                  'menu_class' => 'main-menu menu'
+			          )
+		          );
+	          */?>
+
+          </nav>
+        </div>
+      </div>
+    </div>
+	</header>-->
   <main>

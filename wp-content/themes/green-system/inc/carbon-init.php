@@ -42,4 +42,7 @@
 	require ('carbon-fields/page-questions-answers.php');
 	require ('carbon-fields/page-guarantees.php');
 	require ('carbon-fields/page-service.php');
+	require ('carbon-fields/post-solar-type.php');
+	require ('carbon-fields/post-realized-objects.php');
+	require ('carbon-fields/post-reviews.php');
 

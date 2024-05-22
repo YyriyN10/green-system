@@ -1,15 +1,419 @@
-jQuery(function() {
+/*
+ * Lazy Load Image
+ */
+
+const lazyContent = new LazyLoad({
+  use_native: true
+});
+
+/**
+ * jQuery functions
+ */
+
+jQuery(function($) {
+
+  /**
+   * Screen height and width
+   */
+
+  let windWid = $(window).width();
+  let windHei = $(window).height();
+
+  $(window).resize(function () {
+    windWid = $(window).width();
+    windHei = $(window).height();
+  });
+
+  /**
+   * Header auto adaptive
+   * @type {jQuery|HTMLElement}
+   */
 
 
-  //Get Window Width, Height
+  const headerElement = $('.site-header');
 
-  /*let windWid = jQuery(window).width();
-  let windHeig = jQuery(window).height();
+  let headerLogoW = headerElement.find('.logo').outerWidth();
+  let headerNav = headerElement.find('.header-nav').outerWidth();
 
-  jQuery(window).resize(function () {
-    windWid = jQuery(window).width();
-    windHeig = jQuery(window).height();
-  });*/
+  let headerPhone =  0;
+
+  if ( headerElement.find('.header-phone').length ){
+    headerPhone =  headerElement.find('.header-phone').outerWidth();
+  }
+
+  let headerLang =  0;
+
+  if ( headerElement.find('.lang-wrapper').length ){
+    headerLang =  headerElement.find('.lang-wrapper').outerWidth();
+  }
+
+  if ( windWid > 1200 ){
+    let headerContentW = headerLogoW + headerNav + headerPhone + headerLang + 50;
+
+    if ( headerContentW > 1140 ){
+      headerElement.addClass('hide-menu');
+    }
+  }else if( windWid > 992 &&  windWid < 1200 ){
+    let headerContentW = headerLogoW + headerNav + headerPhone + headerLang + 50;
+
+    if ( headerContentW > 720 ){
+      headerElement.addClass('hide-menu');
+    }
+  }
+
+  $(document).scroll(function() {
+
+    let currentScroll = $(this).scrollTop();
+
+    if ( currentScroll > ( windHei / 3) ) {
+      $('.home-main-screen .advantages-list').addClass('active');
+
+    } else {
+      $('.home-main-screen .advantages-list').removeClass('active');
+
+    }
+  });
+
+  /**
+   * About us slider
+   */
+
+  $('#about-us-slider').slick({
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true
+  });
+
+  $('.about-us .prev').click(function(e){
+      e.preventDefault();
+
+      $('#about-us-slider').slick('slickPrev');
+  });
+
+  $('.about-us .next').click(function(e){
+      e.preventDefault();
+
+      $('#about-us-slider').slick('slickNext');
+  });
+
+  let aboutUsCurrentSlidePic = $('#about-us-slider .slide.slick-current').attr('data-image');
+
+  const aboutUsAllSlides = $('#about-us-slider .slide').length;
+
+  const aboutUsPic = $('.about-us .pic-wrapper img');
+
+  const aboutUsSlideCounter = $('.about-us .slide-counter');
+
+  const aboutUsProgressBar = $('.about-us .slider-progress-bar .progress span');
+
+  aboutUsPic.attr('src', aboutUsCurrentSlidePic);
+
+  if ( aboutUsAllSlides < 10 ){
+
+    aboutUsSlideCounter.find('.all').text('0' + aboutUsAllSlides);
+  }else{
+
+    aboutUsSlideCounter.find('.all').text(aboutUsAllSlides);
+  }
+
+  const aboutUsProgressBsrStartPosition = 100 / Number(aboutUsAllSlides);
+
+  aboutUsProgressBar.css({'width' : aboutUsProgressBsrStartPosition + '%'});
+
+  $('#about-us-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+
+    if ( (nextSlide + 1) < 10 ){
+      aboutUsSlideCounter.find('.current').text('0' + (nextSlide + 1));
+    }else{
+      aboutUsSlideCounter.find('.current').text(nextSlide + 1);
+    }
+
+    let slideObject = slick['$slides'][nextSlide];
+
+    let arraySlide = $.makeArray(slideObject);
+
+    aboutUsCurrentSlidePic = arraySlide[0]['dataset']['image'];
+    aboutUsPic.attr('src', aboutUsCurrentSlidePic);
+
+    aboutUsProgressBar.css({'width' : (aboutUsProgressBsrStartPosition * (nextSlide + 1)) + '%'});
+
+  });
+
+  /**
+   * Product and case slider
+   */
+
+  if( $('.single-solar_types').length || $('.realized_objects-template').length ){
+
+    const previewsCount = $('#previews-slider .slide').length;
+
+    let previewsSlideToShow = 5;
+
+    if ( previewsCount < 5 ){
+      previewsSlideToShow = previewsCount;
+    }
+
+    if ( windWid <= 1440 && windWid > 1200 ){
+
+      previewsSlideToShow = 4;
+
+      if ( previewsCount < 4 ){
+        previewsSlideToShow = previewsCount;
+      }
+
+    }
+
+    if ( windWid <= 1200 && windWid > 992 ){
+
+      previewsSlideToShow = 3;
+
+      if ( previewsCount < 3 ){
+        previewsSlideToShow = previewsCount;
+      }
+
+    }
+
+    if ( windWid <= 992 && windWid > 767 ){
+
+      previewsSlideToShow = 5;
+
+      if ( previewsCount < 5 ){
+        previewsSlideToShow = previewsCount;
+      }
+
+    }
+
+    if ( windWid <= 767 && windWid > 575 ){
+
+      previewsSlideToShow = 4;
+
+      if ( previewsCount < 4 ){
+        previewsSlideToShow = previewsCount;
+      }
+
+    }
+
+
+    $('#previews-slider').slick({
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: previewsSlideToShow,
+      slidesToScroll: 1,
+      arrows: false,
+      vertical: true,
+      asNavFor: '#product-slider',
+      responsive: [
+        {
+          breakpoint: 575,
+          settings: {
+            slidesToShow: 3,
+            vertical: false
+          }
+        }
+      ]
+    });
+
+    $('#product-slider').slick({
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '#previews-slider'
+
+    });
+
+    $('.product-gallery-wrapper .change-slide').click(function(e){
+      e.preventDefault();
+
+      $('#previews-slider, #product-slider').slick('slickNext');
+    });
+
+  }
+
+  /**
+   * More Projects
+   */
+
+  $('#more-projects').on('click', function (e) {
+
+    e.preventDefault();
+
+    const thisBtn = $(this);
+
+    let catId = thisBtn.attr('data-cat-id');
+    let currentProjectId = thisBtn.attr('data-current');
+
+    $('.more-projects-wrapper').fadeOut(200);
+
+    let data = {
+      action: 'more_projects',
+      catId: catId,
+      currentProjectId: currentProjectId,
+    }
+
+    $.post( green_system_ajax.url, data, function(response) {
+
+      if($.trim(response) !== ''){
+
+        $('#project-list').append(response);
+      }
+    });
+
+  });
+
+  /**
+   * Solar types
+   */
+
+  if ( $('.solar-power-plants-types').length ){
+
+    function changePowerPlantsType( catID ){
+
+      let data = {
+
+        action: 'change_power_plant_type',
+        catId: catID,
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#power-plants-list').html(response);
+        }
+      });
+    }
+
+    $('.types-list .power-plant:first-child').addClass('active');
+
+    let defaultPowerTypeId = Number($('.types-list .power-plant:first-child').attr('data-cat-id'));
+
+    changePowerPlantsType(defaultPowerTypeId);
+
+    $('.types-list .power-plant').on('click', function (e) {
+
+      e.preventDefault();
+
+      $('.types-list .power-plant.active').removeClass('active');
+
+      let thisType = $(this);
+
+      thisType.addClass('active');
+
+      let currentTypeId = Number(thisType.attr('data-cat-id'));
+
+      changePowerPlantsType( currentTypeId );
+
+    });
+  }
+
+
+
+  /**
+   * Project categories
+   */
+
+  if ( $('.our-projects').length ){
+
+    function changeProjectCategory( catID ){
+
+      let data = {
+
+        action: 'change_project_category',
+        catId: catID,
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#our-projects-list').html(response);
+        }
+      });
+    }
+
+    $('.our-projects__category-list .our-projects__category:first-child a').addClass('active');
+
+    let defaultCategoryId = Number($('.our-projects__category-list .our-projects__category:first-child a').attr('data-cat-id'));
+    let defaultCategoryCount = Number($('.our-projects__category-list .our-projects__category:first-child a').attr('data-all-projects'));
+
+    const moreProjectBtn = $('#more-project');
+
+    if ( defaultCategoryCount > 4 ){
+
+      moreProjectBtn.show(400);
+      moreProjectBtn.attr('data-cat-id', defaultCategoryId);
+
+    }else{
+      moreProjectBtn.hide(400);
+      moreProjectBtn.attr('data-cat-id', '');
+    }
+
+    changeProjectCategory( defaultCategoryId );
+
+    $('.our-projects__category-list .our-projects__category a').on('click', function (e) {
+
+      e.preventDefault();
+
+      $('.our-projects__category-list .our-projects__category a.active').removeClass('active');
+
+      let thisCategory = $(this);
+
+      thisCategory.addClass('active');
+
+      let currentCatId = Number(thisCategory.attr('data-cat-id'));
+      let countPosts = Number(thisCategory.attr('data-all-projects'));
+
+      changeProjectCategory( currentCatId );
+
+      if ( countPosts > 4 ){
+
+        moreProjectBtn.show(400);
+        moreProjectBtn.attr('data-cat-id', currentCatId);
+
+      }else{
+        moreProjectBtn.hide(400);
+        moreProjectBtn.attr('data-cat-id', '');
+      }
+
+    });
+
+    /**
+     * Modal video
+     */
+
+    const videoModal = $('#videoModal');
+
+    $('.play').on('click', function (e) {
+
+      e.preventDefault();
+
+      let videoSrc = $(this).attr('data-video');
+
+      videoModal.find('video').attr('src', videoSrc);
+
+      videoModal.modal("show");
+
+    });
+
+    videoModal.on('hide.bs.modal', function () {
+
+      videoModal.find('video').attr('src', '');
+
+    });
+
+
+
+
+
+  }
 
   // Lazy load
 
@@ -298,29 +702,7 @@ jQuery(function() {
 
     });*/
 
-    // CASTOME SLIDER ARROWS
 
-    /*jQuery('.mein-slider').slick({
-        autoplay: false,
-        autoplaySpeed: 5000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true
-
-    });
-
-    jQuery('.main-page .arrow-left').click(function(e){
-        e.preventDefault();
-
-        jQuery('.mein-slider').slick('slickPrev');
-    });
-
-    jQuery('.main-page .arrow-right').click(function(e){
-        e.preventDefault();
-
-        jQuery('.mein-slider').slick('slickNext');
-    });*/
 
     // PHONE MASK
 

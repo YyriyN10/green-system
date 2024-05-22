@@ -12,7 +12,7 @@
 				$phoneToColl = preg_replace( '/[^0-9]/', '', $phone['phone_number']);
 				?>
 				<li>
-					<a href="tel:<?php echo $phoneToColl;?>"><?php echo $phone['phone_number'];?></a>
+					<a href="tel:<?php echo $phoneToColl;?>" class="item"><?php echo $phone['phone_number'];?></a>
 				</li>
 			<?php endforeach;?>
 

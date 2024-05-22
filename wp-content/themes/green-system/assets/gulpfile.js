@@ -19,8 +19,10 @@ const sass = gulpSass(dartSass);*/
 }*/
 function scripts(){
   return src([//файли які потрібно об'єднати та зжати
-    'js/bootstrap.js',
-    'js/jquery.lazy.js',
+    'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
+    'node_modules/viewport-checker/dist/viewportChecker.umd.js',
+    'node_modules/vanilla-lazyload/dist/lazyload.js',
+    'js/slick.min.js',
     'js/js.js'//завжди останній, важлива послідовність
   ])
     .pipe(concat('main.min.js'))//ім'я згенерованого файлу

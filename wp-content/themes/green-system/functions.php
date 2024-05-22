@@ -54,7 +54,8 @@ function green_system_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'green-system' ),
+			'menu-1' => esc_html__( 'Primary Visible', 'green-system' ),
+			'menu-4' => esc_html__( 'Primary Hidden', 'green-system' ),
 			'menu-2' => esc_html__( 'Footer Main', 'green-system' ),
 			'menu-3' => esc_html__( 'Footer Secondary', 'green-system' ),
 		)
@@ -129,7 +130,7 @@ function green_system_scripts() {
 	wp_enqueue_style( 'green-system-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_enqueue_style('green-system-style-main', get_template_directory_uri() . '/assets/css/style.min.css', array(), _S_VERSION);
 
-	wp_enqueue_script( 'green-system-js-main', get_template_directory_uri() . '/assets/js/main.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'green-system-js-main', get_template_directory_uri() . '/assets/js/main.min.js', array('jquery'), _S_VERSION, true );
 
 }
 add_action( 'wp_enqueue_scripts', 'green_system_scripts' );
@@ -173,3 +174,17 @@ require get_template_directory() . '/inc/ajax-content.php';
  */
 
 require get_template_directory() . '/inc/poly-translation.php';
+
+
+/**
+ * Variables
+ */
+define( 'SITE_URL', get_site_url() );
+define( 'SITE_LOCALE', get_locale() );
+define( 'THEME_PATH', get_template_directory_uri() );
+
+/**
+ * Custom login page
+ */
+
+require get_template_directory() . '/inc/custom-login-page.php';

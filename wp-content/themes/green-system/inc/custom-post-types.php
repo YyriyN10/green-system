@@ -191,10 +191,61 @@
 			'exclude_from_search'=> false,
 			'menu_position'      => 7,
 			'menu_icon'          => 'dashicons-excerpt-view',
-			'supports'           => array( 'title', 'editor',)
+			'supports'           => array( 'title', 'thumbnail', 'revisions')
 		);
 
 		register_post_type( 'realized_objects', $args );
 	}
 
 	add_action( 'init', 'realized_objects_post_type' );
+
+	/**
+	 * Register a reviews post type.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/register_post_type
+	 *
+	 * @since green_system 1.0
+	 */
+
+	function reviews_post_type() {
+
+		$labels = array(
+			'name'               => _x( 'Відгуки', 'post type general name', 'green_system' ),
+			'singular_name'      => _x( 'Відгуки', 'post type singular name', 'green_system' ),
+			'menu_name'          => _x( 'Відгуки', 'admin menu', 'green_system' ),
+			'name_admin_bar'     => _x( 'Відгуки', 'add new on admin bar', 'green_system' ),
+			'add_new'            => _x( 'Додати новий відгук', 'actions', 'green_system' ),
+			'add_new_item'       => __( 'Додати новий відгук', 'green_system' ),
+			'new_item'           => __( 'Новий відгук', 'green_system' ),
+			'edit_item'          => __( 'Редагувати відгук', 'green_system' ),
+			'view_item'          => __( 'Дивитись відгук', 'green_system' ),
+			'all_items'          => __( 'Всі відгуки', 'green_system' ),
+			'search_items'       => __( 'Шукати відгук', 'green_system' ),
+			'parent_item_colon'  => __( 'Батько відгуку:', 'green_system' ),
+			'not_found'          => __( 'Відгук не знайдено', 'green_system' ),
+			'not_found_in_trash' => __( 'У кошику відгуків не знайдно', 'green_system' )
+		);
+
+		$args = array(
+			'labels'             => $labels,
+			'taxonomies'         => [],
+			'description'        => __( 'Description.', 'reviews' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'reviews' ),
+			'capability_type'    => 'post',
+			'has_archive'        => false,
+			'hierarchical'       => false,
+			'exclude_from_search'=> false,
+			'menu_position'      => 8,
+			'menu_icon'          => 'dashicons-feedback',
+			'supports'           => array( 'title', 'thumbnail',)
+		);
+
+		register_post_type( 'reviews', $args );
+	}
+
+	add_action( 'init', 'reviews_post_type' );
