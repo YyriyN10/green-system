@@ -65,88 +65,35 @@ jQuery(function($) {
 
     let currentScroll = $(this).scrollTop();
 
-    if ( currentScroll > ( windHei / 3) ) {
+    /*if ( currentScroll > ( windHei / 3) ) {
       $('.home-main-screen .advantages-list').addClass('active');
 
     } else {
       $('.home-main-screen .advantages-list').removeClass('active');
-
-    }
+    }*/
   });
 
   /**
-   * About us slider
+   * Why us slider
    */
 
-  $('#about-us-slider').slick({
-      autoplay: false,
-      autoplaySpeed: 5000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: false,
-      fade: true
-  });
-
-  $('.about-us .prev').click(function(e){
-      e.preventDefault();
-
-      $('#about-us-slider').slick('slickPrev');
-  });
-
-  $('.about-us .next').click(function(e){
-      e.preventDefault();
-
-      $('#about-us-slider').slick('slickNext');
-  });
-
-  let aboutUsCurrentSlidePic = $('#about-us-slider .slide.slick-current').attr('data-image');
-
-  const aboutUsAllSlides = $('#about-us-slider .slide').length;
-
-  const aboutUsPic = $('.about-us .pic-wrapper img');
-
-  const aboutUsSlideCounter = $('.about-us .slide-counter');
-
-  const aboutUsProgressBar = $('.about-us .slider-progress-bar .progress span');
-
-  aboutUsPic.attr('src', aboutUsCurrentSlidePic);
-
-  if ( aboutUsAllSlides < 10 ){
-
-    aboutUsSlideCounter.find('.all').text('0' + aboutUsAllSlides);
-  }else{
-
-    aboutUsSlideCounter.find('.all').text(aboutUsAllSlides);
-  }
-
-  const aboutUsProgressBsrStartPosition = 100 / Number(aboutUsAllSlides);
-
-  aboutUsProgressBar.css({'width' : aboutUsProgressBsrStartPosition + '%'});
-
-  $('#about-us-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-
-    if ( (nextSlide + 1) < 10 ){
-      aboutUsSlideCounter.find('.current').text('0' + (nextSlide + 1));
-    }else{
-      aboutUsSlideCounter.find('.current').text(nextSlide + 1);
-    }
-
-    let slideObject = slick['$slides'][nextSlide];
-
-    let arraySlide = $.makeArray(slideObject);
-
-    aboutUsCurrentSlidePic = arraySlide[0]['dataset']['image'];
-    aboutUsPic.attr('src', aboutUsCurrentSlidePic);
-
-    aboutUsProgressBar.css({'width' : (aboutUsProgressBsrStartPosition * (nextSlide + 1)) + '%'});
-
+  $('#why-us-slider').slick({
+    autoplay: false,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    dots:true
   });
 
   /**
    * Product and case slider
    */
 
-  if( $('.single-solar_types').length || $('.realized_objects-template').length ){
+  if( $('#previews-slider').length ){
+
+    console.log(100);
 
     const previewsCount = $('#previews-slider .slide').length;
 
@@ -227,7 +174,7 @@ jQuery(function($) {
 
     });
 
-    $('.product-gallery-wrapper .change-slide').click(function(e){
+    $('.general-information .change-slide').click(function(e){
       e.preventDefault();
 
       $('#previews-slider, #product-slider').slick('slickNext');
@@ -265,6 +212,188 @@ jQuery(function($) {
     });
 
   });
+
+  /**
+   * Reviews slider
+   */
+
+  if ( $('.reviews').length ){
+
+    $('#reviews-slider').slick({
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: false,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 575,
+          settings: {
+            slidesToShow: 1,
+            fade: true,
+          }
+        }
+      ]
+    });
+
+    $('.reviews .prev').click(function(e){
+      e.preventDefault();
+
+      $('#reviews-slider').slick('slickPrev');
+    });
+
+    $('.reviews .next').click(function(e){
+      e.preventDefault();
+
+      $('#reviews-slider').slick('slickNext');
+    });
+
+    $('.reviews-slider .slide.text-slide').each(function () {
+
+      let thisSlide = $(this);
+
+      let textLeng = thisSlide.find('.text').text().length;
+
+      if ( textLeng > 189 ){
+        thisSlide.find('.info').addClass('more');
+      }
+    })
+
+    const reviewsAllSlides = $('#reviews-slider .slide').length;
+    const reviewsClonedSlides = $('#reviews-slider .slide.slick-cloned').length;
+    const reviewsSlideCounter = $('.reviews .slider-controls .counter');
+    const reviewsSlidesCount = reviewsAllSlides - reviewsClonedSlides;
+
+    if ( reviewsSlidesCount < 10 ){
+      reviewsSlideCounter.find('.all').text('0' + reviewsSlidesCount);
+    }else{
+      reviewsSlideCounter.find('.all').text(reviewsSlidesCount);
+    }
+
+    $('#reviews-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+
+      if ( (nextSlide + 1) < 10 ){
+        reviewsSlideCounter.find('.current').text('0' + (nextSlide + 1));
+      }else{
+        reviewsSlideCounter.find('.current').text(nextSlide + 1);
+      }
+
+    });
+
+    $('#reviews-slider .slide').on('click', function (e) {
+
+      e.preventDefault();
+
+      const thisSlide = $(this);
+
+      let slideIndex = Number(thisSlide.attr('data-slick-index'));
+
+      $('#reviewsModal').modal("show");
+
+      $('#reviews-modal-slider').slick({
+        autoplay: false,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        adaptiveHeight: true
+      });
+
+      $('#reviews-modal-slider').slick('slickGoTo', slideIndex);
+
+      $('.reviews-modal .prev').click(function(e){
+        e.preventDefault();
+
+        $('#reviews-modal-slider').slick('slickPrev');
+      });
+
+      $('.reviews-modal .next').click(function(e){
+        e.preventDefault();
+
+        $('#reviews-modal-slider').slick('slickNext');
+      });
+
+      $('.reviews-modal .slide.text-slide').each(function () {
+
+        let thisSlide = $(this);
+
+        let textLeng = thisSlide.find('.text').text().length;
+
+        if ( textLeng > 189 ){
+          thisSlide.find('.info').addClass('more');
+        }
+      })
+
+      const reviewsModalAllSlides = $('#reviews-modal-slider .slide').length;
+      const reviewsModalClonedSlides = $('#reviews-modal-slider .slide.slick-cloned').length;
+      const reviewsModalSlideCounter = $('.reviews-modal .slider-controls .counter');
+      const reviewsModalSlidesCount = reviewsModalAllSlides - reviewsModalClonedSlides;
+
+      if ( reviewsModalSlidesCount < 10 ){
+        reviewsModalSlideCounter.find('.all').text('0' + reviewsModalSlidesCount);
+      }else{
+        reviewsModalSlideCounter.find('.all').text(reviewsModalSlidesCount);
+      }
+
+      $('#reviews-modal-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+
+        if ( (nextSlide + 1) < 10 ){
+          reviewsModalSlideCounter.find('.current').text('0' + (nextSlide + 1));
+        }else{
+          reviewsModalSlideCounter.find('.current').text(nextSlide + 1);
+        }
+
+        $('#reviewsModal').find('video').attr('src', '');
+
+        $('#reviews-modal-slider .slide .play-btn').fadeIn(200);
+
+      });
+
+      $('#reviews-modal-slider .slide.slick-current.video-slide video').attr('src', thisSlide.find('.play-btn').attr('data-video'));
+      $('#reviews-modal-slider .slide.slick-current.video-slide .play-btn').fadeOut(200);
+
+
+      $('#reviews-modal-slider .slide .play-btn').on('click', function (e) {
+
+        e.preventDefault();
+
+        let thisVideo = $(this);
+
+        $('#reviews-modal-slider .slide.slick-current.video-slide video').attr('src', thisVideo.attr('data-video'));
+
+        thisVideo.fadeOut(200);
+
+      });
+
+
+    });
+
+    $('#reviewsModal').on('hide.bs.modal', function () {
+
+      $('#reviewsModal').find('video').attr('src', '');
+
+      $('#reviews-modal-slider').slick('unslick');
+
+      $('#reviews-modal-slider .slide .play-btn').fadeIn(200);
+
+    });
+
+
+  }
 
   /**
    * Solar types
@@ -339,37 +468,20 @@ jQuery(function($) {
       });
     }
 
-    $('.our-projects__category-list .our-projects__category:first-child a').addClass('active');
+    const moreProjectBtn = $('#more-project-main');
 
-    let defaultCategoryId = Number($('.our-projects__category-list .our-projects__category:first-child a').attr('data-cat-id'));
-    let defaultCategoryCount = Number($('.our-projects__category-list .our-projects__category:first-child a').attr('data-all-projects'));
-
-    const moreProjectBtn = $('#more-project');
-
-    if ( defaultCategoryCount > 4 ){
-
-      moreProjectBtn.show(400);
-      moreProjectBtn.attr('data-cat-id', defaultCategoryId);
-
-    }else{
-      moreProjectBtn.hide(400);
-      moreProjectBtn.attr('data-cat-id', '');
-    }
-
-    changeProjectCategory( defaultCategoryId );
-
-    $('.our-projects__category-list .our-projects__category a').on('click', function (e) {
+    $('.our-projects__category-list .our-projects__category').on('click', function (e) {
 
       e.preventDefault();
 
-      $('.our-projects__category-list .our-projects__category a.active').removeClass('active');
+      $('.our-projects__category-list .our-projects__category.active').removeClass('active');
 
       let thisCategory = $(this);
 
       thisCategory.addClass('active');
 
-      let currentCatId = Number(thisCategory.attr('data-cat-id'));
-      let countPosts = Number(thisCategory.attr('data-all-projects'));
+      let currentCatId = Number(thisCategory.find('a').attr('data-cat-id'));
+      let countPosts = Number(thisCategory.find('a').attr('data-all-projects'));
 
       changeProjectCategory( currentCatId );
 
@@ -384,6 +496,32 @@ jQuery(function($) {
       }
 
     });
+
+    moreProjectBtn.on('click', function (e) {
+
+      e.preventDefault();
+
+      let thisBtn = $(this);
+
+      let catId = Number(thisBtn.attr('data-cat-id'));
+
+      let data = {
+
+        action: 'main_more_projects',
+        catId: catId,
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#our-projects-list').append(response);
+        }
+      });
+
+
+    })
 
     /**
      * Modal video

@@ -41,7 +41,7 @@
 
         if( $generalInformationTitle && $generalInformationGallery && $generalInformationCost && $generalInformationComplete):?>
         <!-- Головна інформація -->
-        <section class="general-information indent-bottom-big">
+        <section class="general-information indent-bottom-big indent-top-big">
           <div class="container">
             <div class="row content">
               <div class="product-gallery-wrapper col-lg-6">

@@ -217,6 +217,20 @@
         flex-wrap: wrap;
         gap: 24px;
         align-items: center;
+        width: 545px;
+
+        @media(max-width: 1200px){
+          width: 100%;
+        }
+
+        .form-group{
+          width: 260px;
+
+          @media(max-width: 575px){
+            width: 100%;
+          }
+
+        }
       }
     }
 
@@ -352,6 +366,7 @@
     .card-header{
       padding: 0;
       background-color: rgba(0,0,0,0);
+      border: none !important;
 
       .btn{
         font-size: 24px;
@@ -443,6 +458,10 @@
   position: relative;
   background-image: url("../img/product-banner-bg.jpg");
   color: $color-white;
+
+  @media(max-width: 992px){
+    background-attachment: unset;
+  }
 
   &:before{
     content: '';

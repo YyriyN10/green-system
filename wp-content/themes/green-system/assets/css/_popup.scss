@@ -177,3 +177,226 @@
     }
   }
 }
+
+/*--- Reviews modal --*/
+
+.reviews-modal{
+  .modal-dialog{
+    width: 100%;
+    max-width: 100%;
+    margin-top: 100px;
+
+    .modal-content{
+      padding: 0;
+      background-color: rgba(0,0,0,0);
+
+      .modal-header{
+
+        .btn-close{
+          padding: 0;
+          margin: 0;
+          width: 48px;
+          height: 48px;
+          background-color: $color-green;
+          border-radius: 50%;
+          left: 50%;
+          top: -72px;
+          transform: translateX(-50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+
+          svg{
+            width: 50%;
+            height: auto;
+
+            path{
+              fill: $color-white;
+            }
+          }
+        }
+      }
+
+      .slider-wrapper{
+        margin: 0 auto 32px;
+        width: 840px;
+
+        @media(max-width: 880px){
+          width: 740px;
+        }
+
+        @media(max-width: 767px){
+          width: 540px;
+        }
+
+        @media(max-width: 575px){
+          width: 90%;
+        }
+
+        .slide{
+          margin: 0;
+
+          .text-slide{
+            width: 628px;
+            background-color: $color-white;
+            padding: 48px;
+            margin: 0 auto;
+
+            @media(max-width: 767px){
+              width: 100%;
+              padding: 32px;
+            }
+
+            @media(max-width: 575px){
+              padding: 24px;
+            }
+
+            .text{
+              margin-bottom: 110px;
+
+              @media(max-width: 575px){
+                margin-bottom: 55px;
+              }
+
+              p{
+                &:last-child{
+                  margin-bottom: 0;
+                }
+              }
+            }
+
+            .info{
+              display: flex;
+              align-items: flex-end;
+
+              .avatar{
+                width: 128px;
+                height: 128px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 8px;
+
+                @media(max-width: 767px){
+                  width: 100px;
+                  height: 100px;
+                }
+
+                @media(max-width: 575px){
+                  width: 64px;
+                  height: 64px;
+                }
+
+                img{
+                  width: 100%;
+                  height: auto;
+                }
+              }
+
+              .date{
+                width: calc(100% - 136px);
+
+                @media(max-width: 767px){
+                  width: calc(100% - 108px);
+                }
+
+                @media(max-width: 575px){
+                  width: calc(100% - 74px);
+                }
+              }
+
+              .name{
+                margin-bottom: 8px;
+              }
+
+              .city{
+                margin-bottom: 0;
+              }
+            }
+          }
+
+          &.video-slide{
+            /*height: 473px;*/
+            position: relative;
+
+            /*@media(max-width: 880px){
+              height: 415px;
+            }
+
+            @media(max-width: 767px){
+              height: 303px
+            }
+
+            @media(max-width: 575px){
+              height: 165px;
+            }*/
+
+            video{
+              width: 100%;
+              height: auto;
+              /*height: 100%;
+              width: auto;*/
+              position: relative;
+              z-index: 1;
+            }
+
+            .play-btn{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateX(-50%) translateY(-50%);
+              width: 64px;
+              z-index: 3;
+
+              svg{
+                width: 100%;
+                height: auto;
+              }
+            }
+          }
+        }
+
+
+
+
+      }
+
+      .slider-controls{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+
+        .control{
+          padding: 0;
+          background-color: rgba(0,0,0,0);
+          border: none;
+          width: 24px;
+
+          svg{
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        .counter{
+          margin-bottom: 0;
+          font-family: $f-med;
+          color: $color-white;
+
+          .current{
+            color: $color-green;
+          }
+        }
+      }
+
+      video{
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

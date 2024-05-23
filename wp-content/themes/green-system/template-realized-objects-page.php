@@ -32,7 +32,7 @@
 
         if( $generalCaseInfoGallery && $generalCaseInfoDescription && $generalCaseInfoWorksList ):?>
         <!-- Головна частина -->
-        <section class="general-information indent-bottom-big">
+        <section class="general-information indent-bottom-big indent-top-big">
           <div class="container">
             <div class="row content">
               <div class="gallery-wrapper col-lg-6">
@@ -95,7 +95,7 @@
                   </p>
                 <?php endif;?>
                 <?php if( $generalCaseInfoDate ):?>
-                  <p class="montage-date"><?php echo $generalCaseInfoDate;?></p>
+                  <p class="montage-date block-title small-title"><?php echo $generalCaseInfoDate;?></p>
                 <?php endif;?>
                 <?php if( $generalCaseInfoAdvantages ):?>
                   <ul class="case-characteristics">
@@ -111,7 +111,7 @@
                   </ul>
                 <?php endif;?>
                 <div class="description">
-                  <h3 class="block-title big-title"><?php echo esc_html( pll__( 'Особливості проєктування' ) ); ?></h3>
+                  <h3 class="block-title small-title"><?php echo esc_html( pll__( 'Особливості проєктування' ) ); ?></h3>
                   <div class="text"><?php echo wpautop($generalCaseInfoDescription);?></div>
                 </div>
 

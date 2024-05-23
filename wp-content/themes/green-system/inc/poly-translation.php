@@ -209,6 +209,20 @@
 				false
 			);
 
+			pll_register_string(
+				'green_system_thx_go_soc_call',
+				'Переходьте на наші соц мережі',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_all_projects_text',
+				'Всі',
+				'Переклади',
+				false
+			);
+
 
 
 

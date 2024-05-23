@@ -197,8 +197,8 @@
         position: relative;
         padding-top: 24px;
         margin-bottom: 32px;
-        font-size: 32px;
-        font-family: $f-S-bold;
+        /*font-size: 32px;
+        font-family: $f-S-bold;*/
         line-height: 1.2;
         color: $color-green;
 
@@ -206,13 +206,13 @@
           display: block;
         }
 
-        @media(max-width: 575px){
+        /*@media(max-width: 575px){
           font-size: 30px;
         }
 
         @media(max-width: 440px){
           font-size: 26px;
-        }
+        }*/
 
         &:before{
           content: '';
@@ -436,93 +436,7 @@
     row-gap: 24px;
   }
 
-  .projects-item{
-    display: block;
 
-    &__preview{
-      width: 100%;
-      position: relative;
-      margin-bottom: 24px;
-      display: block;
-
-      @media(max-width: 440px){
-        margin-bottom: 16px;
-      }
-
-      img{
-        width: 100%;
-        height: auto;
-        z-index: 1;
-      }
-    }
-
-    &__more{
-      position: absolute;
-      z-index: 2;
-      inset: 0;
-      background: rgba(19, 19, 19, 0.55);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-content: center;
-      opacity: 0;
-      transition: all 0.2s;
-
-      svg{
-        width: 40px;
-        height: auto;
-        margin-bottom: 8px;
-      }
-
-      .text{
-        width: 100%;
-        text-align: center;
-        color: $color-white;
-        text-transform: uppercase;
-        margin: 0;
-        letter-spacing: -0.16px;
-        font-size: 16px;
-        font-family: $f-med;
-      }
-    }
-
-    &__name{
-      color: $color-black !important;
-      font-family: $f-med;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    &__location{
-      color: $color-black !important;
-      position: relative;
-      display: block;
-      padding-left: 28px;
-
-      @media(max-width: 440px){
-        padding-left: 20px;
-      }
-
-      svg{
-        width: 20px;
-        height: auto;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-
-        @media(max-width: 440px){
-          width: 15px;
-        }
-      }
-    }
-
-    &:hover{
-      .projects-item__more{
-        opacity: 1;
-      }
-    }
-  }
 
   .more-projects{
     text-align: center;
