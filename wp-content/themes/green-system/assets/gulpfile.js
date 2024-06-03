@@ -22,6 +22,7 @@ function scripts(){
     'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
     'node_modules/viewport-checker/dist/viewportChecker.umd.js',
     'node_modules/vanilla-lazyload/dist/lazyload.js',
+    'js/jquery.maskedinput.min.js',
     'js/slick.min.js',
     'js/js.js'//завжди останній, важлива послідовність
   ])

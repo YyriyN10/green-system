@@ -223,6 +223,29 @@
 				false
 			);
 
+			pll_register_string(
+				'green_system_go_home_btn',
+				'повернутись на головну',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_CEC_calc_btn',
+				'Розрахувати вартість СЕС',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_btn_more_detail',
+				'Детальніше',
+				'Переклади',
+				false
+			);
+
+
+
 
 
 

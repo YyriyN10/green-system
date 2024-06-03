@@ -13,6 +13,36 @@ const lazyContent = new LazyLoad({
 jQuery(function($) {
 
   /**
+   * Header auto adaptive
+   * @type {jQuery|HTMLElement}
+   */
+
+  const autoVisibleMenuChecker = function(){
+
+    const headerElement = $('.site-header');
+
+    if ( headerElement.find('.main-visible').length ){
+
+      let headerLogoW = headerElement.find('.main-logo').outerWidth();
+      let headerContainer = Number(headerElement.find('.content').outerWidth() - 24);
+      let headerMenuBtn = headerElement.find('.menu-btn').outerWidth();
+      let headerVisibleMenu = Number( headerElement.find('.main-visible').outerWidth() + 24);
+
+      let headerFreeSpace = headerContainer - headerLogoW - headerMenuBtn - headerVisibleMenu;
+
+      if ( headerFreeSpace < 50 ){
+        headerElement.find('.main-visible').addClass('d-none');
+        headerElement.find('.menu-btn').addClass('only');
+      }else{
+        headerElement.find('.main-visible').removeClass('d-none');
+        headerElement.find('.menu-btn').removeClass('only');
+      }
+    }
+  }
+
+  autoVisibleMenuChecker();
+
+  /**
    * Screen height and width
    */
 
@@ -22,55 +52,79 @@ jQuery(function($) {
   $(window).resize(function () {
     windWid = $(window).width();
     windHei = $(window).height();
+
+    autoVisibleMenuChecker();
   });
 
   /**
-   * Header auto adaptive
-   * @type {jQuery|HTMLElement}
+   * Menu btn
    */
 
+  $('#menu-btn').on('click', function (e) {
 
-  const headerElement = $('.site-header');
+    e.preventDefault();
 
-  let headerLogoW = headerElement.find('.logo').outerWidth();
-  let headerNav = headerElement.find('.header-nav').outerWidth();
+    /*$(this).toggleClass('active');*/
+    $('header').toggleClass('active-menu');
+    $('.header-navigation').toggleClass('open-menu');
+    $('html').toggleClass("fixedPosition");
+    $('main').toggleClass('open');
 
-  let headerPhone =  0;
+  });
 
-  if ( headerElement.find('.header-phone').length ){
-    headerPhone =  headerElement.find('.header-phone').outerWidth();
-  }
+  $('#menu-btn-close').on('click', function (e) {
 
-  let headerLang =  0;
+    e.preventDefault();
 
-  if ( headerElement.find('.lang-wrapper').length ){
-    headerLang =  headerElement.find('.lang-wrapper').outerWidth();
-  }
+    $('header').toggleClass('active-menu');
+    $('.header-navigation').toggleClass('open-menu');
+    $('html').toggleClass("fixedPosition");
+    $('main').toggleClass('open');
 
-  if ( windWid > 1200 ){
-    let headerContentW = headerLogoW + headerNav + headerPhone + headerLang + 50;
+  });
 
-    if ( headerContentW > 1140 ){
-      headerElement.addClass('hide-menu');
-    }
-  }else if( windWid > 992 &&  windWid < 1200 ){
-    let headerContentW = headerLogoW + headerNav + headerPhone + headerLang + 50;
-
-    if ( headerContentW > 720 ){
-      headerElement.addClass('hide-menu');
-    }
-  }
 
   $(document).scroll(function() {
 
     let currentScroll = $(this).scrollTop();
 
-    /*if ( currentScroll > ( windHei / 3) ) {
+    if ( currentScroll > ( windHei / 3) ) {
       $('.home-main-screen .advantages-list').addClass('active');
 
     } else {
       $('.home-main-screen .advantages-list').removeClass('active');
-    }*/
+    }
+
+    if (currentScroll > 1) {
+      jQuery('.site-header').addClass('fixed-header');
+    } else {
+      jQuery('.site-header').removeClass('fixed-header');
+    }
+
+  });
+
+  //Fixed Menu
+
+  let positionScrollHeader = jQuery(window).scrollTop();
+
+  $(window).scroll(function() {
+
+    let scroll = $(window).scrollTop();
+
+    if(scroll > positionScrollHeader) {
+
+      if ( $('.header-navigation.open-menu').length ){
+        $('.site-header').addClass('fixed-header-visible');
+      }else{
+        $('.site-header').removeClass('fixed-header-visible');
+      }
+
+    } else {
+      $('.site-header').addClass('fixed-header-visible');
+
+    }
+
+    positionScrollHeader = scroll;
   });
 
   /**
@@ -378,8 +432,6 @@ jQuery(function($) {
         thisVideo.fadeOut(200);
 
       });
-
-
     });
 
     $('#reviewsModal').on('hide.bs.modal', function () {
@@ -391,8 +443,6 @@ jQuery(function($) {
       $('#reviews-modal-slider .slide .play-btn').fadeIn(200);
 
     });
-
-
   }
 
   /**
@@ -442,20 +492,18 @@ jQuery(function($) {
     });
   }
 
-
-
   /**
-   * Project categories
+   * Project categories home
    */
 
-  if ( $('.our-projects').length ){
+  if ( $('.page-template-template-home .our-projects').length ){
 
-    function changeProjectCategory( catID ){
+    function changeProjectCategory( catID){
 
       let data = {
 
         action: 'change_project_category',
-        catId: catID,
+        catId: catID
 
       };
 
@@ -483,15 +531,15 @@ jQuery(function($) {
       let currentCatId = Number(thisCategory.find('a').attr('data-cat-id'));
       let countPosts = Number(thisCategory.find('a').attr('data-all-projects'));
 
-      changeProjectCategory( currentCatId );
+      changeProjectCategory( currentCatId);
 
       if ( countPosts > 4 ){
 
-        moreProjectBtn.show(400);
+        moreProjectBtn.fadeIn(400);
         moreProjectBtn.attr('data-cat-id', currentCatId);
 
       }else{
-        moreProjectBtn.hide(400);
+        moreProjectBtn.fadeOut(400);
         moreProjectBtn.attr('data-cat-id', '');
       }
 
@@ -502,6 +550,8 @@ jQuery(function($) {
       e.preventDefault();
 
       let thisBtn = $(this);
+
+      thisBtn.fadeOut(400);
 
       let catId = Number(thisBtn.attr('data-cat-id'));
 
@@ -522,88 +572,332 @@ jQuery(function($) {
 
 
     })
+  }
 
-    /**
-     * Modal video
-     */
+  /**
+   * Features more
+   */
 
-    const videoModal = $('#videoModal');
+  if ( $('.features').length ){
 
-    $('.play').on('click', function (e) {
+    const featuresBlock = $('.features');
+
+    featuresBlock.find('.button').on('click', function(e){
+      e.preventDefault();
+
+      $(this).fadeOut(200);
+
+      featuresBlock.find('.more-text').fadeIn(400);
+    });
+  }
+
+  /**
+   * Project categories power plant
+   */
+
+  if ( $('.page-template-template-power-plant .our-projects').length ){
+
+    function changeProjectCategoryPlant( catID, andCatID ){
+
+      let data = {
+
+        action: 'change_project_category_plant',
+        catId: catID,
+        andCatId: andCatID
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#our-projects-list').html(response);
+        }
+      });
+    }
+
+    let allProjectsCount = Number($('.our-projects__category.active a').attr('data-all-projects'));
+
+    const moreProjectBtn = $('#more-project-main');
+
+    if ( allProjectsCount <= 4 ){
+      moreProjectBtn.fadeOut(400);
+    }
+
+    $('.our-projects__category-list .our-projects__category').on('click', function (e) {
 
       e.preventDefault();
 
-      let videoSrc = $(this).attr('data-video');
+      $('.our-projects__category-list .our-projects__category.active').removeClass('active');
 
-      videoModal.find('video').attr('src', videoSrc);
+      let thisCategory = $(this);
 
-      videoModal.modal("show");
+      thisCategory.addClass('active');
+
+      let currentCatId = Number(thisCategory.find('a').attr('data-cat-id'));
+      let countPosts = Number(thisCategory.find('a').attr('data-all-projects'));
+      let andCategoryId = Number(thisCategory.find('a').attr('data-cat-and'));
+
+      changeProjectCategoryPlant( currentCatId, andCategoryId );
+
+      if ( countPosts > 4 ){
+
+        moreProjectBtn.show(400);
+        moreProjectBtn.attr('data-cat-id', currentCatId);
+
+      }else{
+        moreProjectBtn.hide(400);
+        moreProjectBtn.attr('data-cat-id', '');
+      }
 
     });
 
-    videoModal.on('hide.bs.modal', function () {
+    moreProjectBtn.on('click', function (e) {
 
-      videoModal.find('video').attr('src', '');
+      e.preventDefault();
+
+      let thisBtn = $(this);
+
+      moreProjectBtn.fadeOut(400);
+
+      let catId = Number(thisBtn.attr('data-cat-id'));
+      let andId = Number(thisBtn.attr('data-cat-and'));
+
+      let data = {
+        action: 'more_projects_plant',
+        catId: catId,
+        andId: andId,
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#our-projects-list').append(response);
+        }
+      });
+
+    })
+  }
+
+  /**
+   * Product power plant category
+   */
+
+  if ( $('.solar-power-plants-types').length ){
+
+    function changeProductPlantCategory( catID, andCatID ){
+
+      let data = {
+
+        action: 'change_product_plant_category',
+        catId: catID,
+        andCatId: andCatID
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#power-plants-list').html(response);
+        }
+
+      });
+    }
+
+    const powerPlantTypeItem = $('.solar-power-plants-types__item');
+
+    powerPlantTypeItem.each(function (index) {
+
+      let thisType = $(this);
+
+      if ( index == 0 ){
+
+        thisType.addClass('active');
+
+        let defaultCatId = Number(thisType.find('a').attr('data-cat-id'));
+        let defaultCatAndId = Number(thisType.find('a').attr('data-cat-and'));
+
+        changeProductPlantCategory(defaultCatId, defaultCatAndId);
+
+      }
+
+      thisType.on('click', function (e) {
+
+        e.preventDefault();
+
+        let thisItem = $(this);
+
+        $('.solar-power-plants-types__item.active').removeClass('active');
+
+        thisItem.addClass('active');
+
+        let catId = Number(thisItem.find('a').attr('data-cat-id'));
+        let catAndId = Number(thisItem.find('a').attr('data-cat-and'));
+
+        changeProductPlantCategory(catId, catAndId);
+      });
 
     });
 
+  }
 
+  /**
+   * Accordion progress emulator
+   */
 
+  if ( $('#accordion-what-you-get').length ){
+
+    const accordionCard = $('#accordion-what-you-get .card');
+
+    let cardCount = accordionCard.length;
+
+    accordionCard.each(function (index) {
+
+      let thisCard = $(this);
+      let currentIndex = index + 1;
+
+      if ( currentIndex == 1 ){
+
+        thisCard.find('.bth').removeClass('collapsed');
+        thisCard.find('.collapse').addClass('show');
+      }
+
+      thisCard.find('.progress-wrapper span').css({'width' : '' + ( (100 / cardCount) * currentIndex) + '%'})
+
+    })
 
 
   }
+
+  /**
+   * Modal video
+   */
+
+  const videoModal = $('#videoModal');
+
+  $('.play').on('click', function (e) {
+
+    e.preventDefault();
+
+    let videoSrc = $(this).attr('data-video');
+
+    videoModal.find('video').attr('src', videoSrc);
+
+    videoModal.modal("show");
+
+  });
+
+  videoModal.on('hide.bs.modal', function () {
+
+    videoModal.find('video').attr('src', '');
+
+  });
+
+  /**
+   * Phone mask
+   */
+
+  $("input[type=tel]").mask("+38(099) 999-99-99");
+
+  /**
+   * UTM
+   */
+
+  function getQueryVariable(variable) {
+      let query = window.location.search.substring(1);
+      let vars = query.split('&');
+      for (let i = 0; i < vars.length; i++) {
+          let pair = vars[i].split('=');
+          if (decodeURIComponent(pair[0]) == variable) {
+              return decodeURIComponent(pair[1]);
+          }
+      }
+  }
+  utm_source = getQueryVariable('utm_source') ? getQueryVariable('utm_source') : "";
+  utm_medium = getQueryVariable('utm_medium') ? getQueryVariable('utm_medium') : "";
+  utm_campaign = getQueryVariable('utm_campaign') ? getQueryVariable('utm_campaign') : "";
+  utm_term = getQueryVariable('utm_term') ? getQueryVariable('utm_term') : "";
+  utm_content = getQueryVariable('utm_content') ? getQueryVariable('utm_content') : "";
+
+  let forms = $('form');
+  $.each(forms, function (index, form) {
+      jQueryform = $(form);
+      jQueryform.append('<input type="hidden" name="utm_source" value="' + utm_source + '">');
+      jQueryform.append('<input type="hidden" name="utm_medium" value="' + utm_medium + '">');
+      jQueryform.append('<input type="hidden" name="utm_campaign" value="' + utm_campaign + '">');
+      jQueryform.append('<input type="hidden" name="utm_term" value="' + utm_term + '">');
+      jQueryform.append('<input type="hidden" name="utm_content" value="' + utm_content + '">');
+  });
+
+  /**
+   * Form integration
+   */
+
+  $('form').on('submit', function (e) {
+
+    e.preventDefault();
+
+    const thisForm = $(this);
+
+    let utmSource = thisForm.find('input[name = utm_source]').val();
+    let utmMedium = thisForm.find('input[name = utm_medium]').val();
+    let utmCampaign = thisForm.find('input[name = utm_campaign]').val();
+    let utmTerm = thisForm.find('input[name = utm_term]').val();
+    let utmContent = thisForm.find('input[name = utm_content]').val();
+
+    let name = thisForm.find('input[name = name]').val();
+    let phone = thisForm.find('input[name = phone]').val();
+    let email = thisForm.find('input[name = email]').val();
+
+    let action = thisForm.find('input[name = action]').val();
+    let siteUrl = thisForm.find('input[name = site_url]').val();
+    let siteLang = thisForm.find('input[name = site-lang]').val();
+    let pageName = thisForm.find('input[name = page-name]').val();
+    let pageLink = thisForm.find('input[name = page_link]').val();
+    let formDescription = thisForm.find('input[name = form_description]').val();
+
+    /*const formData = {
+      action: action,
+      pageName: pageName,
+      pageLink: pageLink,
+      name: name,
+      lastName: lastName,
+      phone: phone,
+      email: email,
+      birthday: birthday,
+      message: message,
+      utmSource: utmSource,
+      utmMedium: utmMedium,
+      utmCampaign: utmCampaign,
+      utmTerm: utmTerm,
+      utmContent: utmContent
+    }*/
+
+    let thxPage = siteUrl + '/dyakuyemo';
+
+    if ( siteLang == 'en' ){
+      thxPage = siteUrl + '/thank';
+    }
+
+    window.location.href = thxPage;
+
+    /*$.post( ua_teens_ajax.url, formData, function(response) {
+
+      window.location.href = thxPage;
+
+    });*/
+
+  });
 
   // Lazy load
 
   /*jQuery('.lazy').lazy();*/
 
-  //Fixed Menu
-
-  /*jQuery(document).scroll(function() {
-
-    let y = jQuery(this).scrollTop();
-
-    if (y > 1) {
-      jQuery('header').addClass('fixed');
-    } else {
-      jQuery('header').removeClass('fixed');
-    }
-  });
-
-  let positionScrolHeader = jQuery(window).scrollTop();
-
-  jQuery(window).scroll(function() {
-
-    let scroll = jQuery(window).scrollTop();
-
-    if(scroll > positionScrolHeader) {
-
-      if ( jQuery('.main-nav.open-menu').length ){
-        jQuery('header').addClass('fixed-vis');
-      }else{
-        jQuery('header').removeClass('fixed-vis');
-      }
 
 
-    } else {
-      jQuery('header').addClass('fixed-vis');
 
-    }
-
-    positionScrolHeader = scroll;
-  });*/
-
-  //Mob Menu
-
-  /*jQuery('#mob-menu').on('click', function (e) {
-    e.preventDefault();
-
-    jQuery(this).toggleClass('active');
-    jQuery('header').toggleClass('active-menu');
-    jQuery('header nav').toggleClass('open-menu');
-    jQuery('html').toggleClass("fixedPosition");
-
-  });*/
 
   //SCROLL MENU
 
@@ -841,11 +1135,6 @@ jQuery(function($) {
     });*/
 
 
-
-    // PHONE MASK
-
-    /*jQuery("input[type=tel]").mask("+38(999) 999-99-99");*/
-
     // DTA VALUE REPLACE
 
     /*jQuery('.open-form').on('click', function (e) {
@@ -887,33 +1176,7 @@ jQuery(function($) {
         }
     });*/
 
-    // UTM
 
-    /*function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split('&');
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split('=');
-            if (decodeURIComponent(pair[0]) == variable) {
-                return decodeURIComponent(pair[1]);
-            }
-        }
-    }
-    utm_source = getQueryVariable('utm_source') ? getQueryVariable('utm_source') : "";
-    utm_medium = getQueryVariable('utm_medium') ? getQueryVariable('utm_medium') : "";
-    utm_campaign = getQueryVariable('utm_campaign') ? getQueryVariable('utm_campaign') : "";
-    utm_term = getQueryVariable('utm_term') ? getQueryVariable('utm_term') : "";
-    utm_content = getQueryVariable('utm_content') ? getQueryVariable('utm_content') : "";
-
-    var forms = jQuery('form');
-    jQuery.each(forms, function (index, form) {
-        jQueryform = jQuery(form);
-        jQueryform.append('<input type="hidden" name="utm_source" value="' + utm_source + '">');
-        jQueryform.append('<input type="hidden" name="utm_medium" value="' + utm_medium + '">');
-        jQueryform.append('<input type="hidden" name="utm_campaign" value="' + utm_campaign + '">');
-        jQueryform.append('<input type="hidden" name="utm_term" value="' + utm_term + '">');
-        jQueryform.append('<input type="hidden" name="utm_content" value="' + utm_content + '">');
-    });*/
 
 });
 

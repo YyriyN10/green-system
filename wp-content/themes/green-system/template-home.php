@@ -31,7 +31,7 @@
         <div class="text-content col-12">
           <h1 class="block-title big-title"><?php echo carbon_get_post_meta(get_the_ID(), 'green_system_home_main_screen_title'.green_system_lang_prefix());;?></h1>
           <p class="subtitle"><?php echo carbon_get_post_meta(get_the_ID(), 'green_system_home_main_screen_subtitle'.green_system_lang_prefix());;?></p>
-          <a href="#" rel="nofollow" class="button" data-toggle="modal" data-target="#formModal">
+          <a href="#" rel="nofollow" class="button" data-bs-toggle="modal" data-bs-target="#formModal">
               <?php echo esc_html( pll__( 'Отримати консультацію' ) ); ?>
           </a>
         </div>
@@ -1381,6 +1381,7 @@
 		            ) );
 		            if ( $projectsCat ):
 			            foreach ( $projectsCat as $item ):?>
+
 				            <?php
 				            $projectsMore = array(
 					            'tax_query' => array(
@@ -1604,60 +1605,18 @@
      	<?php endif; ?>
      <?php wp_reset_postdata(); ?>
 
-
-	<!-- Форма зворотнього звязку -->
 <?php
-	$contactFormPic = carbon_get_theme_option('green_system_contact_form_pic'.green_system_lang_prefix());
 	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_home_form_block_title'.green_system_lang_prefix());
 	$contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_home_form_text'.green_system_lang_prefix());
 
 	if ( $contactFormTitle && $contactFormText ):
 
+      $args = array(
+          'title' => $contactFormTitle,
+          'text'  => $contactFormText
+      )
+
 ?>
-  <section class="contact-form indent-top-big indent-bottom-big">
-    <div class="container">
-      <div class="row">
-        <div class="content col-xxl-8 col-xl-10 col-12 offset-xxl-2 offset-xl-1 offset-0">
-          <div class="inner">
-            <h2 class="block-title small-title"><?php echo $contactFormTitle;?></h2>
-            <p><?php echo $contactFormText;?></p>
-
-            <div class="form-wrapper">
-              <form method="post" >
-                <input type="hidden" name="action" value="form_integration">
-                <input type="hidden" name="site_url" value="<?php echo get_home_url('/');?>">
-                <input type="hidden" name="site_lang" value="<?php echo get_bloginfo('language');?>">
-                <input type="hidden" name="page_name" value="<?php the_title();?>">
-                <div class="form-group">
-                  <label for="input-name"><?php echo esc_html( pll__( 'Ваше ім’я' ) ); ?></label>
-                  <input type="text" name="name" class="form-control" placeholder="John" id="input-name" required >
-                </div>
-                <div class="form-group">
-                  <label for="input-phone"><?php echo esc_html( pll__( 'Контактний номер телефону' ) ); ?></label>
-                  <input type="tel" name="phone" class="form-control" placeholder="+380" id="input-phone" required >
-                </div>
-                <div class="form-group">
-                  <label for="input-email"><?php echo esc_html( pll__( 'Ваш email' ) ); ?></label>
-                  <input type="email" name="email" class="form-control" placeholder="john.anderson@example.com" id="input-email" required >
-                </div>
-
-                <button type="submit" class="button">
-					<?php echo esc_html( pll__( 'Надіслати заявку' ) ); ?>
-                </button>
-              </form>
-
-              <div class="form-image">
-                <img
-                    class="lazy"
-                    data-src="<?php echo wp_get_attachment_image_src( $contactFormPic, 'full')[0];?>"
-                    alt="<?php echo get_post_meta($contactFormPic, '_wp_attachment_image_alt', TRUE);?>"
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <?php get_template_part('template-parts/block-contact-form','', $args);?>
 <?php endif;?>
 <?php get_footer();

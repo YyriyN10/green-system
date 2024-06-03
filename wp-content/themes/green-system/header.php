@@ -48,21 +48,23 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div class="wrapper">
-  <!--<header class="site-header">
+  <header class="site-header">
     <div class="container">
       <div class="row">
         <div class="content col-12">
-	        <?php /*if( is_home() ):*/?>
-              <div class="logo">
-                <img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">
+	        <?php if( is_front_page() ):?>
+              <div class="logo main-logo">
+                <!--<img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">-->
+                <img src="<?php echo THEME_PATH;?>/assets/img/logo-light.png" alt="">
               </div>
-	        <?php /*else:*/?>
-              <a href="<?php /*echo get_home_url('/');*/?>" class="logo">
-                <img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">
+	        <?php else:?>
+              <a href="<?php echo get_home_url('/');?>" class="logo main-logo">
+                <!--<img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">-->
+                <img src="<?php echo THEME_PATH;?>/assets/img/logo-light.png" alt="">
               </a>
-	        <?php /*endif;*/?>
+	        <?php endif;?>
 	        <?php
-/*		        wp_nav_menu(
+		        wp_nav_menu(
 			        array(
 				        'theme_location' => 'menu-1',
 				        'menu_id'        => 'primary-visible',
@@ -70,59 +72,83 @@
 				        'menu_class' => 'main-visible menu'
 			        )
 		        );
-	        */?>
-
-          <button class="menu-btn">
-            <span></span><span></span><span></span>
-          </button>
-
-          <nav class="header-navigation">
-	          <?php
-/*		          wp_nav_menu(
-			          array(
-				          'theme_location' => 'menu-4',
-				          'menu_id'        => 'primary-menu',
-				          'container' => false,
-				          'menu_class' => 'main-menu menu'
-			          )
-		          );
-	          */?>
-
-	          <?php
-/*		          wp_nav_menu(
-			          array(
-				          'theme_location' => 'menu-1',
-				          'menu_id'        => 'primary-second',
-				          'container' => false,
-				          'menu_class' => 'main-menu menu secondary-menu'
-			          )
-		          );
-	          */?>
-
-            <div class="lang-wrapper">
-	            <?php
-/*		            $langArgs = array(
-			            'show_names' => 1,
-			            'display_names_as' => 'name',
-			            'show_flags' => 0,
-			            'hide_current' => 0
-		            );
-
-		            if ( $langArgs ):
-			            */?>
-                      <ul class="lang-list">
-				          <?php
-/*					          pll_the_languages($langArgs);
-				          */?>
-                      </ul>
-		            <?php /*endif;*/?>
-            </div>
-
-          </nav>
+	        ?>
+            <?php if( has_nav_menu( 'menu-1' ) ):?>
+              <button class="menu-btn" id="menu-btn">
+                <span></span><span></span><span></span>
+              </button>
+            <?php else:?>
+              <button class="menu-btn only" id="menu-btn">
+                <span></span><span></span><span></span>
+              </button>
+            <?php endif;?>
         </div>
       </div>
     </div>
-  </header>-->
+  </header>
+  <nav class="header-navigation">
+    <div class="info">
+	    <?php if( is_front_page() ):?>
+          <div class="logo">
+            <!--<img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">-->
+            <img src="<?php echo THEME_PATH;?>/assets/img/logo-light.png" alt="">
+          </div>
+	    <?php else:?>
+          <a href="<?php echo get_home_url('/');?>" class="logo">
+            <!--<img src="<?php /*echo $logoPic;*/?>" alt="" class="svg-pic">-->
+            <img src="<?php echo THEME_PATH;?>/assets/img/logo-light.png" alt="">
+          </a>
+	    <?php endif;?>
+	    <?php
+		    $langArgs = array(
+			    'show_names' => 1,
+			    'display_names_as' => 'name',
+			    'show_flags' => 0,
+			    'hide_current' => 0
+		    );
+
+		    if ( $langArgs ):
+			    ?>
+              <ul class="lang-list">
+			      <?php
+				      pll_the_languages($langArgs);
+			      ?>
+              </ul>
+		    <?php endif;?>
+
+      <button class="menu-btn close" id="menu-btn-close">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+
+    <hr>
+	  <?php
+		  wp_nav_menu(
+			  array(
+				  'theme_location' => 'menu-4',
+				  'menu_id'        => 'primary-menu',
+				  'container' => false,
+				  'menu_class' => 'main-menu menu'
+			  )
+		  );
+	  ?>
+
+    <?php get_template_part('template-parts/social');?>
+
+	  <?php
+		  wp_nav_menu(
+			  array(
+				  'theme_location' => 'menu-2',
+				  'menu_id'        => 'primary-second',
+				  'container' => false,
+				  'menu_class' => 'main-menu menu secondary-menu'
+			  )
+		  );
+	  ?>
+
+
+  </nav>
 	<!--<header class="site-header">
     <div class="container">
       <div class="row">

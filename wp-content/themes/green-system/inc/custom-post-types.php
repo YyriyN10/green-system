@@ -84,7 +84,7 @@
 
 		$args = array(
 			'labels'             => $labels,
-			'taxonomies'         => ['solar_types_tax'],
+			'taxonomies'         => ['solar_types_tax', 'solar_decision_tax'],
 			'description'        => __( 'Description.', 'solar_types' ),
 			'public'             => true,
 			'publicly_queryable' => true,
@@ -148,6 +148,50 @@
 		) );
 	}
 
+	add_action( 'init', 'solar_decision_taxonomy' );
+	function solar_decision_taxonomy(){
+
+		register_taxonomy('solar_decision_tax', 'solar_types', array(
+			'label'                 => 'solar_decision_tax', // определяется параметром $labels->name
+			'labels'                => array(
+				'name'              => 'Типи рішення',
+				'singular_name'     => 'Тип рішення',
+				'search_items'      => 'Пошук типу рішення',
+				'all_items'         => 'Всі типи рішення',
+				'view_item '        => 'View Genre',
+				'parent_item'       => 'Parent Genre',
+				'parent_item_colon' => 'Parent Genre:',
+				'edit_item'         => 'Редагувати тип рішення',
+				'update_item'       => 'Оновити типу рішення',
+				'add_new_item'      => 'Додати тип рішення',
+				'new_item_name'     => 'New Genre Name',
+				'menu_name'         => 'Типи рішення',
+			),
+			'description'           => 'solar_decision_tax', // описание таксономии
+			'public'                => true,
+			'publicly_queryable'    => true, // равен аргументу public
+			'show_in_nav_menus'     => true, // равен аргументу public
+			'show_ui'               => true, // равен аргументу public
+			'show_in_menu'          => true, // равен аргументу show_ui
+			'show_tagcloud'         => true, // равен аргументу show_ui
+			'show_in_rest'          => true, // добавить в REST API
+			'rest_base'             => true, // $taxonomy
+			'hierarchical'          => true,
+			'supports'           => array( 'title', 'thumbnail', 'revisions' ),
+
+			/*'update_count_callback' => '_update_post_term_count',*/
+			'rewrite'               => array('slug' => 'solar_types'),
+			'query_var'             => $taxonomy, // название параметра запроса
+			'capabilities'          => array(),
+			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+			/*'_builtin'              => false,*/
+			'show_in_quick_edit'    => true, // по умолчанию значение show_ui
+		) );
+	}
+
+
+
 	/**
 	 * Register a realized objects post type.
 	 *
@@ -177,7 +221,7 @@
 
 		$args = array(
 			'labels'             => $labels,
-			'taxonomies'         => ['solar_types_tax'],
+			'taxonomies'         => ['solar_types_tax', 'solar_decision_tax'],
 			'description'        => __( 'Description.', 'realized_objects' ),
 			'public'             => true,
 			'publicly_queryable' => true,

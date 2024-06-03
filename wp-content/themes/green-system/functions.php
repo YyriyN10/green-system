@@ -188,3 +188,11 @@ define( 'THEME_PATH', get_template_directory_uri() );
  */
 
 require get_template_directory() . '/inc/custom-login-page.php';
+
+
+	function addCustomCategoryInPage() {
+
+		register_taxonomy_for_object_type('solar_decision_tax', 'page');
+	}
+
+	add_action( 'init', 'addCustomCategoryInPage' );

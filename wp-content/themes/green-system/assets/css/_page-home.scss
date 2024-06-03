@@ -74,9 +74,9 @@
     flex-wrap: wrap;
     gap: 24px;
     margin: 0;
-    /*opacity: 0;*/
-    opacity: 1;
-    /*transform: translateY( 30px);*/
+    opacity: 0;
+    /*opacity: 1;*/
+    transform: translateY( 30px);
     transition: all 0.5s;
 
     @media(max-width: 440px){

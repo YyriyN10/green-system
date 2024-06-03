@@ -20,6 +20,8 @@
 			            	Field::make_text('phone_number', 'Номер телефону')
 				            ->help_text('+38 (067) 612 03 09')
 			            )),
+			         Field::make( 'text', 'green_system_email_integration', 'Пошта для інтеграції з CRM' )
+			              ->set_attribute('type', 'email'),
 			         Field::make( 'text', 'green_system_facebook_link', 'Посилання на Facebook' )
 			              ->set_attribute('type', 'url'),
 			         Field::make( 'text', 'green_system_instagram_link', 'Посилання на Instagram'  )
