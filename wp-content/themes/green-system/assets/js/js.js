@@ -132,8 +132,8 @@ jQuery(function($) {
    */
 
   $('#why-us-slider').slick({
-    autoplay: false,
-    autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -146,8 +146,6 @@ jQuery(function($) {
    */
 
   if( $('#previews-slider').length ){
-
-    console.log(100);
 
     const previewsCount = $('#previews-slider .slide').length;
 
@@ -199,8 +197,8 @@ jQuery(function($) {
 
 
     $('#previews-slider').slick({
-      autoplay: false,
-      autoplaySpeed: 5000,
+      autoplay: true,
+      autoplaySpeed: 2000,
       slidesToShow: previewsSlideToShow,
       slidesToScroll: 1,
       arrows: false,
@@ -218,8 +216,8 @@ jQuery(function($) {
     });
 
     $('#product-slider').slick({
-      autoplay: false,
-      autoplaySpeed: 5000,
+      autoplay: true,
+      autoplaySpeed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
@@ -274,8 +272,8 @@ jQuery(function($) {
   if ( $('.reviews').length ){
 
     $('#reviews-slider').slick({
-      autoplay: false,
-      autoplaySpeed: 5000,
+      autoplay: true,
+      autoplaySpeed: 2000,
       slidesToShow: 4,
       slidesToScroll: 1,
       arrows: false,
@@ -468,6 +466,7 @@ jQuery(function($) {
         }
       });
     }
+
 
     $('.types-list .power-plant:first-child').addClass('active');
 
