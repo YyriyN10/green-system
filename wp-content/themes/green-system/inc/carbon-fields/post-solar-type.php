@@ -35,6 +35,7 @@
 				              Field::make_text('cost', 'Вартість послуги')
 			              )),
 			         Field::make_text('green_system_solar_type_montage_time'.green_system_lang_prefix(), 'Строк виконання монтажних робіт'),
+			         Field::make_text('green_system_solar_type_faq_title'.green_system_lang_prefix(), 'Заголовок блоку "Питання/відповіді"'),
 			         Field::make_complex('green_system_solar_type_faq'.green_system_lang_prefix(), 'Питання/відповіді')
 			              ->add_fields(array(
 				              Field::make_text('question', 'Питання'),

@@ -45,4 +45,5 @@
 	require ('carbon-fields/post-solar-type.php');
 	require ('carbon-fields/post-realized-objects.php');
 	require ('carbon-fields/post-reviews.php');
+	require ('carbon-fields/page-ess.php');
 

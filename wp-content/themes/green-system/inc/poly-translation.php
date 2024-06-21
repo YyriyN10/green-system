@@ -244,6 +244,21 @@
 				false
 			);
 
+			pll_register_string(
+				'green_system_ESS_calc_btn',
+				'Розрахувати вартість',
+				'Переклади',
+				false
+			);
+
+
+			pll_register_string(
+				'green_system_ESS_power_plant_types_title',
+				'Готові рішення для вашого дому',
+				'Переклади',
+				false
+			);
+
 
 
 

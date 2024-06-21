@@ -759,7 +759,7 @@ jQuery(function($) {
 
       if ( currentIndex == 1 ){
 
-        thisCard.find('.bth').removeClass('collapsed');
+        thisCard.find('.btn').removeClass('collapsed');
         thisCard.find('.collapse').addClass('show');
       }
 
@@ -769,6 +769,93 @@ jQuery(function($) {
 
 
   }
+  /**
+   * Accordion default
+   */
+
+  if ( $('#accordion').length ){
+
+    console.log(100);
+
+    const accordionCard = $('#accordion .card:first-child');
+
+    accordionCard.find('.btn').removeClass('collapsed');
+    accordionCard.find('.collapse').addClass('show');
+
+  }
+
+  /**
+   * ESS gallery slider
+   */
+
+  if ( $('#ess-call-slider').length ){
+
+    $('#ess-call-slider').slick({
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: false,
+      centerMode: true,
+      centerPadding: '15%',
+      responsive: [
+        {
+          breakpoint: 767,
+          settings: {
+            centerPadding: '10%',
+          }
+        },{
+          breakpoint: 575,
+          settings: {
+            slidesToShow: 1,
+            centerPadding: '25%',
+          }
+        }
+      ]
+    });
+  }
+
+  /**
+   * More project ESS
+   */
+
+  if ( $('#more-project-ess').length ){
+
+    function moreESSProject( catID ){
+
+      let data = {
+
+        action: 'more_ess_project',
+        catId: catID,
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#our-projects-list').append(response);
+        }
+      });
+    }
+
+    $('#more-project-ess').on('click', function (e) {
+
+      e.preventDefault();
+
+      let thisButton = $(this);
+
+      let catId = thisButton.attr('data-cat-id');
+
+      thisButton.fadeOut(200);
+
+      moreESSProject(catId);
+
+    });
+
+  }
+
+
 
   /**
    * Modal video

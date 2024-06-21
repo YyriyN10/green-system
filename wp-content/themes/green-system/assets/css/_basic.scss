@@ -594,7 +594,7 @@ main{
     }
 
     @media(max-width: 360px){
-      font-size: 32px;
+      font-size: 30px;
     }
   }
 
@@ -623,10 +623,47 @@ main{
     margin-bottom: 32px;
   }
 
+  &.green-title{
+    position: relative;
+    padding-left: calc(12px + 40px);
+    text-transform: uppercase;
+    color: $color-green;
+
+    @media(max-width: 767px){
+      padding-left: calc(12px + 28px);
+    }
+
+    @media(max-width: 440px){
+      padding-left: calc(12px + 20px);
+    }
+
+    svg{
+      position: absolute;
+      width: 40px;
+      height: auto;
+      left: 12px;
+      top: -48px;
+
+      @media(max-width: 767px){
+        width: 30px;
+        top: -25px;
+      }
+    }
+
+  }
+
 }
 
 .subtitle{
   font-size: 24px;
+
+  @media(max-width: 767px){
+    font-size: 22px;
+  }
+
+  @media(max-width: 440px){
+    font-size: 20px;
+  }
 }
 
   /*--- Breadcrumbs ---*/
