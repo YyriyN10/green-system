@@ -133,11 +133,13 @@ jQuery(function($) {
 
   $('#why-us-slider').slick({
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     fade: true,
+    pauseOnFocus: false,
+    pauseOnHover: false,
     dots:true
   });
 
@@ -769,18 +771,38 @@ jQuery(function($) {
 
 
   }
+
   /**
    * Accordion default
    */
 
   if ( $('#accordion').length ){
 
-    console.log(100);
-
     const accordionCard = $('#accordion .card:first-child');
 
     accordionCard.find('.btn').removeClass('collapsed');
     accordionCard.find('.collapse').addClass('show');
+
+  }
+
+  /**
+   * Accordion F.A.Q page
+   */
+
+  if ( $('.page-template-template-questions-answers').length ){
+
+
+    const accordionCard = $('.accordion .card:first-child');
+
+    accordionCard.each( function () {
+
+      let thisCard = $(this);
+
+      thisCard.find('.btn').removeClass('collapsed');
+      thisCard.find('.collapse').addClass('show');
+    })
+
+
 
   }
 
@@ -975,6 +997,38 @@ jQuery(function($) {
 
     });*/
 
+  });
+
+  /**
+   * Basic animation
+   */
+
+  let animationTracking = jQuery('.animation-tracking');
+
+  let startAnimationDelay = 200;
+
+  animationTracking.each(function () {
+
+    var thisTrack = jQuery(this);
+
+    thisTrack.viewportChecker({
+
+      offset: startAnimationDelay,
+
+      callbackFunction: function (elem, action) {
+
+        jQuery('.visible .first-up').addClass('animate');
+
+        setTimeout(function () {
+          jQuery('.visible .second-up').addClass('animate');
+        }, 500);
+
+        setTimeout(function () {
+          jQuery('.visible .third-up').addClass('animate');
+        }, 700);
+
+      }
+    });
   });
 
   // Lazy load

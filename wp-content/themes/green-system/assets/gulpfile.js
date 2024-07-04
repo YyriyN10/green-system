@@ -20,10 +20,11 @@ const sass = gulpSass(dartSass);*/
 function scripts(){
   return src([//файли які потрібно об'єднати та зжати
     'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
-    'node_modules/viewport-checker/dist/viewportChecker.umd.js',
+    /*'node_modules/viewport-checker/dist/viewportChecker.umd.js',*/
     'node_modules/vanilla-lazyload/dist/lazyload.js',
     'js/jquery.maskedinput.min.js',
     'js/slick.min.js',
+    'js/jquery.viewportchecker.js',
     'js/js.js'//завжди останній, важлива послідовність
   ])
     .pipe(concat('main.min.js'))//ім'я згенерованого файлу

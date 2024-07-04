@@ -8,15 +8,15 @@
 
 	?>
 <!-- Форма зворотнього звязку -->
-<section class="contact-form indent-top-big indent-bottom-big">
+<section class="contact-form indent-top-big indent-bottom-big animation-tracking">
   <div class="container">
     <div class="row">
-      <div class="content col-xxl-8 col-xl-10 col-12 offset-xxl-2 offset-xl-1 offset-0">
+      <div class="content col-xxl-8 col-xl-10 col-12 offset-xxl-2 offset-xl-1 offset-0 first-up">
         <div class="inner">
-          <h2 class="block-title small-title"><?php echo $args['title'];?></h2>
-          <p><?php echo $args['text'];?></p>
+          <h2 class="block-title small-title second-up"><?php echo $args['title'];?></h2>
+          <p class="second-up"><?php echo $args['text'];?></p>
 
-          <div class="form-wrapper">
+          <div class="form-wrapper third-up">
             <form method="post" >
               <input type="hidden" name="action" value="form_integration">
               <input type="hidden" name="site_url" value="<?php echo get_home_url('/');?>">
@@ -42,7 +42,7 @@
               </button>
             </form>
 
-            <div class="form-image">
+            <div class="form-image third-up">
               <img
                   class="lazy"
                   data-src="<?php echo wp_get_attachment_image_src( $contactFormPic, 'full')[0];?>"

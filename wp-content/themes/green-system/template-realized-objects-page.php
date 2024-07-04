@@ -18,6 +18,8 @@
 
 	get_header();?>
 
+<?php get_template_part('template-parts/block-breadcrumbs');?>
+
 
     <?php
         $generalCaseInfoGallery = carbon_get_post_meta(get_the_ID(), 'green_system_realized_objects_gallery'.green_system_lang_prefix());
@@ -32,10 +34,10 @@
 
         if( $generalCaseInfoGallery && $generalCaseInfoDescription && $generalCaseInfoWorksList ):?>
         <!-- Головна частина -->
-        <section class="general-information indent-bottom-big indent-top-big">
+        <section class="general-information indent-bottom-big indent-top-big animation-tracking">
           <div class="container">
             <div class="row content">
-              <div class="gallery-wrapper col-lg-6">
+              <div class="gallery-wrapper col-lg-6 first-up">
                 <h2 class="case-name block-title small-title"><?php the_title();?></h2>
 	              <?php if( $generalCaseInfoLocation ):?>
                     <p class="location">
@@ -83,7 +85,7 @@
                   </div>
                 </div>
               </div>
-              <div class="text-wrapper col-lg-6">
+              <div class="text-wrapper col-lg-6 second-up">
                 <h1 class="case-name block-title small-title"><?php the_title();?></h1>
                 <?php if( $generalCaseInfoLocation ):?>
                   <p class="location">
@@ -134,7 +136,8 @@
                       </ul>
                     </div>
                 <?php endif;?>
-                <h2 class="block-title work-list-title big-title"><?php echo esc_html( pll__( 'Виконання роботи під ключ' ) ); ?></h2>
+                <h2 class="block-title work-list-title big-title"><?php echo esc_html( pll__( 'Виконані роботи під ключ
+' ) ); ?></h2>
                 <ul class="work-list">
                   <?php foreach( $generalCaseInfoWorksList as $item ): $i++;?>
                       <li>
@@ -198,12 +201,12 @@
      		  if ( $postList->have_posts() ) :?>
 
              <!-- Більше проектів -->
-             <section class="other-projects indent-top-small indent-bottom-big">
+             <section class="other-projects indent-top-small indent-bottom-big animation-tracking">
                <div class="container">
-                 <div class="row">
+                 <div class="row first-up">
                    <h2 class="block-title big-title col-12 text-center"><?php echo esc_html( pll__( 'Ознайомтесь з іншими нашими кейсами' ) ); ?></h2>
                  </div>
-                 <div class="row project-list" id="project-list">
+                 <div class="row project-list second-up" id="project-list">
 	                <?php while ( $postList->have_posts() ) : $postList->the_post(); ?>
                      <a href="<?php the_permalink();?>" class="projects-item col-lg-3 col-sm-6 col-6">
                        <span class="inner">

@@ -1,0 +1,344 @@
+/*---  page-name ---*/
+
+.page-name{
+  background-color: $color-green-light;
+  padding-bottom: 32px;
+
+  .block-title{
+    color: $color-dark-green;
+    margin-bottom: 0;
+  }
+}
+
+
+/*--- faq-page-block ---*/
+
+.faq-page-block{
+
+  .row{
+    align-items: flex-start;
+  }
+
+  .block-title{
+    display: flex;
+    margin-bottom: 24px;
+    align-items: center;
+
+    .icon{
+      width: 40px;
+      margin-right: 24px;
+
+      svg,
+      .svg-pic{
+        width: 100%;
+      }
+
+      path{
+        fill: $color-green;
+      }
+    }
+
+    span{
+      width: calc(100% - 64px);
+    }
+  }
+
+  .pic-wrapper{
+    position: relative;
+
+    .pic{
+      position: relative;
+      z-index: 2;
+
+      @media(max-width: 992px){
+        width: 70%;
+        margin-bottom: 32px;
+      }
+
+      @media(max-width: 575px){
+        width: 80%;
+      }
+
+      @media(max-width: 440px){
+        width: 90%;
+      }
+    }
+
+    .dots-pic{
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  .accordion{
+    .card{
+      background-color: rgba(0,0,0,0);
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid $color-gray;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+
+      .card-header{
+        padding: 0;
+        background-color: rgba(0,0,0,0);
+        border: none !important;
+
+        .btn{
+          font-size: 24px;
+          font-family: $f-med;
+          color: $color-white !important;
+          position: relative;
+          display: block;
+          width: 100%;
+          padding: 0 110px 0 0;
+          border: none!important;
+          text-align: left;
+
+          @media(max-width: 767px){
+            font-size: 22px;
+            padding-right: 80px;
+          }
+
+          @media(max-width: 575px){
+            font-size: 20px;
+            padding-right: 70px;
+          }
+
+          @media(max-width: 440px){
+            font-size: 18px;
+            padding-right: 50px;
+          }
+
+          @media(max-width: 360px){
+            font-size: 16px;
+          }
+
+          svg{
+            position: absolute;
+            width: 40px;
+            height: auto;
+            right: 0;
+            top: 50%;
+            transition: all 0.2s;
+            transform: translateY(-50%) rotate(180deg);
+
+            @media(max-width: 767px){
+              width: 30px;
+            }
+          }
+
+          &.collapsed{
+            svg{
+              transform: translateY(-50%) rotate(0);
+            }
+          }
+        }
+      }
+
+      .card-body{
+        padding: 8px 110px 0 0;
+        color: $color-white;
+
+        @media(max-width: 767px){
+          padding-right: 80px;
+        }
+
+        @media(max-width: 575px){
+          padding-right: 70px;
+        }
+
+        @media(max-width: 440px){
+          padding-right: 0;
+        }
+
+        p{
+          &:last-child{
+            margin-bottom: 0;
+          }
+        }
+
+        ul,
+        ol{
+          margin: 0;
+
+          li{
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.answers-about-company{
+    background-color: $color-green-light;
+
+    .pic-wrapper{
+
+      @media(max-width: 992px){
+        padding-bottom: 64px;
+      }
+
+      .dots-pic{
+        width: 204px;
+        height: auto;
+        bottom: -64px;
+        right: -12px;
+
+        @media(max-width: 992px){
+          bottom: 24px;
+          right: 25%;
+        }
+
+        @media(max-width: 575px){
+          right: 12px;
+        }
+
+        @media(max-width: 440px){
+          width: 40%;
+        }
+      }
+    }
+
+    .accordion{
+      .card{
+        border-bottom: 1px solid $color-dark-green;
+
+        .card-header{
+          .btn{
+            color: $color-dark-green !important;
+
+            svg{
+              path{
+                fill: $color-dark-green;
+              }
+            }
+          }
+        }
+
+        .card-body{
+          color: $color-dark-green;
+        }
+      }
+    }
+
+  }
+
+  &.answers-solar-power-plants{
+    background-color: $color-white;
+
+    .pic-wrapper{
+      padding-top: 24px;
+
+      @media(max-width: 992px){
+        order: 1;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .dots-pic{
+        width: 348px;
+        height: auto;
+        top: 0;
+        left: -64px;
+
+        @media(max-width: 992px){
+          left: 64px;
+        }
+
+        @media(max-width: 440px){
+          width: 70%;
+          left: 12px;
+        }
+      }
+    }
+
+    .text-content{
+      @media(max-width: 992px){
+        order: 2;
+      }
+    }
+
+    .accordion{
+      .card{
+        border-bottom: 1px solid $color-dark-green;
+
+        .card-header{
+          .btn{
+            color: $color-dark-green !important;
+
+            svg{
+              path{
+                fill: $color-dark-green;
+              }
+            }
+          }
+        }
+
+        .card-body{
+          color: $color-dark-green;
+        }
+      }
+    }
+  }
+
+  &.answers-green-tariff{
+    background-color: $color-green;
+
+    .block-title{
+      color: $color-white;
+
+      path{
+        fill: $color-white;
+      }
+    }
+
+    .pic-wrapper{
+
+      @media(max-width: 992px){
+        padding-bottom: 64px;
+      }
+
+      .dots-pic{
+        width: 204px;
+        height: auto;
+        bottom: -64px;
+        right: -12px;
+
+        @media(max-width: 992px){
+          bottom: 24px;
+          right: 25%;
+        }
+
+        @media(max-width: 575px){
+          right: 12px;
+        }
+
+        @media(max-width: 440px){
+          width: 40%;
+        }
+
+        circle{
+          fill: $color-white;
+        }
+      }
+    }
+  }
+}
+
+/*--- page-template-template-questions-answers ---*/
+
+.page-template-template-questions-answers{
+  .custom-breadcrumbs-wrapper{
+    background-color: $color-green-light;
+
+    @media(max-width: 992px){
+      padding-bottom: 32px;
+    }
+  }
+}
+

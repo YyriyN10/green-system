@@ -1,0 +1,301 @@
+
+/*---  page-template-template-guarantees ---*/
+
+.page-template-template-guarantees{
+
+  .custom-breadcrumbs-wrapper{
+    background-color: $color-green-light;
+  }
+
+  .page-name{
+    padding-bottom: 16px;
+  }
+
+}
+
+/*--- guarantees-main-screen ---*/
+
+.guarantees-main-screen{
+  background-color: $color-green-light;
+
+  .main-text{
+    margin-bottom: 32px;
+  }
+
+  .row{
+    align-items: flex-start;
+  }
+
+  .text-content{
+
+  }
+
+  .pic-wrapper{
+    position: relative;
+
+    .pic{
+      position: relative;
+      z-index: 2;
+    }
+
+    .dots-pic{
+      position: absolute;
+      z-index: 1;
+      width: 348px;
+      bottom: -24px;
+      left: -64px;
+
+      @media(max-width: 575px){
+        width: 80%;
+        left: -40px;
+      }
+    }
+  }
+
+  .quote{
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+
+    .icon{
+      width: 40px;
+      margin-right: 24px;
+      display: block;
+
+      svg,
+      .svg-pic{
+        width: 100%;
+        height: auto;
+
+        path{
+          fill: $color-green;
+        }
+      }
+    }
+
+    .text{
+      width: calc(100% - 64px);
+      display: block;
+    }
+  }
+
+  h3{
+    font-size: 24px;
+    font-family: $f-med;
+    margin-bottom: 24px;
+
+    @media(max-width: 767px){
+      font-size: 22px;
+    }
+
+    @media(max-width: 440px){
+      font-size: 20px;
+    }
+  }
+
+  ul{
+    margin: 0;
+
+    @media(max-width: 992px){
+      margin-bottom: 32px;
+    }
+
+    li{
+      margin-bottom: 16px;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/*--- warranty-obligations ---*/
+
+.warranty-obligations{
+  background-color: $color-green-light;
+
+  .block-title{
+    margin-bottom: 20px;
+  }
+
+  p{
+    margin-bottom: 8px;
+  }
+
+  h3{
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-family: $f-med;
+    font-size: 24px;
+
+    @media(max-width: 767px){
+      font-size: 22px;
+    }
+
+    @media(max-width: 440px){
+      font-size: 20px;
+    }
+  }
+
+  ul{
+    margin-left: 0;
+    margin-bottom: 24px;
+
+    li{
+      margin-bottom: 8px;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .call{
+    margin-top: 32px;
+
+    .inner{
+      padding: 48px;
+      border-radius: 2px;
+      background: #E7F0E7;
+      font-size: 24px;
+      font-family: $f-med;
+
+      @media(max-width: 767px){
+        font-size: 22px;
+        padding: 32px;
+      }
+
+      @media(max-width: 440px){
+        font-size: 20px;
+        padding: 24px;
+      }
+
+      p{
+        margin: 0;
+      }
+
+      a{
+        color: $color-black !important;
+      }
+    }
+  }
+}
+
+/*--- warranty-repair ---*/
+
+.warranty-repair{
+  background-color: $color-green-light;
+
+  .block-title{
+    margin-bottom: 20px;
+  }
+
+  h3{
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-family: $f-med;
+    font-size: 24px;
+
+    @media(max-width: 767px){
+      font-size: 22px;
+    }
+
+    @media(max-width: 440px){
+      font-size: 20px;
+    }
+  }
+
+  ul{
+    margin-left: 0;
+    margin-bottom: 24px;
+
+    li{
+      margin-bottom: 8px;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  p{
+    margin-bottom: 8px;
+  }
+
+  .talon-content{
+    margin-top: 32px;
+  }
+
+  .talon{
+    @media(max-width: 767px){
+      margin-bottom: 24px;
+    }
+
+    .inner{
+      padding: 48px;
+      position: relative;
+      border-radius: 2px;
+      background: #E7F0E7;
+
+      @media(max-width: 767px){
+        padding: 32px;
+      }
+
+      @media(max-width: 440px){
+        padding: 24px;
+      }
+
+      h3{
+        margin-top: 0;
+        margin-bottom: 24px;
+        position: relative;
+        z-index: 2;
+
+        @media(max-width: 767px){
+          font-size: 22px;
+        }
+
+        @media(max-width: 440px){
+          font-size: 20px;
+        }
+      }
+
+      ul{
+        margin-bottom: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      svg{
+        position: absolute;
+        z-index: 1;
+        width: 220px;
+        top: 50%;
+        right: 24px;
+        transform: translateY(-50%);
+        opacity: 0.5;
+
+        @media(max-width: 767px){
+          width: 150px;
+        }
+      }
+    }
+  }
+
+  .talon-more{
+    p{
+      margin-bottom: 16px;
+      line-height: 1.3;
+
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+
+}
+
+
+

@@ -68,9 +68,9 @@
         if( $idealSolutionBlockTitle && $idealSolutionList ):?>
 
         <!-- Ідеальне рішення якщо -->
-        <section class="ideal-solution indent-bottom-big indent-top-big">
+        <section class="ideal-solution indent-bottom-big indent-top-big animation-tracking">
           <div class="container">
-            <div class="row">
+            <div class="row first-up">
               <h2 class="block-title big-title col-12">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <path d="M21.6968 18.3033C21.2468 17.8533 20.6364 17.6004 20 17.6004C19.3636 17.6004 18.7532 17.8533 18.3032 18.3033C17.8532 18.7533 17.6004 19.3636 17.6004 20C17.6004 20.6364 17.8532 21.2468 18.3032 21.6968C18.7532 22.1468 19.3636 22.3996 20 22.3996C20.6364 22.3996 21.2468 22.1468 21.6968 21.6968C22.1468 21.2468 22.3996 20.6364 22.3996 20C22.3996 19.3636 22.1468 18.7533 21.6968 18.3033Z" fill="#599C12"/>
@@ -100,12 +100,12 @@
 	    if( $whatYouGetBlockTitle && $whatYouGetList ):?>
 
 	    <!-- Що ви отримаєте -->
-	    <section class="what-you-get indent-top-small indent-bottom-big">
+	    <section class="what-you-get indent-top-small indent-bottom-big animation-tracking">
 	      <div class="container">
 	        <div class="row">
             <div class="text-content col-lg-6">
-              <h2 class="block-title big-title"><?php echo $whatYouGetBlockTitle;?></h2>
-              <div class="accordion" id="accordion-what-you-get">
+              <h2 class="block-title big-title first-up"><?php echo $whatYouGetBlockTitle;?></h2>
+              <div class="accordion second-up" id="accordion-what-you-get">
 	              <?php foreach( $whatYouGetList as $item ): $i++;?>
                   <div class="card">
                     <div class="card-header">
@@ -127,7 +127,7 @@
               </div>
             </div>
             <?php if( $whatYouGetImage ):?>
-              <div class="pic-wrapper col-lg-6">
+              <div class="pic-wrapper col-lg-6 third-up">
                 <div class="pic">
                   <img
                       class="lazy"
@@ -1212,10 +1212,8 @@
                   <circle cx="198" cy="14" r="2" transform="rotate(-90 198 14)" fill="#599C12"/>
                   <circle cx="198" cy="6" r="2" transform="rotate(-90 198 6)" fill="#599C12"/>
                 </svg>
-
               </div>
             <?php endif;?>
-
 	        </div>
 	      </div>
 	    </section>
@@ -1228,10 +1226,10 @@
 
         if( $callBlockTitle && $callText && $callImage ):?>
         <!-- Заклил -->
-        <section class="power-plant-call">
+        <section class="power-plant-call animation-tracking">
           <div class="container">
             <div class="row">
-              <div class="pic-wrapper col-lg-5">
+              <div class="pic-wrapper col-lg-5 second-up">
                 <div class="inner-pic">
                   <img
                       class="lazy"
@@ -1240,7 +1238,7 @@
                   >
                 </div>
               </div>
-              <div class="text-content col-lg-7 indent-top-small indent-bottom-big">
+              <div class="text-content col-lg-7 indent-top-small indent-bottom-big first-up">
                 <h2 class="block-title big-title"><?php echo $callBlockTitle;?></h2>
                 <div class="text"><?php echo wpautop($callText);?></div>
                 <a href="#" rel="nofollow" class="button" data-bs-toggle="modal" data-bs-target="#formModal">
@@ -1263,9 +1261,9 @@
     <?php endif;?>
 
   <!-- Типи соняшних електростанцій  -->
-  <section class="solar-power-plants-types indent-top-big indent-bottom-small">
+  <section class="solar-power-plants-types indent-top-big indent-bottom-small animation-tracking">
       <div class="container">
-        <div class="row types-list">
+        <div class="row types-list first-up">
             <?php
 	  	        $powerPlantCat = get_categories( array(
                 'taxonomy'     => 'solar_types_tax',
@@ -1329,7 +1327,7 @@
                 </ul>
           <?php endif;?>
         </div>
-        <div class="row content" id="power-plants-list"></div>
+        <div class="row content second-up" id="power-plants-list"></div>
       </div>
     </section>
 
@@ -1340,11 +1338,11 @@
 
         if( $featuresBlockTitle && $featuresDescription ):?>
         <!-- Особливості -->
-        <section class="features indent-top-big indent-bottom-big">
+        <section class="features indent-top-big indent-bottom-big animation-tracking">
           <div class="container">
             <div class="row">
-              <h2 class="block-title big-title col-lg-6"><?php echo $featuresBlockTitle;?></h2>
-              <div class="text-content col-lg-6">
+              <h2 class="block-title big-title col-lg-6 first-up"><?php echo $featuresBlockTitle;?></h2>
+              <div class="text-content col-lg-6 second-up">
                 <p class="text-preview"><?php echo $featuresDescription;?></p>
                 <?php if( $featuresText ):?>
                     <div class="more-text"><?php echo wpautop($featuresText);?></div>
@@ -1392,12 +1390,12 @@
 	if ( $projectsList->have_posts() ) :?>
 
     <!-- Реалізовані обʼєкти -->
-    <section class="our-projects indent-top-small indent-bottom-big">
+    <section class="our-projects indent-top-small indent-bottom-big animation-tracking">
       <div class="container">
-        <div class="row">
+        <div class="row first-up">
           <h2 class="block-title big-title col-12 text-center"><?php echo esc_html( pll__( 'Реалізовані об’єкти ' ) ); ?></h2>
         </div>
-        <div class="row">
+        <div class="row second-up">
           <div class="content text-center col-12">
             <ul class="our-projects__category-list">
 	            <?php
@@ -1492,7 +1490,7 @@
             </ul>
           </div>
         </div>
-        <div class="row our-projects__list" id="our-projects-list">
+        <div class="row our-projects__list third-up" id="our-projects-list">
 	        <?php	while ( $projectsList->have_posts() ) : $projectsList->the_post(); ?>
               <a href="<?php the_permalink();?>" class="projects-item col-lg-3 col-sm-6 col-6">
             <span class="inner">
@@ -1533,7 +1531,7 @@
               </a>
 	        <?php endwhile;?>
         </div>
-        <div class="row">
+        <div class="row third-up">
           <div class="col-12 text-center">
             <a href="#" rel="nofollow" class="more-project-btn" id="more-project-main" data-cat-id ="0" data-cat-and="<?php echo $serviceCategoryId;?>">
               <span>Побачити більше</span>

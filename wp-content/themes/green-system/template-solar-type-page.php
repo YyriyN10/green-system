@@ -18,14 +18,8 @@
 
 	get_header();?>
 
-<?php
-/*	if ( function_exists('yoast_breadcrumb') ) :*/?><!--
-	  <section class="breadcrumbs-wrapper">
-      <div class="container">
-	      <?php	/*yoast_breadcrumb( '<nav class="yoast-breadcrumbs col-12">', '</nav>' );*/?>
-      </div>
-    </section>
---><?php /*endif;*/?>
+<?php get_template_part('template-parts/block-breadcrumbs');?>
+
 
 	<!-- Main Screen -->
     <?php
@@ -41,10 +35,10 @@
 
         if( $generalInformationTitle && $generalInformationGallery && $generalInformationCost && $generalInformationComplete):?>
         <!-- Головна інформація -->
-        <section class="general-information indent-bottom-big indent-top-big">
+        <section class="general-information indent-bottom-big animation-tracking">
           <div class="container">
             <div class="row content">
-              <div class="product-gallery-wrapper col-lg-6">
+              <div class="product-gallery-wrapper col-lg-6 first-up">
                 <h2 class="product-name block-title small-title"><?php echo $generalInformationTitle;?></h2>
                 <div class="product-gallery">
                   <div class="previews-slider">
@@ -83,7 +77,7 @@
                   </div>
                 </div>
               </div>
-              <div class="product-info col-lg-6">
+              <div class="product-info col-lg-6 second-up">
                 <h1 class="product-name block-title small-title"><?php echo $generalInformationTitle;?></h1>
                 <p class="price"><?php echo esc_html( pll__( 'Вартість' ) ); ?>: <?php echo $generalInformationCost;?></p>
                 <?php if( $generalInformationFormTitle || $generalInformationFormCall ):?>
@@ -100,13 +94,21 @@
 
                 <div class="complete-wrapper">
                   <h2 class="block-title big-title"><?php echo esc_html( pll__( 'Комплектація' ) ); ?></h2>
-	                <?php foreach( $generalInformationComplete as $item ):?>
-                      <p class="complete-wrapper__item">
-                        <span class="complete-wrapper__name"><?php echo $item['equipment'];?></span>
-                        <span class="complete-wrapper__count"><?php echo $item['number'];?></span>
-                      </p>
-	                <?php endforeach;?>
-                  <p class="total-cost marker"><span><?php echo esc_html( pll__( 'Вартість під ключ' ) ); ?></span> <span><?php echo $generalInformationCost;?></span></p>
+                  <table class="table">
+                    <tbody>
+                      <?php foreach( $generalInformationComplete as $item ):?>
+                        <tr class="complete-wrapper__item">
+                          <td class="complete-wrapper__name"><?php echo $item['equipment'];?></td>
+                          <td class="complete-wrapper__count"><?php echo $item['number'];?></td>
+                        </tr>
+                      <?php endforeach;?>
+                      <tr class="total-cost marker">
+                        <td><?php echo esc_html( pll__( 'Вартість під ключ' ) ); ?></td>
+                        <td><?php echo $generalInformationCost;?></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
                   <?php if( $generalInformationSeparately ):?>
                       <h3 class="block-title small-title"><?php echo esc_html( pll__( 'Окремо сплачується' ) ); ?></h3>
                       <?php foreach( $generalInformationSeparately as $item ):?>
@@ -149,10 +151,10 @@
 
         if( $callText ):?>
         <!-- Банер заклику -->
-        <section class="call-banner indent-top-big indent-bottom-big">
+        <section class="call-banner indent-top-big indent-bottom-big animation-tracking">
           <div class="container">
             <div class="row">
-              <div class="content col-lg-8 col-xxl-6 offset-lg-2 col-xxl-3 col-12 text-center">
+              <div class="content col-lg-8 col-xxl-6 offset-lg-2 col-xxl-3 col-12 text-center first-up">
                 <h2 class="block-title big-title "><?php echo $callText;?></h2>
                 <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#formModal">
 	                <?php echo esc_html( pll__( 'Залишити заявку' ) ); ?>

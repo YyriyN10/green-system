@@ -28,9 +28,17 @@
 		}
 	}
 
+	$mainScreenSlogan = carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_slogan'.green_system_lang_prefix());
+	$mainScreenSloganIcon = carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_slogan_icon'.green_system_lang_prefix());
+
 ?>
 	<!-- Головний екран -->
-	<section class="main-screen-ess" style="background-image: url('<?php echo carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_image'.green_system_lang_prefix());?>')">
+  <?php if (!empty($mainScreenSlogan)):?>
+  <section class="main-screen-ess" style="background-image: url('<?php echo carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_image'.green_system_lang_prefix());?>')">
+  <?php else:?>
+  <section class="main-screen-ess start-top" style="background-image: url('<?php echo carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_image'.green_system_lang_prefix());?>')">
+  <?php endif;?>
+
 		<div class="container">
 			<div class="row">
 				<div class="text-content col-12">
@@ -40,9 +48,6 @@
 				</div>
 			</div>
 			<?php
-				$mainScreenSlogan = carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_slogan'.green_system_lang_prefix());
-				$mainScreenSloganIcon = carbon_get_post_meta(get_the_ID(), 'green_system_ess_main_screen_slogan_icon'.green_system_lang_prefix());
-
 
 				if ( $mainScreenSloganIcon && $mainScreenSlogan ):?>
 					<div class="row">
@@ -66,10 +71,10 @@
 
       if( $needAlternativeEnergyBlockTile && $needAlternativeEnergyImage && $needAlternativeEnergyText ):?>
       <!-- Необхідність альтернативного енергоживлення -->
-      <section class="need-alternative-energy indent-top-big indent-bottom-small">
+      <section class="need-alternative-energy indent-top-big indent-bottom-small animation-tracking">
         <div class="container">
           <div class="row">
-            <div class="text-content col-lg-6">
+            <div class="text-content col-lg-6 first-up">
               <h2 class="block-title small-title">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
                   <g clip-path="url(#clip0_1048_1533)">
@@ -90,7 +95,7 @@
               </h2>
               <div class="text"><?php echo wpautop($needAlternativeEnergyText);?></div>
             </div>
-            <div class="pic-wrapper col-lg-6">
+            <div class="pic-wrapper col-lg-6 second-up">
               <div class="pic">
                 <img
                    class="lazy"
@@ -1175,7 +1180,6 @@
                 <circle cx="334" cy="198" r="2" fill="#599C12"/>
                 <circle cx="342" cy="198" r="2" fill="#599C12"/>
               </svg>
-
             </div>
           </div>
         </div>
@@ -1188,9 +1192,9 @@
 
       if( $energyIndependenceBlockTitle && $energyIndependenceAdvantagesList ):?>
       <!-- Енергетична незалежність -->
-      <section class="energy-independence indent-top-small indent-bottom-big">
+      <section class="energy-independence indent-top-small indent-bottom-big animation-tracking">
         <div class="container">
-          <div class="row">
+          <div class="row first-up">
             <h2 class="block-title col-12 big-title green-title">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                 <path d="M21.6968 18.3033C21.2468 17.8533 20.6364 17.6004 20 17.6004C19.3636 17.6004 18.7532 17.8533 18.3032 18.3033C17.8532 18.7533 17.6004 19.3636 17.6004 20C17.6004 20.6364 17.8532 21.2468 18.3032 21.6968C18.7532 22.1468 19.3636 22.3996 20 22.3996C20.6364 22.3996 21.2468 22.1468 21.6968 21.6968C22.1468 21.2468 22.3996 20.6364 22.3996 20C22.3996 19.3636 22.1468 18.7533 21.6968 18.3033Z" fill="#599C12"/>
@@ -1218,13 +1222,13 @@
 
       if( $callToBlockTitle && $callToText && $callToGallery ):?>
       <!-- Заклик до дії -->
-      <section class="call-to indent-top-small indent-bottom-small">
+      <section class="call-to indent-top-small indent-bottom-small animation-tracking">
         <div class="container">
-          <div class="row">
+          <div class="row first-up">
             <h2 class="block-title text-center big-title col-lg-10 col-12 offset-lg-1"><?php echo $callToBlockTitle;?></h2>
             <p class="subtitle col-lg-8 offset-lg-2 text-center"><?php echo $callToText;?></p>
           </div>
-          <div class="row">
+          <div class="row second-up">
             <div class="col-12 text-center">
               <a href="#" rel="nofollow" class="button">
                 <?php echo esc_html( pll__( 'Розрахувати вартість' ) ); ?>
@@ -1242,7 +1246,7 @@
             </div>
           </div>
         </div>
-        <div class="slider-wrapper">
+        <div class="slider-wrapper third-up">
           <div class="gallery-slider" id="ess-call-slider">
             <?php foreach( $callToGallery as $item ):?>
               <div class="slide">
@@ -1281,12 +1285,12 @@
 	if ( $powerPlantList->have_posts() ) :?>
 
       <!-- Готові рішення -->
-      <section class="solar-power-plants-types indent-top-big indent-bottom-big">
+      <section class="solar-power-plants-types indent-top-big indent-bottom-big animation-tracking">
         <div class="container">
-          <div class="row">
+          <div class="row first-up">
             <h2 class="block-title small-title col-12"><?php echo esc_html( pll__( 'Готові рішення для вашого дому' ) ); ?></h2>
           </div>
-          <div class="row content">
+          <div class="row content second-up">
 	          <?php	while ( $powerPlantList->have_posts() ) : $powerPlantList->the_post(); ?>
               <a href="<?php the_permalink();?>" class="power-plant-item col-lg-4 col-sm-6 col-12" target="_blank">
                 <span class="inner">
@@ -1343,12 +1347,12 @@
 	if ( $projectsList->have_posts() ) :?>
 
     <!-- Реалізовані обʼєкти -->
-    <section class="our-projects indent-top-small indent-bottom-big">
+    <section class="our-projects indent-top-small indent-bottom-big animation-tracking">
       <div class="container">
-        <div class="row">
+        <div class="row first-up">
           <h2 class="block-title big-title col-12 text-center"><?php echo esc_html( pll__( 'Реалізовані об’єкти ' ) ); ?></h2>
         </div>
-        <div class="row our-projects__list" id="our-projects-list">
+        <div class="row our-projects__list second-up" id="our-projects-list">
 					<?php	while ( $projectsList->have_posts() ) : $projectsList->the_post(); ?>
             <a href="<?php the_permalink();?>" class="projects-item col-lg-3 col-sm-6 col-6">
             <span class="inner">
@@ -1410,7 +1414,7 @@
 
 	        if ( $allProjects > 4 ):
         ?>
-          <div class="row">
+          <div class="row third-up">
             <div class="col-12 text-center">
               <a href="#" rel="nofollow" class="more-project-btn" id="more-project-ess" data-cat-id ="<?php echo $serviceCategoryId;?>" >
                 <span>Побачити більше</span>

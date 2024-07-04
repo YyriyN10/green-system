@@ -183,6 +183,7 @@
 
     @media(max-width: 767px){
       padding: 24px;
+      width: 100%;
     }
 
     @media(max-width: 575px){
@@ -196,9 +197,13 @@
       font-family: $f-med;
       margin-bottom: 95px;
 
-      @media(max-width: 767px){
+      @media(max-width: 992px){
         font-size: 22px;
         margin-bottom: 75px;
+      }
+
+      @media(max-width: 440px){
+        font-size: 20px;
       }
     }
 
@@ -229,6 +234,20 @@
         path{
           fill: $color-white;
         }
+      }
+    }
+
+    &.plug-item{
+      @media(max-width: 767px){
+        display: none;
+      }
+      .pic{
+        position: absolute;
+        width: 85%;
+        height: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   }
@@ -264,16 +283,21 @@
 
         .btn{
           display: block;
-          padding: 0;
+          padding: 0 0 0 40px;
           font-size: 32px;
           font-family: $f-reg;
           line-height: 1.2;
           color: $color-black !important;
           text-align: left;
           border: none !important;
+          position: relative;
 
           @media(max-width: 1200px){
             font-size: 28px;
+          }
+
+          @media(max-width: 767px){
+            padding-left: 35px;
           }
 
           @media(max-width: 575px){
@@ -282,25 +306,64 @@
 
           @media(max-width: 440px){
             font-size: 22px;
+            padding-left: 30px;
           }
 
           @media(max-width: 360px){
             font-size: 20px;
           }
+
+          &:before{
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 7px;
+            left: 2px;
+            border: 6px solid $color-yellow;
+            background-color: rgba(0,0,0,0);
+            transition: all 0.2s;
+
+            @media(max-width: 767px){
+              width: 18px;
+              height: 18px;
+              border-width: 5px;
+            }
+
+            @media(max-width: 575px){
+              top: 4px;
+            }
+          }
+
+          &.collapsed{
+            &:before{
+              border-color: $color-green;
+            }
+          }
         }
       }
 
       .card-body{
-        padding: 16px 0 0 0;
+        padding: 16px 0 0 40px;
         background-color: rgba(0,0,0,0);
         border: none;
         border-radius: 0;
+
+        @media(max-width: 767px){
+          padding-left: 35px;
+        }
+
+        @media(max-width: 440px){
+          padding-left: 30px;
+        }
 
         .progress-wrapper{
           width: 100%;
           position: relative;
           height: 4px;
           margin-bottom: 32px;
+          border-radius: 2px;
           background-color: $color-gray;
 
           span{
@@ -310,6 +373,7 @@
             bottom: 0;
             background-color: $color-green;
             width: 50%;
+            border-radius: 2px;
           }
         }
 

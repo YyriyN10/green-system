@@ -48,18 +48,4 @@
 		         ));
 	}
 
-	add_action('carbon_fields_register_fields', 'green_system_solar_types_tax_fields');
 
-	function green_system_solar_types_tax_fields(){
-		Container::make( 'term_meta', __('Зображення категорії') )
-		         ->where( function( $homeFields ) {
-			         $homeFields->where( 'term_taxonomy', '=', 'solar_types_tax' );
-		         } )
-
-		         ->add_fields( array(
-			         Field::make_image( 'green_system_solar_types_tax_fields_image'.green_system_lang_prefix(), 'Зображення для категорії')
-			              ->set_value_type('url')
-		         ));
-
-
-	}

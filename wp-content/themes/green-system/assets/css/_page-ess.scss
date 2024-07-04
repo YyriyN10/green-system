@@ -20,6 +20,10 @@
     padding-bottom: 32px;
   }
 
+  &.start-top{
+    align-items: flex-start;
+  }
+
   &:after{
     content: '';
     position: absolute;

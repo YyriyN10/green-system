@@ -53,11 +53,12 @@
 			         Field::make_complex('green_system_ess_energy_independence_advantages_list'.green_system_lang_prefix(), 'Перелік переваг')
 			              ->add_fields(array(
 			              	  Field::make_text('name', 'Назва'),
-				              Field::make_textarea('text', 'Опис')
-								->set_rows(2),
-				              Field::make_image('icon', 'Зображення')
-				                ->set_type('image')
-				                ->set_value_type('url')
+				                Field::make_textarea('text', 'Опис')
+														->set_rows(2),
+					              Field::make_image('icon', 'Зображення')
+					                ->set_type('image')
+					                ->set_value_type('url'),
+
 			              ))
 		         ));
 

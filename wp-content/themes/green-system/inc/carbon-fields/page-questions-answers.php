@@ -67,5 +67,16 @@
 			              ))
 		         ));
 
+		Container::make( 'post_meta', __('Форма зворотнього звʼязку') )
+		     ->where( function( $homeFields ) {
+			     $homeFields->where( 'post_type', '=', 'page' );
+			     $homeFields->where( 'post_template', '=', 'template-questions-answers.php' );
+		     } )
+
+		     ->add_fields( array(
+			     Field::make_text('green_system_questions_answers_form_block_title'.green_system_lang_prefix(), 'Заголовок форми'),
+			     Field::make_text('green_system_questions_answers_form_text'.green_system_lang_prefix(), 'Текст заклику у формі'),
+		     ));
+
 
 	}

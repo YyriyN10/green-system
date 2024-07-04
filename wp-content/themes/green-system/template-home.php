@@ -76,10 +76,10 @@
         if( $aboutUsBlockTitle && $aboutUsText ):
     ?>
         <!-- Про нас -->
-        <section class="about-us indent-bottom-big indent-top-big">
+        <section class="about-us indent-bottom-big indent-top-big animation-tracking">
           <div class="container">
             <div class="row">
-              <h2 class="block-title big-title col-lg-6">
+              <h2 class="block-title big-title col-lg-6 first-up">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <path d="M21.6968 18.3033C21.2468 17.8533 20.6364 17.6004 20 17.6004C19.3636 17.6004 18.7532 17.8533 18.3032 18.3033C17.8532 18.7533 17.6004 19.3636 17.6004 20C17.6004 20.6364 17.8532 21.2468 18.3032 21.6968C18.7532 22.1468 19.3636 22.3996 20 22.3996C20.6364 22.3996 21.2468 22.1468 21.6968 21.6968C22.1468 21.2468 22.3996 20.6364 22.3996 20C22.3996 19.3636 22.1468 18.7533 21.6968 18.3033Z" fill="#599C12"/>
                   <path d="M28.8955 25.5019C28.4455 25.0519 27.835 24.7991 27.1987 24.7991C26.5623 24.7991 25.9519 25.0519 25.5019 25.5019C25.0519 25.9519 24.7991 26.5623 24.7991 27.1987C24.7991 27.835 25.0519 28.4455 25.5019 28.8955C25.9519 29.3455 26.5623 29.5982 27.1987 29.5982C27.835 29.5982 28.4455 29.3455 28.8955 28.8955C29.3455 28.4455 29.5982 27.835 29.5982 27.1987C29.5982 26.5623 29.3455 25.9519 28.8955 25.5019Z" fill="#599C12"/>
@@ -93,7 +93,7 @@
                 </svg>
                   <?php echo $aboutUsBlockTitle;?>
               </h2>
-              <div class="text-content col-lg-6">
+              <div class="text-content col-lg-6 second-up">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
                   <g clip-path="url(#clip0_409_9015)">
                     <mask id="mask0_409_9015" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
@@ -125,15 +125,15 @@
         if( $solutionForYouBlockTitle && $solutionForYouList ):?>
 
         <!-- Рішення для вас -->
-        <section class="solution-for-you indent-top-small indent-bottom-small">
+        <section class="solution-for-you indent-top-small indent-bottom-small animation-tracking">
           <div class="container">
-            <div class="row">
+            <div class="row first-up">
               <h2 class="block-title big-title col-12 text-center"><?php echo $solutionForYouBlockTitle;?></h2>
               <?php if( $solutionForYouSubtitle ):?>
                 <h3 class="subtitle col-12 text-center"><?php echo $solutionForYouSubtitle;?></h3>
               <?php endif;?>
             </div>
-            <div class="row">
+            <div class="row second-up">
               <ul class="solution_list col-12">
                 <?php foreach( $solutionForYouList as $item ):?>
                   <li class="solution_list__item">
@@ -176,10 +176,10 @@
 
         if( $whyUsBlockTitle && $whyUsGallery && $whyUsItemsList ):?>
         <!-- Чому ми? -->
-        <section class="why-us indent-top-big indent-bottom-big">
+        <section class="why-us indent-top-big indent-bottom-big animation-tracking">
           <div class="container">
             <div class="row content">
-              <div class="col-lg-6 gallery-wrapper">
+              <div class="col-lg-6 gallery-wrapper first-up">
                 <h2 class="block-title big-title"><?php echo $whyUsBlockTitle;?></h2>
                 <div class="gallery-slider" id="why-us-slider">
                   <?php foreach( $whyUsGallery as $itemImage ):?>
@@ -1268,9 +1268,8 @@
                   <circle cx="334" cy="198" r="2" fill="#599C12"/>
                   <circle cx="342" cy="198" r="2" fill="#599C12"/>
                 </svg>
-
               </div>
-              <ul class="col-lg-6 text-content">
+              <ul class="col-lg-6 text-content second-up">
                 <?php foreach( $whyUsItemsList as $item ):?>
                   <li class="advantages-item">
                     <h3 class="name">
@@ -1340,12 +1339,12 @@
 
 	if ( $countProjects > 0 ):
 ?>
-    <section class="our-projects indent-top-small indent-bottom-big">
+    <section class="our-projects indent-top-small indent-bottom-big animation-tracking">
       <div class="container">
-        <div class="row">
+        <div class="row first-up">
           <h2 class="block-title big-title col-12 text-center"><?php echo esc_html( pll__( 'Реалізовані об’єкти ' ) ); ?></h2>
         </div>
-        <div class="row">
+        <div class="row second-up">
           <div class="col-12 text-center">
             <ul class="our-projects__category-list">
                 <?php
@@ -1413,7 +1412,7 @@
           </div>
 
         </div>
-        <div class="row our-projects__list" id="our-projects-list">
+        <div class="row our-projects__list third-up" id="our-projects-list">
             <?php
 	            $projectsArgs = array(
 		            'post_type' => 'realized_objects',
@@ -1503,12 +1502,12 @@
      		  if ( $reviewsList->have_posts() ) :?>
 
              <!-- Відгуки -->
-             <section class="reviews indent-top-small indent-bottom-small">
+             <section class="reviews indent-top-small indent-bottom-small animation-tracking">
                <div class="container">
-                 <div class="row">
+                 <div class="row first-up">
                    <h2 class="block-title big-title text-center col-12"><?php echo esc_html( pll__( 'Відгуки про нашу співпрацю' ) ); ?></h2>
                  </div>
-                 <div class="row">
+                 <div class="row second-up">
                    <div class="content col-12">
                      <div class="reviews-slider" id="reviews-slider">
 	                     <?php  while ( $reviewsList->have_posts() ) : $reviewsList->the_post(); ?>

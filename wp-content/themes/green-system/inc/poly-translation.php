@@ -148,7 +148,7 @@
 
 			pll_register_string(
 				'green_system_key_cost',
-				'Вартість під ключ',
+				'Виконані роботи під ключ',
 				'Переклади',
 				false
 			);
@@ -255,6 +255,13 @@
 			pll_register_string(
 				'green_system_ESS_power_plant_types_title',
 				'Готові рішення для вашого дому',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_contacts_social_title',
+				'Ми у соціальних мережах',
 				'Переклади',
 				false
 			);

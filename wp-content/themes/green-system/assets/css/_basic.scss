@@ -520,6 +520,18 @@ main{
   }
 }
 
+.indent-top-middle{
+  padding-top: 64px;
+
+  @media(max-width: 767px){
+    padding-top: 54px;
+  }
+
+  @media(max-width: 440px){
+    padding-top: 44px;
+  }
+}
+
 .indent-top-small{
   padding-top: 48px;
 
@@ -549,6 +561,18 @@ main{
 
   @media(max-width: 440px){
     padding-bottom: 50px;
+  }
+}
+
+.indent-bottom-middle{
+  padding-bottom: 64px;
+
+  @media(max-width: 767px){
+    padding-bottom: 54px;
+  }
+
+  @media(max-width: 440px){
+    padding-bottom: 44px;
   }
 }
 
@@ -668,15 +692,47 @@ main{
 
   /*--- Breadcrumbs ---*/
 
-.breadcrumbs-wrapper{
+.custom-breadcrumbs-wrapper{
   background-color: $color-gray;
-  padding-top: 132px;
+  padding-top: 112px;
   padding-bottom: 32px;
 
-  .yoast-breadcrumbs{
+  @media(max-width: 992px){
+    padding-bottom: 0;
+    padding-top: 90px;
+  }
+
+  @media(max-width: 575px){
+    padding-top: 70px;
+  }
+
+  .breadcrumbs{
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+
+    span{
+      font-size: 16px;
+      letter-spacing: -0.16px;
+      color: $color-green;
+      font-family: $f-u-reg;
+
+      @media(max-width: 440px){
+        font-size: 14px;
+      }
+
+      a{
+        color: $color-dark-green !important;
+      }
+    }
+
+    svg{
+      width: 7px;
+      height: auto;
+      margin: 0 12px;
+    }
   }
+
 }
 
 /*--- phone-list ---*/
@@ -690,6 +746,10 @@ main{
   }
 }
 
+/*--- table --**/
+.table>:not(caption)>*>*{
+  padding: 0;
+}
 /*--- project item ---*/
 
 .projects-item{

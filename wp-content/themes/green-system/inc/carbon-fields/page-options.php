@@ -34,11 +34,32 @@
 			            ->help_text('з 9:00 до 18:00'),
 			         Field::make_text('green_system_weekend'.green_system_lang_prefix(), 'Вихідні')
 			              ->help_text('сб, нд'),
-			         Field::make_image('green_system_logo', 'Логотип')
-			            ->set_value_type('url'),
-			         Field::make_image('green_system_contact_form_pic'.green_system_lang_prefix(), 'Зображення у блок контактної форми')
+			         Field::make_text('green_system_contacts_block_title'.green_system_lang_prefix(), 'Заголовок форми на сторінці контактів'),
+			         Field::make_text('green_system_contacts_text'.green_system_lang_prefix(), 'Текст заклику у формі на сторінці контактів'),
 
+		         ) )
+						->add_tab( __( 'Налаштування' ), array(
+							Field::make_image('green_system_logo', 'Логотип')
+							     ->set_value_type('url'),
+							Field::make_image('green_system_contact_form_pic'.green_system_lang_prefix(), 'Зображення у блок контактної форми')
 
-		         ) );
+						) );
+
+	}
+
+	add_action('carbon_fields_register_fields', 'green_system_solar_decision_tax_fields');
+
+	function green_system_solar_decision_tax_fields(){
+		Container::make( 'term_meta', __('Посилання на сторінку рішення') )
+		         ->where( function( $homeFields ) {
+			         $homeFields->where( 'term_taxonomy', '=', 'solar_decision_tax' );
+		         } )
+
+		         ->add_fields( array(
+		         	  Field::make_text('green_system_olar_decision_tax_link'.green_system_lang_prefix(), 'Посилання на сторінку')
+										->set_attribute('type', 'url')
+
+		         ));
+
 
 	}
