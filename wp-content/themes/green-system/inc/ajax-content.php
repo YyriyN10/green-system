@@ -868,3 +868,58 @@
 
 		wp_die();
 	}
+
+	/**
+	 * Product types
+	 */
+
+	add_action('wp_ajax_change_product_type', 'change_product_type_callback');
+	add_action('wp_ajax_nopriv_change_product_type', 'change_product_type_callback');
+
+	function change_product_type_callback(){
+
+		$catId = $_POST['catId'];
+
+		$productArgs = array(
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'our_products_tax',
+					'field' => 'id',
+					'lang' => false,
+					'suppress_filters' => false,
+					'terms' => $catId
+
+				)
+			),
+			'post_type' => 'our_products',
+			'orderby' 	 => 'date',
+			'suppress_filters' => false,
+			'lang' => false,
+			'posts_per_page' => -1
+		);
+
+		$productList = new WP_Query( $productArgs );
+
+		if ( $productList->have_posts() ) :?>
+
+			<?php	while ( $productList->have_posts() ) : $productList->the_post(); ?>
+        <a href="<?php the_permalink();?>" class="slide">
+          <span class="product-pic">
+            <img
+               class="lazy"
+               data-src="<?php echo wp_get_attachment_image_src($item['image'], 'full')[0];?>"
+               alt="<?php echo get_post_meta($item['image'], '_wp_attachment_image_alt', TRUE);?>"
+            >
+          </span>
+          <span class="product-info">
+            <span class="name"><?php the_title();?></span>
+            <span class="description"></span>
+          </span>
+        </a>
+			<?php endwhile;?>
+
+		<?php endif; ?>
+		<?php wp_reset_postdata();
+
+		wp_die();
+	}

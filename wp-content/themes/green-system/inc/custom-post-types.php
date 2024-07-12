@@ -293,3 +293,96 @@
 	}
 
 	add_action( 'init', 'reviews_post_type' );
+
+	/**
+	 * Register a our products post type.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/register_post_type
+	 *
+	 * @since green_system 1.0
+	 */
+
+	function our_products_post_type() {
+
+		$labels = array(
+			'name'               => _x( 'Наша продукція', 'post type general name', 'green_system' ),
+			'singular_name'      => _x( 'Наша продукція', 'post type singular name', 'green_system' ),
+			'menu_name'          => _x( 'Наша продукція', 'admin menu', 'green_system' ),
+			'name_admin_bar'     => _x( 'Наша продукція', 'add new on admin bar', 'green_system' ),
+			'add_new'            => _x( 'Додати новий продукт', 'actions', 'green_system' ),
+			'add_new_item'       => __( 'Додати новий продукт', 'green_system' ),
+			'new_item'           => __( 'Новий продукт', 'green_system' ),
+			'edit_item'          => __( 'Редагувати продукт', 'green_system' ),
+			'view_item'          => __( 'Дивитись продукт', 'green_system' ),
+			'all_items'          => __( 'Всі продукти', 'green_system' ),
+			'search_items'       => __( 'Шукати продукт', 'green_system' ),
+			'parent_item_colon'  => __( 'Батько впродукту:', 'green_system' ),
+			'not_found'          => __( 'Продукт не знайдено', 'green_system' ),
+			'not_found_in_trash' => __( 'У кошику продуктів не знайдно', 'green_system' )
+		);
+
+		$args = array(
+			'labels'             => $labels,
+			'taxonomies'         => ['our_products_tax'],
+			'description'        => __( 'Description.', 'our_products' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'our_products' ),
+			'capability_type'    => 'post',
+			'has_archive'        => false,
+			'hierarchical'       => false,
+			'exclude_from_search'=> false,
+			'menu_position'      => 10,
+			'menu_icon'          => 'dashicons-store',
+			'supports'           => array( 'title', 'thumbnail',)
+		);
+
+		register_post_type( 'our_products', $args );
+	}
+
+	add_action( 'init', 'our_products_post_type' );
+
+	add_action( 'init', 'our_products_taxonomy' );
+	function our_products_taxonomy(){
+
+		register_taxonomy('our_products_tax', 'our_products', array(
+			'label'                 => 'our_products_tax', // определяется параметром $labels->name
+			'labels'                => array(
+				'name'              => 'Типи продуктів',
+				'singular_name'     => 'Тип продукту',
+				'search_items'      => 'Пошук типу продукту',
+				'all_items'         => 'Всі типи продуктів',
+				'view_item '        => 'View Genre',
+				'parent_item'       => 'Parent Genre',
+				'parent_item_colon' => 'Parent Genre:',
+				'edit_item'         => 'Редагувати тип продукту',
+				'update_item'       => 'Оновити типу продукту',
+				'add_new_item'      => 'Додати тип продукту',
+				'new_item_name'     => 'New Genre Name',
+				'menu_name'         => 'Типи продукту',
+			),
+			'description'           => 'our_products_tax', // описание таксономии
+			'public'                => true,
+			'publicly_queryable'    => true, // равен аргументу public
+			'show_in_nav_menus'     => true, // равен аргументу public
+			'show_ui'               => true, // равен аргументу public
+			'show_in_menu'          => true, // равен аргументу show_ui
+			'show_tagcloud'         => true, // равен аргументу show_ui
+			'show_in_rest'          => true, // добавить в REST API
+			'rest_base'             => true, // $taxonomy
+			'hierarchical'          => true,
+			'supports'           => array( 'title', 'thumbnail', 'revisions' ),
+
+			/*'update_count_callback' => '_update_post_term_count',*/
+			'rewrite'               => array('slug' => 'our_products'),
+			'query_var'             => $taxonomy, // название параметра запроса
+			'capabilities'          => array(),
+			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+			/*'_builtin'              => false,*/
+			'show_in_quick_edit'    => true, // по умолчанию значение show_ui
+		) );
+	}

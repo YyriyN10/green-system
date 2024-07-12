@@ -931,6 +931,51 @@ form{
   }
 }
 
+/*-- inner main screen --*/
+
+.inner-main-screen{
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 233px;
+  padding-bottom: 153px;
+  overflow: hidden;
+
+  @media(max-width: 767px){
+    padding-top: 180px;
+    padding-bottom: 130px;
+  }
+
+  &:before{
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 758px;
+    height: 678px;border-radius: 758px;
+    background: rgba(45, 45, 44, 0.50);
+    filter: blur(150px);
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .container{
+    position: relative;
+    z-index: 2;
+  }
+
+  .block-title{
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: $color-white;
+
+    span{
+      color: $color-yellow
+    }
+  }
+}
+
 
 /*--- backgroud image ---*/
 

@@ -877,6 +877,58 @@ jQuery(function($) {
 
   }
 
+  /**
+   * Our products
+   */
+
+  if ( $('.our-products').length ){
+
+    function changeProductType( catId ){
+
+      console.log(catId);
+
+      let data = {
+
+        action: 'change_product_type',
+        catId: catId,
+
+      };
+
+      $.post( green_system_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#our-products-list').html(response);
+        }
+      });
+    }
+
+    $('.our-products__category:first-child').addClass('active');
+
+    let defaultProductTypeId = Number($('.our-products__category:first-child a').attr('data-cat-id'));
+
+    console.log(defaultProductTypeId);
+
+    changeProductType(defaultProductTypeId);
+
+    $('.our-products__category').on('click', function (e) {
+
+      e.preventDefault();
+
+      $('.our-products__category.active').removeClass('active');
+
+      let thisType = $(this);
+
+      thisType.addClass('active');
+
+      let currentTypeId = Number(thisType.attr('data-cat-id'));
+
+      changeProductType( currentTypeId );
+
+    });
+
+  }
+
 
 
   /**
