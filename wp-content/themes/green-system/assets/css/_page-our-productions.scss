@@ -214,6 +214,12 @@
     padding: 0;
     display: grid;
     gap: 8px;
+
+    @media(max-width: 992px){
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
   }
 
   &__category{
@@ -237,6 +243,128 @@
         background-color: $color-gray;
       }
 
+    }
+  }
+
+  &__slider-wrapper{
+    position: relative;
+
+    .slider-controls{
+      position: absolute;
+      bottom: 0;
+      left: 562px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+
+      @media(max-width: 1400px){
+        left: calc(60% + 12px);
+      }
+
+      @media(max-width: 1200px){
+        position: relative;
+        left: 0;
+        margin-top: 32px;
+        justify-content: flex-start;
+      }
+
+      .control{
+        padding: 0;
+        background-color: rgba(0,0,0,0);
+        border: none;
+        width: 24px;
+        transition: all 0.2s;
+
+        svg{
+          width: 100%;
+          height: auto;
+        }
+
+        &:hover{
+          opacity: 0.5;
+        }
+      }
+
+      .counter{
+        margin-bottom: 0;
+        font-family: $f-med;
+        color: $color-dark-green;
+
+        .current{
+          color: $color-green;
+        }
+      }
+    }
+  }
+
+  &__slider{
+    position: relative;
+    z-index: 1;
+
+    .slide{
+      display: flex !important;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      @media(max-width: 1200px){
+        flex-wrap: wrap;
+      }
+
+      .product-pic{
+        width: 536px;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-right: 24px;
+
+        @media(max-width: 1400px){
+          width: calc(60% - 12px);
+        }
+
+        @media(max-width: 1200px){
+          width: 100%;
+          margin-bottom: 24px;
+          margin-right: 0;
+        }
+
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .product-info{
+        width: calc(100% - 550px);
+
+        @media(max-width: 1400px){
+          width: calc(40% - 12px);
+        }
+
+
+        @media(max-width: 1200px){
+          width: 100%;
+        }
+
+        .name{
+          margin-bottom: 8px;
+          color: $color-black;
+        }
+
+        .description{
+          font-size: 24px;
+          margin-bottom: 28px;
+        }
+
+        hr{
+          width: 282px;
+          border: none;
+          height: 1px;
+          background: $color-dark-green;
+          opacity: 0.5;
+          margin-bottom: 28px;
+        }
+      }
     }
   }
 

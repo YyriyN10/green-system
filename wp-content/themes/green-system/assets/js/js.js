@@ -497,7 +497,7 @@ jQuery(function($) {
    * Project categories home
    */
 
-  if ( $('.page-template-template-home .our-projects').length ){
+  if ( $('.page-template-template-home .our-projects').length || $('.page-template-template-realized-objects .our-projects').length ){
 
     function changeProjectCategory( catID){
 
@@ -899,6 +899,54 @@ jQuery(function($) {
         if($.trim(response) !== ''){
 
           $('#our-products-list').html(response);
+
+          $('#our-products-list').slick({
+            autoplay: false,
+            autoplaySpeed: 5000,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            adaptiveHeight: true
+          });
+
+          let allProducts = $('#our-products-list .slide').length;
+
+          let productSlideCounter = $('.our-products__slider-wrapper .slider-controls .counter');
+
+          if ( allProducts < 2 ){
+            $('.our-products__slider-wrapper .slider-controls').fadeOut(400);
+          }else{
+            $('.our-products__slider-wrapper .slider-controls').fadeIn(400);
+          }
+
+          if ( allProducts < 10 ){
+            productSlideCounter.find('.all').text('0' + allProducts);
+          }else{
+            productSlideCounter.find('.all').text(allProducts);
+          }
+
+          $('#our-products-list').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+
+            if ( (nextSlide + 1) < 10 ){
+              productSlideCounter.find('.current').text('0' + (nextSlide + 1));
+            }else{
+              productSlideCounter.find('.current').text(nextSlide + 1);
+            }
+
+          });
+          
+          $('.our-products__slider-wrapper .prev').click(function(e){
+            e.preventDefault();
+
+            $('#our-products-list').slick('slickPrev');
+          });
+
+          $('.our-products__slider-wrapper .next').click(function(e){
+            e.preventDefault();
+
+            $('#our-products-list').slick('slickNext');
+          });
         }
       });
     }
@@ -907,13 +955,13 @@ jQuery(function($) {
 
     let defaultProductTypeId = Number($('.our-products__category:first-child a').attr('data-cat-id'));
 
-    console.log(defaultProductTypeId);
-
     changeProductType(defaultProductTypeId);
 
     $('.our-products__category').on('click', function (e) {
 
       e.preventDefault();
+
+      $('#our-products-list').slick('unslick');
 
       $('.our-products__category.active').removeClass('active');
 
@@ -921,7 +969,7 @@ jQuery(function($) {
 
       thisType.addClass('active');
 
-      let currentTypeId = Number(thisType.attr('data-cat-id'));
+      let currentTypeId = Number(thisType.find('a').attr('data-cat-id'));
 
       changeProductType( currentTypeId );
 
