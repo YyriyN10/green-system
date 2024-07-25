@@ -196,3 +196,9 @@ require get_template_directory() . '/inc/custom-login-page.php';
 	}
 
 	add_action( 'init', 'addCustomCategoryInPage' );
+
+	/**
+	 * Add duplicate
+	 */
+
+	require get_template_directory() . '/inc/add-diplicate.php';

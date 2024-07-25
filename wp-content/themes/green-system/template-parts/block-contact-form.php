@@ -19,6 +19,7 @@
           <div class="form-wrapper third-up">
             <form method="post" >
               <input type="hidden" name="action" value="form_integration">
+              <input type="hidden" name="_token" value="PH98QgcCokIFruTwS9HtbNFh0Iq3FABkGF9B9Snf">
               <input type="hidden" name="site_url" value="<?php echo get_home_url('/');?>">
               <input type="hidden" name="site_lang" value="<?php echo get_bloginfo('language');?>">
               <input type="hidden" name="page_name" value="<?php the_title();?>">
