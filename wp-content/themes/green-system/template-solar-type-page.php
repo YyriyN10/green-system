@@ -27,6 +27,7 @@
 	      $generalInformationGallery = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_gallery'.green_system_lang_prefix());
 	      $generalInformationCost = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_price'.green_system_lang_prefix());
 	      $generalInformationComplete = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_complete'.green_system_lang_prefix());
+	      $generalInformationOptionComplete = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_options_equipment'.green_system_lang_prefix());
 	      $generalInformationSeparately = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_paid_separately'.green_system_lang_prefix());
 	      $generalInformationMontageTime = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_montage_time'.green_system_lang_prefix());
 
@@ -106,11 +107,22 @@
                         <td><?php echo esc_html( pll__( 'Вартість під ключ' ) ); ?></td>
                         <td><?php echo $generalInformationCost;?></td>
                       </tr>
+                      <?php if( $generalInformationOptionComplete ):?>
+                        <?php foreach( $generalInformationOptionComplete as $item ):?>
+                          <tr class="more-cost">
+                            <td><?php echo $item['name'];?></td>
+                            <td><?php echo $item['price'];?></td>
+                          </tr>
+                        <?php endforeach;?>
+                      <?php endif;?>
                     </tbody>
                   </table>
                   
-                  <?php if( $generalInformationSeparately ):?>
-                      <h3 class="block-title small-title"><?php echo esc_html( pll__( 'Окремо сплачується' ) ); ?></h3>
+                  <?php if( $generalInformationSeparately || $generalInformationMontageTime ):?>
+                      <?php if( $generalInformationSeparately ):?>
+                        <h3 class="block-title small-title"><?php echo esc_html( pll__( 'Окремо сплачується' ) ); ?></h3>
+                      <?php endif;?>
+
                       <?php foreach( $generalInformationSeparately as $item ):?>
                         <p class="complete-wrapper__item">
                           <span class="complete-wrapper__name"><?php echo $item['name'];?></span>

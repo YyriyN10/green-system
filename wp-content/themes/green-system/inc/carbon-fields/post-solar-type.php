@@ -29,6 +29,11 @@
 			            	Field::make_text('equipment', 'Обладнання'),
 				            Field::make_text('number', 'Кількість')
 			            )),
+			         Field::make_complex('green_system_solar_type_options_equipment'.green_system_lang_prefix(), 'Опційне облажнання')
+		              ->add_fields(array(
+		              	Field::make_text('name', 'Назва облажнання'),
+			              Field::make_text('price', 'Вартость')
+		              )),
 			         Field::make_complex('green_system_solar_type_paid_separately'.green_system_lang_prefix(), 'Окремо сплачується')
 			              ->add_fields(array(
 				              Field::make_text('name', 'Назва послуги'),
