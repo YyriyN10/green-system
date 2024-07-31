@@ -147,6 +147,27 @@
 			);
 
 			pll_register_string(
+				'green_system_characteristics_title',
+				'Характеристики',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_complete_price_title',
+				'Вартість під ключ',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
+				'green_system_characteristics_price_title',
+				'Вартість',
+				'Переклади',
+				false
+			);
+
+			pll_register_string(
 				'green_system_key_cost',
 				'Виконані роботи під ключ',
 				'Переклади',

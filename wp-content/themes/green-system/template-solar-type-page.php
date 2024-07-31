@@ -27,6 +27,9 @@
 	      $generalInformationGallery = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_gallery'.green_system_lang_prefix());
 	      $generalInformationCost = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_price'.green_system_lang_prefix());
 	      $generalInformationComplete = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_complete'.green_system_lang_prefix());
+	      $generalInformationСharacteristics = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_characteristics'.green_system_lang_prefix());
+	      $generalInformationListType = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_complete_or_characteristics'.green_system_lang_prefix());
+
 	      $generalInformationOptionComplete = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_options_equipment'.green_system_lang_prefix());
 	      $generalInformationSeparately = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_paid_separately'.green_system_lang_prefix());
 	      $generalInformationMontageTime = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_montage_time'.green_system_lang_prefix());
@@ -34,7 +37,7 @@
 	      $generalInformationFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_title'.green_system_lang_prefix());
 	      $generalInformationFormCall = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_call'.green_system_lang_prefix());
 
-        if( $generalInformationTitle && $generalInformationGallery && $generalInformationCost && $generalInformationComplete):?>
+        if( $generalInformationTitle && $generalInformationGallery && $generalInformationCost && ($generalInformationComplete || $generalInformationСharacteristics)):?>
         <!-- Головна інформація -->
         <section class="general-information indent-bottom-big animation-tracking">
           <div class="container">
@@ -93,30 +96,59 @@
                   </div>
                 <?php endif;?>
 
+
+
                 <div class="complete-wrapper">
-                  <h2 class="block-title big-title"><?php echo esc_html( pll__( 'Комплектація' ) ); ?></h2>
-                  <table class="table">
-                    <tbody>
-                      <?php foreach( $generalInformationComplete as $item ):?>
+	                <?php if( $generalInformationListType == 'complete' ):?>
+                    <h2 class="block-title big-title"><?php echo esc_html( pll__( 'Комплектація' ) ); ?></h2>
+                    <table class="table">
+                      <tbody>
+			                <?php foreach( $generalInformationComplete as $item ):?>
                         <tr class="complete-wrapper__item">
                           <td class="complete-wrapper__name"><?php echo $item['equipment'];?></td>
                           <td class="complete-wrapper__count"><?php echo $item['number'];?></td>
                         </tr>
-                      <?php endforeach;?>
+			                <?php endforeach;?>
                       <tr class="total-cost marker">
                         <td><?php echo esc_html( pll__( 'Вартість під ключ' ) ); ?></td>
                         <td><?php echo $generalInformationCost;?></td>
                       </tr>
-                      <?php if( $generalInformationOptionComplete ):?>
-                        <?php foreach( $generalInformationOptionComplete as $item ):?>
+			                <?php if( $generalInformationOptionComplete ):?>
+				                <?php foreach( $generalInformationOptionComplete as $item ):?>
                           <tr class="more-cost">
                             <td><?php echo $item['name'];?></td>
                             <td><?php echo $item['price'];?></td>
                           </tr>
-                        <?php endforeach;?>
-                      <?php endif;?>
-                    </tbody>
-                  </table>
+				                <?php endforeach;?>
+			                <?php endif;?>
+                      </tbody>
+                    </table>
+	                <?php elseif ( $generalInformationListType == 'characteristics' ):?>
+                    <h2 class="block-title big-title"><?php echo esc_html( pll__( 'Характеристики' ) ); ?></h2>
+                    <table class="table">
+                      <tbody>
+			                <?php foreach( $generalInformationСharacteristics as $item ):?>
+                        <tr class="characteristics-wrapper__item">
+                          <td class="characteristics-wrapper__name"><?php echo $item['equipment'];?></td>
+                          <td class="characteristics-wrapper__count"><?php echo $item['number'];?></td>
+                        </tr>
+			                <?php endforeach;?>
+                      <!--<tr class="total-cost marker">
+                        <td><?php /*echo esc_html( pll__( 'Вартість' ) ); */?></td>
+                        <td><?php /*echo $generalInformationCost;*/?></td>
+                      </tr>
+			                <?php /*if( $generalInformationOptionComplete ):*/?>
+				                <?php /*foreach( $generalInformationOptionComplete as $item ):*/?>
+                          <tr class="more-cost">
+                            <td><?php /*echo $item['name'];*/?></td>
+                            <td><?php /*echo $item['price'];*/?></td>
+                          </tr>
+				                <?php /*endforeach;*/?>
+			                --><?php /*endif;*/?>
+                      </tbody>
+                    </table>
+	                <?php endif;?>
+
                   
                   <?php if( $generalInformationSeparately || $generalInformationMontageTime ):?>
                       <?php if( $generalInformationSeparately ):?>
@@ -187,6 +219,21 @@
           </div>
         </section>
     <?php endif;?>
+
+<?php
+	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_title'.green_system_lang_prefix());
+	$contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_call'.green_system_lang_prefix());
+
+	if ( $contactFormTitle && $contactFormText ):
+
+		$args = array(
+			'title' => $contactFormTitle,
+			'text'  => $contactFormText
+		)
+
+		?>
+		<?php get_template_part('template-parts/block-contact-form','', $args);?>
+	<?php endif;?>
 
 
 <?php get_footer();

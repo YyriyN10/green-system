@@ -21,14 +21,42 @@
 			             ->set_help_text('Щоб виділити ткуст жирним оберніть його тегом &#60;span&#62;жирний текст в середені&#60;/span&#62;'),
 			         Field::make( 'text', 'green_system_solar_type_price'.green_system_lang_prefix(), 'Вартість товару'),
 			         Field::make_complex('green_system_solar_type_gallery'.green_system_lang_prefix(), 'Галірея зображень')
-						->add_fields(array(
-							Field::make_image('image', 'Зображення')
-						)),
+										->add_fields(array(
+											Field::make_image('image', 'Зображення')
+										)),
+			         Field::make_radio('green_system_solar_type_complete_or_characteristics'.green_system_lang_prefix(), 'Оберіть тип переліку')
+									->set_options(array(
+										'complete' => 'Комплектація',
+										'characteristics' => 'Характеристики'
+									)),
+
 			         Field::make_complex('green_system_solar_type_complete'.green_system_lang_prefix(), 'Комплектація')
+				         ->set_conditional_logic( array(
+					         'relation' => 'AND',
+					         array(
+						         'field' => 'green_system_solar_type_complete_or_characteristics'.green_system_lang_prefix(),
+						         'value' => 'complete',
+						         'compare' => '=',
+					         )
+				         ) )
 			            ->add_fields(array(
 			            	Field::make_text('equipment', 'Обладнання'),
 				            Field::make_text('number', 'Кількість')
 			            )),
+
+			         Field::make_complex('green_system_solar_type_characteristics'.green_system_lang_prefix(), 'Характеристики')
+			              ->set_conditional_logic( array(
+				              'relation' => 'AND',
+				              array(
+					              'field' => 'green_system_solar_type_complete_or_characteristics'.green_system_lang_prefix(),
+					              'value' => 'characteristics',
+					              'compare' => '=',
+				              )
+			              ) )
+			              ->add_fields(array(
+				              Field::make_text('equipment', 'Назва'),
+				              Field::make_text('number', 'Значення')
+			              )),
 			         Field::make_complex('green_system_solar_type_options_equipment'.green_system_lang_prefix(), 'Опційне облажнання')
 		              ->add_fields(array(
 		              	Field::make_text('name', 'Назва облажнання'),

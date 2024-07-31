@@ -245,7 +245,8 @@
         margin-bottom: 24px;
       }
 
-      &__item{
+      &__item,
+      .characteristics-wrapper__item{
         margin-bottom: 0;
         display: flex;
         padding: 8px;
@@ -272,6 +273,13 @@
         }
       }
 
+      .characteristics-wrapper__name{
+        width: 50%;
+        padding-right: 16px;
+        background-color: rgba(0,0,0,0);
+        border: none;
+      }
+
       &__count{
         width: calc(100% - 535px);
         background-color: rgba(0,0,0,0);
@@ -289,6 +297,13 @@
           width: calc(100% - (70% + 24px));
         }
       }
+    }
+
+    .characteristics-wrapper__count{
+      width: 50%;
+      padding-left: 16px;
+      background-color: rgba(0,0,0,0);
+      border: none;
     }
 
     .marker{
