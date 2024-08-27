@@ -36,6 +36,7 @@
 
 	      $generalInformationFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_title'.green_system_lang_prefix());
 	      $generalInformationFormCall = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_call'.green_system_lang_prefix());
+	      $contactFormKey = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_kay'.green_system_lang_prefix());
 
         if( $generalInformationTitle && $generalInformationGallery && $generalInformationCost && ($generalInformationComplete || $generalInformationСharacteristics)):?>
         <!-- Головна інформація -->
@@ -92,7 +93,18 @@
                     <?php if( $generalInformationFormCall ):?>
                       <p class="form-call"><?php echo $generalInformationFormCall;?></p>
                     <?php endif;?>
-	                  <?php get_template_part('template-parts/form');?>
+                    <?php
+	                    $topArgs = array(
+		                    'page_kay' => $contactFormKey
+	                    );
+	                    
+                      global $args;
+
+	                    $args = array(
+		                    'page_kay' => $contactFormKey
+	                    )
+                    ?>
+	                  <?php get_template_part('template-parts/form', '', $topArgs);?>
                   </div>
                 <?php endif;?>
 
@@ -221,19 +233,20 @@
     <?php endif;?>
 
 <?php
-	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_title'.green_system_lang_prefix());
+/*	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_title'.green_system_lang_prefix());
 	$contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_form_call'.green_system_lang_prefix());
 
 	if ( $contactFormTitle && $contactFormText ):
 
 		$args = array(
 			'title' => $contactFormTitle,
-			'text'  => $contactFormText
+			'text'  => $contactFormText,
+			'page_kay' => $contactFormKey
 		)
 
-		?>
-		<?php get_template_part('template-parts/block-contact-form','', $args);?>
-	<?php endif;?>
+		*/?><!--
+		<?php /*get_template_part('template-parts/block-contact-form','', $args);*/?>
+	--><?php /*endif;*/?>
 
 
 <?php get_footer();

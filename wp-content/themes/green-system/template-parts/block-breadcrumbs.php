@@ -6,8 +6,16 @@
 
 	$term_list = get_the_terms(get_the_ID(), 'solar_decision_tax');
 
-	$parentTermId = $term_list[0]->term_id;
-	$parentTermName = $term_list[0]->name;
+
+	if ( $term_list ){
+		$parentTermId = $term_list[0]->term_id;
+		$parentTermName = $term_list[0]->name;
+  }else{
+		$parentTermId = '';
+		$parentTermName = '';
+  }
+
+
 	$parentLink = carbon_get_term_meta($parentTermId, 'green_system_olar_decision_tax_link'.green_system_lang_prefix());
 ?>
 <section class="custom-breadcrumbs-wrapper">

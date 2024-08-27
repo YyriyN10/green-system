@@ -22,7 +22,7 @@
         <div class="text-content col-12">
           <h1 class="block-title"><?php echo carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_main_screen_title'.green_system_lang_prefix());;?></h1>
           <p class="subtitle"><?php echo carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_main_screen_subtitle'.green_system_lang_prefix());;?></p>
-          <a href="" rel="nofollow" class="button"><?php echo esc_html( pll__( 'Отримати консультацію' ) ); ?></a>
+          <a href="" rel="nofollow" class="button" data-bs-toggle="modal" data-bs-target="#formModal"><?php echo esc_html( pll__( 'Отримати консультацію' ) ); ?></a>
         </div>
         <?php if( carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_main_screen_advantages_list'.green_system_lang_prefix()) ):?>
           <ul class="advantages-list col-12">
@@ -160,7 +160,7 @@
 	<?php endif;?>
 
 <?php
-	$faqBlockTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_faq_title'.green_system_lang_prefix());
+/*	$faqBlockTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_faq_title'.green_system_lang_prefix());
 	$faqQuestionList = carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_faq_list'.green_system_lang_prefix());
 	$i = 0;
 
@@ -171,20 +171,24 @@
 			'content'  => $faqQuestionList
 		)
 
-		?>
+		*/?>
     <!-- Питання відповіді-->
-		<?php get_template_part('template-parts/block-faq','', $args);?>
-	<?php endif;?>
+		<?php /*get_template_part('template-parts/block-faq','', $args);*/?><!--
+	--><?php /*endif;*/?>
 
 <?php
 	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_form_block_title'.green_system_lang_prefix());
 	$contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_form_text'.green_system_lang_prefix());
+	$contactFormKey = carbon_get_post_meta(get_the_ID(), 'green_system_our_productions_form_kay'.green_system_lang_prefix());
 
 	if ( $contactFormTitle && $contactFormText ):
 
+		global $args;
+
 		$args = array(
 			'title' => $contactFormTitle,
-			'text'  => $contactFormText
+			'text'  => $contactFormText,
+			'page_kay' => $contactFormKey,
 		)
 
 		?>

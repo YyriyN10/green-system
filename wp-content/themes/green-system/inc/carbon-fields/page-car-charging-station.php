@@ -41,9 +41,40 @@
 		                )),
 			         Field::make_image('green_system_car_charging_why_us_image'.green_system_lang_prefix(), 'Постер для відео')
 			              ->set_type('image'),
+
+			         Field::make_radio('green_system_car_charging_why_us_video_type'.green_system_lang_prefix(), 'Оберіть тип відео')
+			              ->set_options(array(
+				              'video_file' => 'Відео файл',
+				              'video_youtube' => 'Відео з Youtube'
+			              )),
+
 			         Field::make_image('green_system_car_charging_why_us_video'.green_system_lang_prefix(), 'Відео')
 			              ->set_type('video')
 			              ->set_value_type('url')
+				         ->set_conditional_logic(array(
+					         'relation' => 'AND',
+					         array(
+						         'field' => 'green_system_car_charging_why_us_video_type'.green_system_lang_prefix(),
+						         'value' => 'video_file',
+						         'compare' => '=',
+					         )
+				         )),
+
+			         Field::make_text('youtybe_video_id', 'ID відео з Youtube')
+			              ->set_help_text('Приклад посилання https://www.youtube.com/watch?v=A2hOoCd1xPU де ID це A2hOoCd1xPU')
+			              ->set_conditional_logic(array(
+				              'relation' => 'AND',
+				              array(
+					              'field' => 'name_type',
+					              'value' => 'set_video',
+					              'compare' => '=',
+				              ),
+				              array(
+					              'field' => 'video_type',
+					              'value' => 'video_youtube',
+					              'compare' => '=',
+				              )
+			              )),
 		         ));
 
 		Container::make( 'post_meta', __('Зарядні станції вдома') )
@@ -113,6 +144,7 @@
 		         ->add_fields( array(
 			         Field::make_text('green_system_car_charging_form_block_title'.green_system_lang_prefix(), 'Заголовок форми'),
 			         Field::make_text('green_system_car_charging_form_text'.green_system_lang_prefix(), 'Текст заклику у формі'),
+			         Field::make_text('green_system_car_charging_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 		         ));
 
 

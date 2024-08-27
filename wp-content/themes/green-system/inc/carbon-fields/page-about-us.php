@@ -79,6 +79,36 @@
 					                   )
 				                   ) ),
 
+				              Field::make_radio('video_type', 'Оберіть тип відео')
+				                   ->set_conditional_logic(array(
+					                   'relation' => 'AND',
+					                   array(
+						                   'field' => 'media_type',
+						                   'value' => 'video',
+						                   'compare' => '=',
+					                   )
+				                   ))
+				                   ->set_options(array(
+					                   'video_file' => 'Відео файл',
+					                   'video_youtube' => 'Відео з Youtube'
+				                   )),
+
+				              Field::make_text('youtybe_video_id', 'ID відео з Youtube')
+				                   ->set_help_text('Приклад посилання https://www.youtube.com/watch?v=A2hOoCd1xPU де ID це A2hOoCd1xPU')
+				                   ->set_conditional_logic(array(
+					                   'relation' => 'AND',
+					                   array(
+						                   'field' => 'media_type',
+						                   'value' => 'video',
+						                   'compare' => '=',
+					                   ),
+					                   array(
+						                   'field' => 'video_type',
+						                   'value' => 'video_youtube',
+						                   'compare' => '=',
+					                   )
+				                   )),
+
 				              Field::make_image('video', 'Відео')
 				                   ->set_type('video')
 					                 ->set_value_type('url')
@@ -87,6 +117,11 @@
 					                   array(
 						                   'field' => 'media_type',
 						                   'value' => 'video',
+						                   'compare' => '=',
+					                   ),
+					                   array(
+						                   'field' => 'video_type',
+						                   'value' => 'video_file',
 						                   'compare' => '=',
 					                   )
 				                   ) ),
@@ -104,6 +139,7 @@
 		         ->add_fields( array(
 			         Field::make_text('green_system_about_us_form_block_title'.green_system_lang_prefix(), 'Заголовок форми'),
 			         Field::make_text('green_system_about_us_form_text'.green_system_lang_prefix(), 'Текст заклику у формі'),
+			         Field::make_text('green_system_about_us_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 		         ));
 
 

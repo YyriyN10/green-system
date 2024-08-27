@@ -17,8 +17,8 @@
 		         } )
 
 		         ->add_fields( array(
-			         Field::make_text('green_system_our_products_custom_title'.green_system_lang_prefix(), 'Кастомна назва продукту')
-			              ->set_help_text('Щоб виділити ткуст жирним оберніть його тегом &#60;span&#62;жирний текст в середені&#60;/span&#62;'),
+			         Field::make_text('green_system_our_products_custom_title'.green_system_lang_prefix(), 'Примітка'),
+
 			         Field::make( 'text', 'green_system_our_products_price'.green_system_lang_prefix(), 'Вартість товару'),
 			         Field::make_complex('green_system_our_products_gallery'.green_system_lang_prefix(), 'Галірея зображень')
 			              ->add_fields(array(
@@ -76,7 +76,8 @@
 			              )),
 			         Field::make_text('green_system_our_products_call_text'.green_system_lang_prefix(), 'Текст заклику надіслати заявку'),
 			         Field::make_text('green_system_our_products_form_title'.green_system_lang_prefix(), 'Заголовок форми'),
-			         Field::make_text('green_system_our_products_form_call'.green_system_lang_prefix(), 'Текст заклику')
+			         Field::make_text('green_system_our_products_form_call'.green_system_lang_prefix(), 'Текст заклику'),
+			         Field::make_text('green_system_our_products_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 
 		         ));
 	}

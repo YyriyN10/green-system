@@ -76,7 +76,8 @@
 			              )),
 			         Field::make_text('green_system_solar_type_call_text'.green_system_lang_prefix(), 'Текст заклику надіслати заявку'),
 			         Field::make_text('green_system_solar_type_form_title'.green_system_lang_prefix(), 'Заголовок форми'),
-			         Field::make_text('green_system_solar_type_form_call'.green_system_lang_prefix(), 'Текст заклику')
+			         Field::make_text('green_system_solar_type_form_call'.green_system_lang_prefix(), 'Текст заклику'),
+			         Field::make_text('green_system_solar_type_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 
 		         ));
 	}

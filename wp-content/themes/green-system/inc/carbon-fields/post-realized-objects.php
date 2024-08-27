@@ -49,6 +49,7 @@
 
 			         Field::make_text('green_system_realized_objects_form_title'.green_system_lang_prefix(), 'Заголовок форми'),
 			         Field::make_text('green_system_realized_objects_form_call'.green_system_lang_prefix(), 'Текст заклику форми'),
+			         Field::make_text('green_system_realized_objects_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 
 
 

@@ -12,6 +12,9 @@
   background-color: $color-green-light;
 
   .contacts-info{
+    @media(max-width: 575px){
+      margin-top: 32px;
+    }
     .item{
       display: block;
       color: $color-dark-green !important;

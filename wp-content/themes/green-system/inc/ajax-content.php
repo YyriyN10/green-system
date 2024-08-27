@@ -847,20 +847,35 @@
 		$name = $_POST['name'];
 		$phone = $_POST['phone'];
 		$email = $_POST['email'];
+
 		$pageLink = $_POST['pageLink'];
 		$pageName = $_POST['pageName'];
-		$formKey = $_POST['formDescription'];
 
-		$customSubject = 'Заявка з сайту '.$formKey;
+		if ( isset($_POST['pageType']) ){
+			$pageType = $_POST['pageType'];
+    }else{
+			$pageType = '';
+    }
+
+
+		$token = $_POST['token'];
+
+		$customSubject = 'Заявка з сайту { source: website } { source_category: '. $pageLink .'}[general]';
+
+		if ( !empty($pageType) ){
+			$customSubject = 'Заявка з сайту { source: website } { source_category: '. $pageLink .'} ['. $pageName. ']';
+    }
 
 		$sendTo = carbon_get_theme_option('green_system_email_integration');
+
+		$customPageLink = '<a href="'.$pageLink.'">'.$pageLink.'</a>';
 
 		if ( !empty($sendTo) ){
 
       $to = $sendTo;
       $headers = "Content-type: text/plain; charset = windows-1251";
       $subject = $customSubject;
-      $message = "Ім'я: $name \n Електронна адреса: $email \n Телефон: $phone \n Адреса сторінки заявки: $pageLink \n Назва сторінки: $pageName \n";
+      $message = "Ім'я: $name \n Електронна адреса: $email \n Телефон: $phone \n Адреса сторінки заявки: $customPageLink\n";
 
       $send = mail ($to, $subject, $message);
 
@@ -912,7 +927,14 @@
           </span>
           <span class="product-info">
             <span class="name block-title small-title"><?php the_title();?></span>
-            <span class="description"></span>
+            <?php
+              $customTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_custom_title'.green_system_lang_prefix());
+
+              if ( $customTitle ):?>
+                <span class="description"><?php echo $customTitle;?></span>
+            <?php endif;?>
+
+
             <hr>
             <span class="button">
                 <?php echo esc_html( pll__( 'Дізнатись більше' ) ); ?>

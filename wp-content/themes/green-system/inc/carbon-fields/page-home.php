@@ -34,21 +34,56 @@
 			         Field::make_complex('green_system_home_advantages_list'.green_system_lang_prefix(), 'Перелік переваг')
 			            ->add_fields(array(
 			            	Field::make_select('name_type', 'Значення чи відео?')
-								->set_options(array(
-									'set_name' => 'Значення',
-									'set_video' => 'Відео'
-								)),
+													->set_options(array(
+														'set_name' => 'Значення',
+														'set_video' => 'Відео'
+													)),
 			            	Field::make_text('name', 'Значення')
-								->set_conditional_logic(array(
-									'relation' => 'AND',
-									array(
-										'field' => 'name_type',
-										'value' => 'set_name',
-										'compare' => '=',
-									)
-								)),
-				            Field::make_file('video', 'Відео')
+													->set_conditional_logic(array(
+														'relation' => 'AND',
+														array(
+															'field' => 'name_type',
+															'value' => 'set_name',
+															'compare' => '=',
+														)
+													)),
+
+				            Field::make_radio('video_type', 'Оберіть тип відео')
+				                 ->set_conditional_logic(array(
+					                 'relation' => 'AND',
+					                 array(
+						                 'field' => 'name_type',
+						                 'value' => 'set_video',
+						                 'compare' => '=',
+					                 )
+				                 ))
+				                 ->set_options(array(
+					                 'video_file' => 'Відео файл',
+					                 'video_youtube' => 'Відео з Youtube'
+				                 )),
+
+
+				            Field::make_image('video', 'Відео')
+				                 ->set_type('video')
 				                 ->set_value_type('url')
+					               ->set_help_text('Оберіть файл якщо ви завантажуєте відео на сайт')
+				                 ->set_conditional_logic(array(
+					                 'relation' => 'AND',
+					                 array(
+						                 'field' => 'name_type',
+						                 'value' => 'set_video',
+						                 'compare' => '=',
+					                 ),
+					                 array(
+						                 'field' => 'video_type',
+						                 'value' => 'video_file',
+						                 'compare' => '=',
+					                 )
+				                 )),
+
+
+
+				            Field::make_image('video_poster', 'Постер для відео')
 				                 ->set_conditional_logic(array(
 					                 'relation' => 'AND',
 					                 array(
@@ -57,15 +92,23 @@
 						                 'compare' => '=',
 					                 )
 				                 )),
-				            Field::make_image('video_poster', 'Посткр для відео')
+
+				            Field::make_text('youtybe_video_id', 'ID відео з Youtube')
+				                 ->set_help_text('Приклад посилання https://www.youtube.com/watch?v=A2hOoCd1xPU де ID це A2hOoCd1xPU')
 				                 ->set_conditional_logic(array(
 					                 'relation' => 'AND',
 					                 array(
 						                 'field' => 'name_type',
 						                 'value' => 'set_video',
 						                 'compare' => '=',
+					                 ),
+					                 array(
+						                 'field' => 'video_type',
+						                 'value' => 'video_youtube',
+						                 'compare' => '=',
 					                 )
 				                 )),
+
 				            Field::make_text('text', 'Опис')
 
 			            ))
@@ -140,5 +183,6 @@
 		         ->add_fields( array(
 			         Field::make_text('green_system_home_form_block_title'.green_system_lang_prefix(), 'Заголовок форми'),
 			         Field::make_text('green_system_home_form_text'.green_system_lang_prefix(), 'Текст заклику у формі'),
+			         Field::make_text('green_system_home_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 		         ));
 	}

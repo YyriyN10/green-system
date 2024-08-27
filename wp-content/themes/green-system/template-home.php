@@ -49,12 +49,22 @@
                               data-src="<?php echo wp_get_attachment_image_src($item['video_poster'], 'full')[0];?>"
                               alt="<?php echo get_post_meta($item['video_poster'], '_wp_attachment_image_alt', TRUE);?>"
                           >
-                          <a href="#" rel="nofollow" class="play" data-video = "<?php echo $item['video'];?>">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-                              <path d="M25.333 41.5574V22.4427C25.3334 22.2035 25.3981 21.9689 25.5204 21.7633C25.6426 21.5578 25.8179 21.3889 26.0279 21.2744C26.2378 21.1599 26.4747 21.1039 26.7137 21.1124C26.9527 21.1209 27.1851 21.1935 27.3863 21.3227L42.2557 30.8774C42.444 30.998 42.5989 31.164 42.7062 31.3602C42.8135 31.5564 42.8697 31.7764 42.8697 32C42.8697 32.2236 42.8135 32.4436 42.7062 32.6398C42.5989 32.836 42.444 33.0021 42.2557 33.1227L27.3863 42.68C27.1851 42.8092 26.9527 42.8818 26.7137 42.8903C26.4747 42.8988 26.2378 42.8428 26.0279 42.7283C25.8179 42.6138 25.6426 42.4449 25.5204 42.2394C25.3981 42.0338 25.3334 41.7992 25.333 41.56V41.5574Z" fill="white"/>
-                              <path d="M2.66699 32.0001C2.66699 15.8001 15.8003 2.66675 32.0003 2.66675C48.2003 2.66675 61.3337 15.8001 61.3337 32.0001C61.3337 48.2001 48.2003 61.3334 32.0003 61.3334C15.8003 61.3334 2.66699 48.2001 2.66699 32.0001ZM32.0003 6.66675C25.2815 6.66675 18.8379 9.33579 14.087 14.0867C9.33603 18.8376 6.66699 25.2813 6.66699 32.0001C6.66699 38.7189 9.33603 45.1625 14.087 49.9135C18.8379 54.6644 25.2815 57.3334 32.0003 57.3334C38.7191 57.3334 45.1628 54.6644 49.9137 49.9135C54.6646 45.1625 57.3337 38.7189 57.3337 32.0001C57.3337 25.2813 54.6646 18.8376 49.9137 14.0867C45.1628 9.33579 38.7191 6.66675 32.0003 6.66675Z" fill="white"/>
-                            </svg>
-                          </a>
+                          <?php if( $item['video_type'] == 'video_file' ):?>
+                            <a href="#" rel="nofollow" class="play" data-video = "<?php echo $item['video'];?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                      <path d="M25.333 41.5574V22.4427C25.3334 22.2035 25.3981 21.9689 25.5204 21.7633C25.6426 21.5578 25.8179 21.3889 26.0279 21.2744C26.2378 21.1599 26.4747 21.1039 26.7137 21.1124C26.9527 21.1209 27.1851 21.1935 27.3863 21.3227L42.2557 30.8774C42.444 30.998 42.5989 31.164 42.7062 31.3602C42.8135 31.5564 42.8697 31.7764 42.8697 32C42.8697 32.2236 42.8135 32.4436 42.7062 32.6398C42.5989 32.836 42.444 33.0021 42.2557 33.1227L27.3863 42.68C27.1851 42.8092 26.9527 42.8818 26.7137 42.8903C26.4747 42.8988 26.2378 42.8428 26.0279 42.7283C25.8179 42.6138 25.6426 42.4449 25.5204 42.2394C25.3981 42.0338 25.3334 41.7992 25.333 41.56V41.5574Z" fill="white"/>
+                      <path d="M2.66699 32.0001C2.66699 15.8001 15.8003 2.66675 32.0003 2.66675C48.2003 2.66675 61.3337 15.8001 61.3337 32.0001C61.3337 48.2001 48.2003 61.3334 32.0003 61.3334C15.8003 61.3334 2.66699 48.2001 2.66699 32.0001ZM32.0003 6.66675C25.2815 6.66675 18.8379 9.33579 14.087 14.0867C9.33603 18.8376 6.66699 25.2813 6.66699 32.0001C6.66699 38.7189 9.33603 45.1625 14.087 49.9135C18.8379 54.6644 25.2815 57.3334 32.0003 57.3334C38.7191 57.3334 45.1628 54.6644 49.9137 49.9135C54.6646 45.1625 57.3337 38.7189 57.3337 32.0001C57.3337 25.2813 54.6646 18.8376 49.9137 14.0867C45.1628 9.33579 38.7191 6.66675 32.0003 6.66675Z" fill="white"/>
+                    </svg>
+                  </a>
+                          <?php elseif ( $item['video_type'] == 'video_youtube' ):?>
+                            <a href="#" rel="nofollow" class="play-youtube" data-videoid = "<?php echo $item['youtybe_video_id'];?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                      <path d="M25.333 41.5574V22.4427C25.3334 22.2035 25.3981 21.9689 25.5204 21.7633C25.6426 21.5578 25.8179 21.3889 26.0279 21.2744C26.2378 21.1599 26.4747 21.1039 26.7137 21.1124C26.9527 21.1209 27.1851 21.1935 27.3863 21.3227L42.2557 30.8774C42.444 30.998 42.5989 31.164 42.7062 31.3602C42.8135 31.5564 42.8697 31.7764 42.8697 32C42.8697 32.2236 42.8135 32.4436 42.7062 32.6398C42.5989 32.836 42.444 33.0021 42.2557 33.1227L27.3863 42.68C27.1851 42.8092 26.9527 42.8818 26.7137 42.8903C26.4747 42.8988 26.2378 42.8428 26.0279 42.7283C25.8179 42.6138 25.6426 42.4449 25.5204 42.2394C25.3981 42.0338 25.3334 41.7992 25.333 41.56V41.5574Z" fill="white"/>
+                      <path d="M2.66699 32.0001C2.66699 15.8001 15.8003 2.66675 32.0003 2.66675C48.2003 2.66675 61.3337 15.8001 61.3337 32.0001C61.3337 48.2001 48.2003 61.3334 32.0003 61.3334C15.8003 61.3334 2.66699 48.2001 2.66699 32.0001ZM32.0003 6.66675C25.2815 6.66675 18.8379 9.33579 14.087 14.0867C9.33603 18.8376 6.66699 25.2813 6.66699 32.0001C6.66699 38.7189 9.33603 45.1625 14.087 49.9135C18.8379 54.6644 25.2815 57.3334 32.0003 57.3334C38.7191 57.3334 45.1628 54.6644 49.9137 49.9135C54.6646 45.1625 57.3337 38.7189 57.3337 32.0001C57.3337 25.2813 54.6646 18.8376 49.9137 14.0867C45.1628 9.33579 38.7191 6.66675 32.0003 6.66675Z" fill="white"/>
+                    </svg>
+                  </a>
+                          <?php endif;?>
+
 					    <?php endif;?>
 
                     </div>
@@ -1490,7 +1500,7 @@
 <?php endif;?>
 
      <?php
-     	$reviewsArgs = array(
+/*     	$reviewsArgs = array(
      		'posts_per_page' => -1,
      		'orderby' 	 => 'date',
      		'post_type'  => 'reviews',
@@ -1499,32 +1509,32 @@
 
      	$reviewsList = new WP_Query( $reviewsArgs );
 
-     		  if ( $reviewsList->have_posts() ) :?>
+     		  if ( $reviewsList->have_posts() ) :*/?>
 
              <!-- Відгуки -->
-             <section class="reviews indent-top-small indent-bottom-small animation-tracking">
+             <!--<section class="reviews indent-top-small indent-bottom-small animation-tracking">
                <div class="container">
                  <div class="row first-up">
-                   <h2 class="block-title big-title text-center col-12"><?php echo esc_html( pll__( 'Відгуки про нашу співпрацю' ) ); ?></h2>
+                   <h2 class="block-title big-title text-center col-12"><?php /*echo esc_html( pll__( 'Відгуки про нашу співпрацю' ) ); */?></h2>
                  </div>
                  <div class="row second-up">
                    <div class="content col-12">
                      <div class="reviews-slider" id="reviews-slider">
-	                     <?php  while ( $reviewsList->have_posts() ) : $reviewsList->the_post(); ?>
+	                     <?php /* while ( $reviewsList->have_posts() ) : $reviewsList->the_post(); */?>
 	                       <?php
-	                        $reviewType = carbon_get_post_meta(get_the_ID(), 'green_system_reviews_type_review_type'.green_system_lang_prefix());
+/*	                        $reviewType = carbon_get_post_meta(get_the_ID(), 'green_system_reviews_type_review_type'.green_system_lang_prefix());
 	                        $reviewVideo = carbon_get_post_meta(get_the_ID(), 'green_system_reviews_type_video'.green_system_lang_prefix());
 	                        $reviewText = carbon_get_post_meta(get_the_ID(), 'green_system_reviews_type_text'.green_system_lang_prefix());
 	                        $reviewCity = carbon_get_post_meta(get_the_ID(), 'green_system_reviews_type_city'.green_system_lang_prefix());
-	                       ?>
+	                       */?>
 
-	                       <?php if( $reviewType == 'set_video' ):?>
+	                       <?php /*if( $reviewType == 'set_video' ):*/?>
                            <div class="slide video-slide">
                             <img
-                               src="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];?>"
-                               alt="<?php echo get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', TRUE);?>"
+                               src="<?php /*echo wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];*/?>"
+                               alt="<?php /*echo get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', TRUE);*/?>"
                             >
-                             <a href="#" data-video="<?php echo $reviewVideo;?>" class="play-btn">
+                             <a href="#" data-video="<?php /*echo $reviewVideo;*/?>" class="play-btn">
                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
                                  <path d="M25.333 41.5574V22.4427C25.3334 22.2035 25.3981 21.9689 25.5204 21.7633C25.6426 21.5578 25.8179 21.3889 26.0279 21.2744C26.2378 21.1599 26.4747 21.1039 26.7137 21.1124C26.9527 21.1209 27.1851 21.1935 27.3863 21.3227L42.2557 30.8774C42.444 30.998 42.5989 31.164 42.7062 31.3602C42.8135 31.5564 42.8697 31.7764 42.8697 32C42.8697 32.2236 42.8135 32.4436 42.7062 32.6398C42.5989 32.836 42.444 33.0021 42.2557 33.1227L27.3863 42.68C27.1851 42.8092 26.9527 42.8818 26.7137 42.8903C26.4747 42.8988 26.2378 42.8428 26.0279 42.7283C25.8179 42.6138 25.6426 42.4449 25.5204 42.2394C25.3981 42.0338 25.3334 41.7992 25.333 41.56V41.5574Z" fill="white"/>
                                  <path d="M2.66699 32C2.66699 15.8 15.8003 2.66663 32.0003 2.66663C48.2003 2.66663 61.3337 15.8 61.3337 32C61.3337 48.2 48.2003 61.3333 32.0003 61.3333C15.8003 61.3333 2.66699 48.2 2.66699 32ZM32.0003 6.66663C25.2815 6.66663 18.8379 9.33567 14.087 14.0866C9.33603 18.8375 6.66699 25.2811 6.66699 32C6.66699 38.7188 9.33603 45.1624 14.087 49.9133C18.8379 54.6643 25.2815 57.3333 32.0003 57.3333C38.7191 57.3333 45.1628 54.6643 49.9137 49.9133C54.6646 45.1624 57.3337 38.7188 57.3337 32C57.3337 25.2811 54.6646 18.8375 49.9137 14.0866C45.1628 9.33567 38.7191 6.66663 32.0003 6.66663Z" fill="white"/>
@@ -1532,25 +1542,25 @@
                              </a>
                              <div class="info">
                                <div class="date">
-                                 <p class="name"><?php the_title();?></p>
-                                 <p class="city"><?php echo $reviewCity;?></p>
+                                 <p class="name"><?php /*the_title();*/?></p>
+                                 <p class="city"><?php /*echo $reviewCity;*/?></p>
                                </div>
                              </div>
                            </div>
-	                       <?php endif;?>
-	                       <?php if( $reviewType == 'set_text' ):?>
+	                       <?php /*endif;*/?>
+	                       <?php /*if( $reviewType == 'set_text' ):*/?>
                            <div class="slide text-slide">
-                             <div class="text"><?php echo wpautop($reviewText);?></div>
+                             <div class="text"><?php /*echo wpautop($reviewText);*/?></div>
                              <div class="info">
                                <div class="avatar">
                                  <img
-                                     src="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];?>"
-                                     alt="<?php echo get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', TRUE);?>"
+                                     src="<?php /*echo wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];*/?>"
+                                     alt="<?php /*echo get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', TRUE);*/?>"
                                  >
                                </div>
                                <div class="date">
-                                 <p class="name"><?php the_title();?></p>
-                                 <p class="city"><?php echo $reviewCity;?></p>
+                                 <p class="name"><?php /*the_title();*/?></p>
+                                 <p class="city"><?php /*echo $reviewCity;*/?></p>
                                </div>
                                <a href="#" rel="nofollow" class="open-in-modal">
                                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -1567,8 +1577,8 @@
                                </a>
                              </div>
                            </div>
-	                       <?php endif;?>
-	                     <?php endwhile;?>
+	                       <?php /*endif;*/?>
+	                     <?php /*endwhile;*/?>
                      </div>
                      <div class="slider-controls">
                        <button class="control prev">
@@ -1601,18 +1611,22 @@
                  </div>
                </div>
              </section>
-     	<?php endif; ?>
-     <?php wp_reset_postdata(); ?>
+     	<?php /*endif; */?>
+     --><?php /*wp_reset_postdata(); */?>
 
 <?php
 	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_home_form_block_title'.green_system_lang_prefix());
 	$contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_home_form_text'.green_system_lang_prefix());
+	$contactFormKey = carbon_get_post_meta(get_the_ID(), 'green_system_home_form_kay'.green_system_lang_prefix());
 
 	if ( $contactFormTitle && $contactFormText ):
 
+		global $args;
+
       $args = array(
           'title' => $contactFormTitle,
-          'text'  => $contactFormText
+          'text'  => $contactFormText,
+          'page_kay' => $contactFormKey,
       )
 
 ?>

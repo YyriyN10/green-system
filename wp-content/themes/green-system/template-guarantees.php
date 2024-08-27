@@ -1239,12 +1239,14 @@
 <?php
 	$contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_guarantees_block_title'.green_system_lang_prefix());
 	$contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_guarantees_text'.green_system_lang_prefix());
+	$contactFormKey = carbon_get_post_meta(get_the_ID(), 'green_system_guarantees_form_kay'.green_system_lang_prefix());
 
 	if ( $contactFormTitle && $contactFormText ):
 
 		$args = array(
 			'title' => $contactFormTitle,
-			'text'  => $contactFormText
+			'text'  => $contactFormText,
+			'page_kay' => $contactFormKey,
 		)
 
 		?>

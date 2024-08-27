@@ -2,6 +2,18 @@
 	if ( ! defined( 'ABSPATH' ) ) {
 		exit;
 	}
+
+	$redirectList = carbon_get_theme_option('green_system_redirect_list');
+	if ( $redirectList ){
+	  foreach ( $redirectList as $redirect ){
+	    if ( $_SERVER['REQUEST_URI'] == ''.$redirect['old_url'].'' ){
+	      header('Location:'.$redirect['new_url'].'', 301);
+	      exit();
+      }
+    }
+  }
+
+
 /**
  * The header for our theme
  *
@@ -100,7 +112,7 @@
           </a>
 	    <?php endif;?>
 	    <?php
-		    $langArgs = array(
+/*		    $langArgs = array(
 			    'show_names' => 1,
 			    'display_names_as' => 'name',
 			    'show_flags' => 0,
@@ -108,13 +120,13 @@
 		    );
 
 		    if ( $langArgs ):
-			    ?>
+			    */?><!--
               <ul class="lang-list">
 			      <?php
-				      pll_the_languages($langArgs);
-			      ?>
+/*				      pll_the_languages($langArgs);
+			      */?>
               </ul>
-		    <?php endif;?>
+		    --><?php /*endif;*/?>
 
       <button class="menu-btn close" id="menu-btn-close">
         <span></span><span></span><span></span>

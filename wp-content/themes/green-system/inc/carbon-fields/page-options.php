@@ -13,6 +13,12 @@
 		Container::make( 'theme_options', __( 'Theme Options' ) )
 		         ->add_tab( __( 'Когнтакти' ), array(
 			         Field::make( 'text', 'green_system_address'.green_system_lang_prefix(), 'Адреса офісу' ),
+			         Field::make_complex('more_addresses_list'.green_system_lang_prefix(), 'Перелік додаткових адресс')
+		              ->add_fields(array(
+		              	Field::make_text('address', 'Адреса офісу'),
+			              Field::make_text('map_link', 'Згенероване посилання для мапи')
+			                ->set_attribute('type', 'url')
+		              )),
 			         Field::make( 'text', 'green_system_email', __( 'E-mail' )  )
 			              ->set_attribute('type', 'email'),
 			         Field::make_complex('green_system_phone_list', 'Номери телефонів')
@@ -43,7 +49,18 @@
 							     ->set_value_type('url'),
 							Field::make_image('green_system_contact_form_pic'.green_system_lang_prefix(), 'Зображення у блок контактної форми')
 
+						) )
+						->add_tab( __( 'Редіректи' ), array(
+							Field::make_complex('green_system_redirect_list', 'Перелік редіректів')
+									->add_fields(array(
+										Field::make_text('old_url', 'Стара адреса')
+											->set_help_text('Треба вказувати без адреси домену. Наприклад повне посилання https://greensystem.com.ua/catalog/solnecnye-elektrostancii. Треба додати /catalog/solnecnye-elektrostancii'),
+										Field::make_text('new_url', 'Нова адреса')
+										   ->set_help_text('Треба вказувати повну адресу. Наприклад повне посилання https://greensystem.com.ua/catalog/solnecnye-elektrostancii'),
+									))
+
 						) );
+
 
 	}
 

@@ -37,6 +37,10 @@
 	$generalInformationFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_form_title'.green_system_lang_prefix());
 	$generalInformationFormCall = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_form_call'.green_system_lang_prefix());
 
+	$pageKay = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_form_kay'.green_system_lang_prefix());
+
+
+
 	if( $generalInformationTitle && $generalInformationGallery && $generalInformationCost && ($generalInformationComplete || $generalInformationСharacteristics)):?>
 		<!-- Головна інформація -->
 		<section class="general-information indent-bottom-big animation-tracking">
@@ -92,11 +96,14 @@
 								<?php if( $generalInformationFormCall ):?>
 									<p class="form-call"><?php echo $generalInformationFormCall;?></p>
 								<?php endif;?>
-								<?php get_template_part('template-parts/form');?>
+                <?php
+                  $topArgs = array(
+                      'page_kay' => $pageKay
+                  )
+                ?>
+								<?php get_template_part('template-parts/form', '', $topArgs);?>
 							</div>
 						<?php endif;?>
-
-
 
 						<div class="complete-wrapper">
 							<?php if( $generalInformationListType == 'complete' ):?>
@@ -133,18 +140,18 @@
 											<td class="characteristics-wrapper__count"><?php echo $item['number'];?></td>
 										</tr>
 									<?php endforeach;?>
-									<!--<tr class="total-cost marker">
-                        <td><?php /*echo esc_html( pll__( 'Вартість' ) ); */?></td>
-                        <td><?php /*echo $generalInformationCost;*/?></td>
+									<tr class="total-cost marker">
+                        <td><?php echo esc_html( pll__( 'Вартість' ) ); ?></td>
+                        <td><?php echo $generalInformationCost;?></td>
                       </tr>
-			                <?php /*if( $generalInformationOptionComplete ):*/?>
-				                <?php /*foreach( $generalInformationOptionComplete as $item ):*/?>
+			                <?php if( $generalInformationOptionComplete ):?>
+				                <?php foreach( $generalInformationOptionComplete as $item ):?>
                           <tr class="more-cost">
-                            <td><?php /*echo $item['name'];*/?></td>
-                            <td><?php /*echo $item['price'];*/?></td>
+                            <td><?php echo $item['name'];?></td>
+                            <td><?php echo $item['price'];?></td>
                           </tr>
-				                <?php /*endforeach;*/?>
-			                --><?php /*endif;*/?>
+				                <?php endforeach;?>
+			                <?php endif;?>
 									</tbody>
 								</table>
 							<?php endif;?>
@@ -180,7 +187,7 @@
 
 		$args = array(
 			'title' => $productFaqTitle,
-			'content'  => $productFaqList
+			'content'  => $productFaqList,
 		)
 
 		?>
@@ -228,7 +235,8 @@
 
 		$args = array(
 			'title' => $contactFormTitle,
-			'text'  => $contactFormText
+			'text'  => $contactFormText,
+      'page_kay' => $pageKay,
 		)
 
 		?>

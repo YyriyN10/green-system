@@ -885,8 +885,6 @@ jQuery(function($) {
 
     function changeProductType( catId ){
 
-      console.log(catId);
-
       let data = {
 
         action: 'change_product_type',
@@ -961,6 +959,8 @@ jQuery(function($) {
 
       e.preventDefault();
 
+      $('#our-products-list').css({'opacity' : '0'});
+
       $('#our-products-list').slick('unslick');
 
       $('.our-products__category.active').removeClass('active');
@@ -972,6 +972,10 @@ jQuery(function($) {
       let currentTypeId = Number(thisType.find('a').attr('data-cat-id'));
 
       changeProductType( currentTypeId );
+
+      setTimeout( function () {
+        $('#our-products-list').css({'opacity' : '1'});
+      },400);
 
     });
 
@@ -1000,6 +1004,30 @@ jQuery(function($) {
   videoModal.on('hide.bs.modal', function () {
 
     videoModal.find('video').attr('src', '');
+
+  });
+
+  //
+
+  const videoYoutubeModal = $('#videoYoutubeModal');
+
+  $('.play-youtube').on('click', function (e) {
+
+    e.preventDefault();
+
+    let videoId = $(this).attr('data-videoid');
+
+    videoYoutubeModal.find('.video-wrapper').html('<iframe src="https://www.youtube-nocookie.com/embed/'+videoId+'?rel=0&autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1"></iframe>');
+
+    videoYoutubeModal.modal("show");
+
+  });
+
+  videoYoutubeModal.on('hide.bs.modal', function () {
+
+    videoModal.find('video').attr('src', '');
+    videoYoutubeModal.find('.video-wrapper iframe').each(function() {
+      $(this)[0].contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')});
 
   });
 
@@ -1060,28 +1088,31 @@ jQuery(function($) {
     let email = thisForm.find('input[name = email]').val();
 
     let action = thisForm.find('input[name = action]').val();
+
     let siteUrl = thisForm.find('input[name = site_url]').val();
     let siteLang = thisForm.find('input[name = site-lang]').val();
-    let pageName = thisForm.find('input[name = page-name]').val();
+    let pageName = thisForm.find('input[name = page_name]').val();
     let pageLink = thisForm.find('input[name = page_link]').val();
+    let token = thisForm.find('input[name = _token]').val();
     let formDescription = thisForm.find('input[name = form_description]').val();
+    let pageKay = thisForm.find('input[name = page_type]').val();
 
-    /*const formData = {
+
+
+    const formData = {
       action: action,
       pageName: pageName,
       pageLink: pageLink,
       name: name,
-      lastName: lastName,
       phone: phone,
       email: email,
-      birthday: birthday,
-      message: message,
       utmSource: utmSource,
       utmMedium: utmMedium,
       utmCampaign: utmCampaign,
       utmTerm: utmTerm,
-      utmContent: utmContent
-    }*/
+      utmContent: utmContent,
+      pageKay: pageKay,
+    }
 
     let thxPage = siteUrl + '/dyakuyemo';
 
@@ -1091,11 +1122,11 @@ jQuery(function($) {
 
     window.location.href = thxPage;
 
-    /*$.post( ua_teens_ajax.url, formData, function(response) {
+    $.post( green_system_ajax.url, formData, function(response) {
 
       window.location.href = thxPage;
 
-    });*/
+    });
 
   });
 

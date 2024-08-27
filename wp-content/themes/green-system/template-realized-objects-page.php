@@ -162,12 +162,14 @@
 <?php
     $contactFormTitle = carbon_get_post_meta(get_the_ID(), 'green_system_realized_objects_form_title'.green_system_lang_prefix());
 	  $contactFormText = carbon_get_post_meta(get_the_ID(), 'green_system_realized_objects_form_call'.green_system_lang_prefix());
+	  $contactFormKey = carbon_get_post_meta(get_the_ID(), 'green_system_realized_objects_form_kay'.green_system_lang_prefix());
 
 	  if ( $contactFormTitle && $contactFormText ):
 
 	    $args = array(
 		    'title' => $contactFormTitle,
-		    'text'  => $contactFormText
+		    'text'  => $contactFormText,
+		    'page_kay' => $contactFormKey,
 	    )
 ?>
 	    <?php get_template_part('template-parts/block-contact-form','', $args);?>

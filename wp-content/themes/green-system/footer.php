@@ -21,7 +21,7 @@
       <div class="row">
         <div class="site-footer__contacts col-xl-4 col-12">
           <div class="logo">
-            <img class="lazy" data-src="<?php echo $logoPic;?>" alt="">
+            <img src="<?php echo $logoPic;?>" alt="">
           </div>
           <div class="info">
 	          <?php
@@ -30,10 +30,18 @@
 		          $workingTime = carbon_get_theme_option('green_system_work_schedule'.green_system_lang_prefix());
 		          $weekend = carbon_get_theme_option('green_system_weekend'.green_system_lang_prefix());
 
+		          $moreAddress = carbon_get_theme_option('more_addresses_list'.green_system_lang_prefix());
+
 		          if ( $realAddress ):
 			          ?>
                     <p class="address item"><?php echo $realAddress;?></p>
 		          <?php endif;?>
+            <?php if( $moreAddress ):?>
+              <?php foreach( $moreAddress as $item ):?>
+                <p class="address item"><?php echo $item['address'];?></p>
+              <?php endforeach;?>
+            <?php endif;?>
+
 	          <?php get_template_part('template-parts/phone-list');?>
 	          <?php if( $siteEmail ):?>
                 <a class="email item" href="mailto: <?php echo antispambot($siteEmail, 1);?>"><?php echo antispambot($siteEmail);?></a>

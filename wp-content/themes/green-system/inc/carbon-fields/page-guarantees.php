@@ -72,6 +72,7 @@
 		         ->add_fields( array(
 			         Field::make_text('green_system_guarantees_block_title'.green_system_lang_prefix(), 'Заголовок форми'),
 			         Field::make_text('green_system_guarantees_text'.green_system_lang_prefix(), 'Текст заклику у формі'),
+			         Field::make_text('green_system_guarantees_form_kay'.green_system_lang_prefix(), 'Ключ чторнки для інтеграції')
 		         ));
 
 

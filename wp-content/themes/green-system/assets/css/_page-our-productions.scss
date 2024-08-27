@@ -226,6 +226,10 @@
     list-style: none;
     display: inline-block;
 
+    @media(max-width: 575px){
+      width: 100%;
+    }
+
     a{
       letter-spacing: -0.16px;
       display: inline-block;
@@ -302,6 +306,7 @@
   &__slider{
     position: relative;
     z-index: 1;
+    display: flex;
 
     .slide{
       display: flex !important;
@@ -354,6 +359,8 @@
         .description{
           font-size: 24px;
           margin-bottom: 28px;
+          color: $color-black;
+          display: block;
         }
 
         hr{
