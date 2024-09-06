@@ -1428,7 +1428,7 @@
               </li>
 	            <?php
 		            $projectsCat = get_categories( array(
-			            'taxonomy'     => 'solar_types_tax',
+			            'taxonomy'     => 'object_plant_type_tax',
 			            'type'         => 'realized_objects',
 			            'child_of'     => false,
 			            'parent'       => '',
@@ -1446,7 +1446,7 @@
 				            $projectsMore = array(
 					            'tax_query' => array(
 						            array(
-							            'taxonomy' => 'solar_types_tax',
+							            'taxonomy' => 'object_plant_type_tax',
 							            'field' => 'id',
 							            'terms' => $item->term_id,
 						            )

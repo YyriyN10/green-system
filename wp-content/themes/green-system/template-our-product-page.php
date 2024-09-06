@@ -180,10 +180,14 @@
 	<?php endif;?>
 
 <?php
+
 	$productFaqList = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_faq'.green_system_lang_prefix());
 	$productFaqTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_faq_title'.green_system_lang_prefix());
+	$productDescription = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_description_text'.green_system_lang_prefix());
+	$productDescriptionTitle = carbon_get_post_meta(get_the_ID(), 'green_system_our_products_description_title'.green_system_lang_prefix());
+	$productDescriptionType = carbon_get_post_meta(get_the_ID(), 'green_system_solar_type_content_type'.green_system_lang_prefix());
 
-	if( $productFaqList && $productFaqTitle ):
+	if( $productFaqList && $productFaqTitle && $productDescriptionType == 'faq'):
 
 		$args = array(
 			'title' => $productFaqTitle,
@@ -194,6 +198,16 @@
 		<!-- f.A.Q -->
 
 		<?php get_template_part('template-parts/block-faq','', $args);?>
+  <?php elseif ($productDescriptionType == 'description' && $productDescriptionTitle && $productDescription):
+
+		$args = array(
+			'title' => $productDescriptionTitle ,
+			'content'  => $productDescription,
+		)
+
+    ?>
+
+		<?php get_template_part('template-parts/block-description','', $args);?>
 
 	<?php endif;?>
 

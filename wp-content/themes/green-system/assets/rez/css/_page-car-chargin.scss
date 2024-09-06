@@ -1,0 +1,362 @@
+/*--- car-charging-main-screen ---*/
+
+.car-charging-main-screen{
+  position: relative;
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  padding-top: 30vh;
+  padding-bottom: 48px;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+
+  &:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 10%;
+    background: linear-gradient(0deg, #131313 44.84%, rgba(19, 19, 19, 0.00) 100%);
+    z-index: 1;
+  }
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(19, 19, 19, 0.20);
+    z-index: 1;
+  }
+
+  .element{
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 50vw;
+    transform: rotate(118.128deg);
+    background: rgba(19, 19, 19, 0.25);
+    filter: blur(30px);
+    top: 0;
+    left: -37vw;
+  }
+
+  .container{
+    position: relative;
+    z-index: 2;
+  }
+
+  .block-title{
+    color: $color-white;
+    margin-bottom: 8px;
+    font-family: $f-S-bold;
+    position: relative;
+    z-index: 2;
+
+    span{
+      color: $color-yellow;
+    }
+  }
+
+  .subtitle{
+    color: $color-white;
+    font-size: 32px;
+    margin-bottom: 32px;
+    max-width: 430px;
+    font-family: $f-g-light;
+    position: relative;
+    z-index: 2;
+
+    @media(max-width: 767px){
+      font-size: 30px;
+    }
+
+    @media(max-width: 575px){
+      font-size: 28px;
+    }
+  }
+
+  .content{
+    position: relative;
+  }
+
+  .text-content{
+    margin-bottom: 20px;
+    position: relative;
+
+    &:before{
+      content: '';
+      position: absolute;
+      z-index: 1;
+      width: 718px;
+      height: 642px;
+      border-radius: 50%;
+      background: rgba(45, 45, 44, 0.50);
+      filter: blur(150px);
+      top: -232px;
+      left: -169px;
+    }
+  }
+
+  .button{
+    position: relative;
+    z-index: 2;
+  }
+
+}
+
+/*--- car-charging-why-us ---*/
+
+.car-charging-why-us{
+  background-color: $color-dark-green;
+  overflow: hidden;
+
+  .content{
+    display: flex;
+    justify-content: space-between;
+
+    @media(max-width: 992px){
+      flex-wrap: wrap;
+    }
+
+    .video-wrapper{
+      width: 40%;
+      position: relative;
+
+      @media(max-width: 992px){
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .inner{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 45vw;
+        overflow: hidden;
+
+        @media(max-width: 992px){
+          position: relative;
+          width: 100%;
+        }
+
+        img{
+          width: auto;
+          height: 100%;
+          min-width: 100%;
+          min-height: 100%;
+          object-fit: cover;
+          z-index: 1;
+
+          @media(max-width: 992px){
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        .play{
+          position: absolute;
+          width: 64px;
+          top: 50%;
+          left: 50%;
+          transform: translateY(-50%) translateX(-50%);
+          z-index: 2;
+        }
+      }
+    }
+
+    .text-content{
+      /*padding-top: 48px;
+      padding-bottom: 48px;*/
+      color: $color-white;
+      width: 60%;
+
+      @media(max-width: 992px){
+        width: 100%;
+      }
+    }
+
+    .block-title{
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .advantage-list{
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 24px;
+
+      &__item{
+        list-style: none;
+        display: flex;
+        align-items: center;
+
+        .icon{
+          width: 40px;
+          margin-right: 24px;
+
+          @media(max-width: 440px){
+            width: 32px;
+            margin-right: 16px;
+          }
+
+          svg,
+          .svg-pic{
+            width: 100%;
+            height: auto;
+
+            path{
+              fill: $color-white;
+            }
+          }
+        }
+
+        .text{
+          width: calc(100% - 64px);
+          font-size: 24px;
+
+          @media(max-width: 767px){
+            font-size: 22px;
+          }
+
+          @media(max-width: 440px){
+            width: calc(100% - 48px);
+            font-size: 20px;
+          }
+
+          p{
+            &:last-child{
+              margin-bottom: 0;
+            }
+
+            a{
+              color: $color-yellow !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*--- call-car-сharging ---*/
+
+.call-car-сharging{
+  background-color: $color-dark-green;
+  color: $color-white;
+
+  .block-title{
+    margin-bottom: 0;
+
+    @media(max-width: 992px){
+      margin-bottom: 32px;
+    }
+
+    span{
+      display: block;
+      text-transform: uppercase;
+      color: $color-yellow;
+    }
+  }
+
+  .text{
+    margin-bottom: 32px;
+
+    p{
+      &:last-child{
+        margin-bottom: 0;
+      }
+
+      a{
+        color: $color-yellow !important;
+      }
+    }
+  }
+}
+
+/*--- business-opportunity ---*/
+
+.business-opportunity{
+  background-color: $color-white;
+
+  .row{
+    align-items: flex-start;
+  }
+
+  .pic-wrapper{
+    position: relative;
+
+    @media(max-width: 992px){
+      order: 2;
+    }
+
+    .pic{
+      position: relative;
+      z-index: 2;
+      width: calc(100% - 17%);
+
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .dots-pic{
+      position: absolute;
+      z-index: 1;
+      width: 204px;
+      height: auto;
+      bottom: -24px;
+      right: 58px;
+
+      @media(max-width: 440px){
+        right: 20px;
+        width: 150px;
+      }
+    }
+  }
+
+  .block-title{
+    margin-bottom: 32px;
+  }
+
+  .text{
+    ul{
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 24px;
+
+      li{
+        list-style: none;
+        position: relative;
+        padding-left: 48px;
+
+        &:before{
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: rgba(0,0,0,0);
+          border: 6px solid $color-green;
+          top: 6px;
+          left: 6px;
+        }
+      }
+    }
+  }
+
+  .text-content{
+    @media(max-width: 992px){
+      order: 1;
+      margin-bottom: 32px;
+    }
+  }
+}

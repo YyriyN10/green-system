@@ -139,7 +139,6 @@
 
 			/*'update_count_callback' => '_update_post_term_count',*/
 			'rewrite'               => array('slug' => 'solar_types'),
-			'query_var'             => $taxonomy, // название параметра запроса
 			'capabilities'          => array(),
 			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
 			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
@@ -181,7 +180,6 @@
 
 			/*'update_count_callback' => '_update_post_term_count',*/
 			'rewrite'               => array('slug' => 'solar_types'),
-			'query_var'             => $taxonomy, // название параметра запроса
 			'capabilities'          => array(),
 			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
 			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
@@ -221,7 +219,7 @@
 
 		$args = array(
 			'labels'             => $labels,
-			'taxonomies'         => ['solar_types_tax', 'solar_decision_tax'],
+			'taxonomies'         => ['solar_decision_tax', 'object_field_use_tax', 'object_plant_type_tax'],
 			'description'        => __( 'Description.', 'realized_objects' ),
 			'public'             => true,
 			'publicly_queryable' => true,
@@ -242,6 +240,87 @@
 	}
 
 	add_action( 'init', 'realized_objects_post_type' );
+	add_action( 'init', 'object_field_use_taxonomy' );
+	function object_field_use_taxonomy(){
+
+		register_taxonomy('object_field_use_tax', 'realized_objects', array(
+			'label'                 => 'object_field_use_tax', // определяется параметром $labels->name
+			'labels'                => array(
+				'name'              => 'Галузь використання',
+				'singular_name'     => 'Галузь використання',
+				'search_items'      => 'Пошук гадузі',
+				'all_items'         => 'Всі гадузі',
+				'view_item '        => 'View Genre',
+				'parent_item'       => 'Parent Genre',
+				'parent_item_colon' => 'Parent Genre:',
+				'edit_item'         => 'Редагувати гадузь',
+				'update_item'       => 'Оновити гадузь',
+				'add_new_item'      => 'Додати гадузь',
+				'new_item_name'     => 'New Genre Name',
+				'menu_name'         => 'Галузі використання',
+			),
+			'description'           => 'object_field_use_tax', // описание таксономии
+			'public'                => true,
+			'publicly_queryable'    => true, // равен аргументу public
+			'show_in_nav_menus'     => true, // равен аргументу public
+			'show_ui'               => true, // равен аргументу public
+			'show_in_menu'          => true, // равен аргументу show_ui
+			'show_tagcloud'         => true, // равен аргументу show_ui
+			'show_in_rest'          => true, // добавить в REST API
+			'rest_base'             => true, // $taxonomy
+			'hierarchical'          => true,
+			'supports'           => array( 'title', 'thumbnail', 'revisions' ),
+
+			/*'update_count_callback' => '_update_post_term_count',*/
+			'rewrite'               => array('slug' => 'realized_objects'),
+			'capabilities'          => array(),
+			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+			/*'_builtin'              => false,*/
+			'show_in_quick_edit'    => true, // по умолчанию значение show_ui
+		) );
+	}
+
+	add_action( 'init', 'object_plant_type_taxonomy' );
+	function object_plant_type_taxonomy(){
+
+		register_taxonomy('object_plant_type_tax', 'realized_objects', array(
+			'label'                 => 'object_plant_type_tax', // определяется параметром $labels->name
+			'labels'                => array(
+				'name'              => 'Тип станції',
+				'singular_name'     => 'Тип станції',
+				'search_items'      => 'Пошук типу станції',
+				'all_items'         => 'Всі типи станції',
+				'view_item '        => 'View Genre',
+				'parent_item'       => 'Parent Genre',
+				'parent_item_colon' => 'Parent Genre:',
+				'edit_item'         => 'Редагувати тип станції',
+				'update_item'       => 'Оновити тип станції',
+				'add_new_item'      => 'Додати тип станції',
+				'new_item_name'     => 'New Genre Name',
+				'menu_name'         => 'Типи станції',
+			),
+			'description'           => 'object_plant_type_tax', // описание таксономии
+			'public'                => true,
+			'publicly_queryable'    => true, // равен аргументу public
+			'show_in_nav_menus'     => true, // равен аргументу public
+			'show_ui'               => true, // равен аргументу public
+			'show_in_menu'          => true, // равен аргументу show_ui
+			'show_tagcloud'         => true, // равен аргументу show_ui
+			'show_in_rest'          => true, // добавить в REST API
+			'rest_base'             => true, // $taxonomy
+			'hierarchical'          => true,
+			'supports'           => array( 'title', 'thumbnail', 'revisions' ),
+
+			/*'update_count_callback' => '_update_post_term_count',*/
+			'rewrite'               => array('slug' => 'realized_objects'),
+			'capabilities'          => array(),
+			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+			/*'_builtin'              => false,*/
+			'show_in_quick_edit'    => true, // по умолчанию значение show_ui
+		) );
+	}
 
 	/**
 	 * Register a reviews post type.
@@ -378,7 +457,6 @@
 
 			/*'update_count_callback' => '_update_post_term_count',*/
 			'rewrite'               => array('slug' => 'our_products'),
-			'query_var'             => $taxonomy, // название параметра запроса
 			'capabilities'          => array(),
 			'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
 			'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)

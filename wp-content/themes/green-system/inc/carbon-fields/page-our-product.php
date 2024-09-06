@@ -68,12 +68,52 @@
 				              Field::make_text('cost', 'Вартість послуги')
 			              )),
 			         Field::make_text('green_system_our_products_montage_time'.green_system_lang_prefix(), 'Строк виконання монтажних робіт'),
-			         Field::make_text('green_system_our_products_faq_title'.green_system_lang_prefix(), 'Заголовок блоку "Питання/відповіді"'),
+
+			         Field::make_select('green_system_solar_type_content_type'.green_system_lang_prefix(), 'Оберіть тип опису')
+				         ->add_options( array(
+					         'faq' => 'Питання/відповідь',
+					         'description' => 'Опис',
+				         ) ),
+			         Field::make_text('green_system_our_products_faq_title'.green_system_lang_prefix(), 'Заголовок блоку "Питання/відповіді"')
+				         ->set_conditional_logic( array(
+					         'relation' => 'AND',
+					         array(
+						         'field' => 'green_system_solar_type_content_type'.green_system_lang_prefix(),
+						         'value' => 'faq',
+						         'compare' => '=',
+					         )
+				         ) ),
 			         Field::make_complex('green_system_our_products_faq'.green_system_lang_prefix(), 'Питання/відповіді')
+				         ->set_conditional_logic( array(
+					         'relation' => 'AND',
+					         array(
+						         'field' => 'green_system_solar_type_content_type'.green_system_lang_prefix(),
+						         'value' => 'faq',
+						         'compare' => '=',
+					         )
+				         ) )
 			              ->add_fields(array(
 				              Field::make_text('question', 'Питання'),
 				              Field::make_rich_text('answer', 'Відповідь')
 			              )),
+			         Field::make_text('green_system_our_products_description_title'.green_system_lang_prefix(), 'Заголовок блоку "Опис"')
+			              ->set_conditional_logic( array(
+				              'relation' => 'AND',
+				              array(
+					              'field' => 'green_system_solar_type_content_type'.green_system_lang_prefix(),
+					              'value' => 'description',
+					              'compare' => '=',
+				              )
+			              ) ),
+			         Field::make_rich_text('green_system_our_products_description_text'.green_system_lang_prefix(), 'Текст опису')
+			              ->set_conditional_logic( array(
+				              'relation' => 'AND',
+				              array(
+					              'field' => 'green_system_solar_type_content_type'.green_system_lang_prefix(),
+					              'value' => 'description',
+					              'compare' => '=',
+				              )
+			              ) ),
 			         Field::make_text('green_system_our_products_call_text'.green_system_lang_prefix(), 'Текст заклику надіслати заявку'),
 			         Field::make_text('green_system_our_products_form_title'.green_system_lang_prefix(), 'Заголовок форми'),
 			         Field::make_text('green_system_our_products_form_call'.green_system_lang_prefix(), 'Текст заклику'),

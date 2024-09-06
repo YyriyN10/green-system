@@ -177,25 +177,12 @@
 
      <?php
 
-      $catId = get_the_terms(get_the_ID(), 'solar_types_tax');
-
      	$catArgs = array(
-	      'tax_query' => array(
-		      array(
-			      'taxonomy' => 'solar_types_tax',
-			      'field' => 'id',
-			      'lang' => false,
-			      'suppress_filters' => false,
-			      'terms' => $catId[0]->term_id,
-
-		      )
-	      ),
      		'posts_per_page' => 4,
      		'orderby' 	 => 'date',
      		'post_type'  => 'realized_objects',
      		'post_status'  => 'publish',
         'post__not_in' => array(get_the_ID()),
-
      	);
 
      	$postList = new WP_Query( $catArgs );
@@ -253,16 +240,6 @@
                    <?php
 
 	                   $countArgs = array(
-		                   'tax_query' => array(
-			                   array(
-				                   'taxonomy' => 'solar_types_tax',
-				                   'field' => 'id',
-				                   'lang' => false,
-				                   'suppress_filters' => false,
-				                   'terms' => $catId[0]->term_id,
-
-			                   )
-		                   ),
 		                   'posts_per_page' => -1,
 		                   'orderby' 	 => 'date',
 		                   'post_type'  => 'realized_objects',
@@ -278,7 +255,11 @@
                  <?php if( $projectsCount > 4 ):?>
                    <div class="row more-projects-wrapper">
                      <div class="col-12 text-center">
-                       <a href="#" class="more-projects" id="more-projects" data-current="<?php echo get_the_ID();?>" data-cat-id="<?php echo $catId[0]->term_id;?>">
+                       <a href="#"
+                          class="more-projects"
+                          id="more-cases"
+                          data-all="<?php echo $projectsCount;?>"
+                          data-current="0">
                          <span><?php echo esc_html( pll__( 'Побачити більше' ) ); ?></span>
 
                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
